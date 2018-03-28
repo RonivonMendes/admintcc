@@ -4,11 +4,10 @@
 
 	class Endereco
 	{
-		private $pais, $estado, $cidade, $bairro, $rua, $numero, $cep;
+		private $estado, $cidade, $bairro, $rua, $numero, $cep;
 
-		function __construct($pais, $estado, $cidade, $bairro, $rua, $numero, $cep)
+		function __construct($estado, $cidade, $bairro, $rua, $numero, $cep)
 		{
-			$this->pais = $pais; 
 			$this->estado = $estado;
 			$this->cidade = $cidade;
 			$this->bairro = $bairro;
@@ -21,7 +20,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "INSERT INTO `enderecos` (`pais`, `estado`, `cidade`, `bairro`, `cep`, `numero`) VALUES ('$this->pais', '$this->estado', '$this->cidade','$this->bairro', '$this->cep', '$this->numero')";
+			$sql = "INSERT INTO `enderecos` (`estado`, `cidade`, `bairro`, `cep`, `numero`) VALUES ('$this->estado', '$this->cidade','$this->bairro', '$this->cep', '$this->numero')";
 			$temp = $conexao->prepare($sql);
 			$result =$temp->execute();
 
