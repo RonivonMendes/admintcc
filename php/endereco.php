@@ -8,7 +8,6 @@
 
 		function __construct($estado, $cidade, $bairro, $rua, $numero, $cep)
 		{
-			$this->pais = $pais; 
 			$this->estado = $estado;
 			$this->cidade = $cidade;
 			$this->bairro = $bairro;
