@@ -1,0 +1,5 @@
+Configurando o compilador com Junit
+
+Run>Run Configurations> Arguments> Substituir o texto por: -Dplatform=WEB-CHROME
+
+Confirme que em Test esteja marcado a opção "Run a single test", o project seja o certo e o Test Class na classe que deseja.
