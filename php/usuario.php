@@ -21,10 +21,6 @@
 			#cadastrando o endereço e pegando o ultimo id para associar ao cadastro de usuario
 			$idEndereco = $endereco->Cadastra($endereco);
 
-			echo "<br> ID Enderço aqui:".$idEndereco;
-			echo "<br>Telefone:". $this->telefone;
-			echo "<br>";
-
 			$conexao = Database::conexao();
 
 			$sql = "INSERT INTO usuarios (nome, cpf, rg, orgao_expeditor, telefone, acessos_id, enderecos_id) VALUES ('$this->nome', '$this->cpf', '$this->rg', '$this->orgaoexpedidor','$this->telefone', '2', '$idEndereco')";

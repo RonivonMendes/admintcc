@@ -4,9 +4,9 @@
 
 	class Endereco
 	{
-		private $pais, $estado, $cidade, $bairro, $rua, $numero, $cep;
+		private $estado, $cidade, $bairro, $rua, $numero, $cep;
 
-		function __construct($pais, $estado, $cidade, $bairro, $rua, $numero, $cep)
+		function __construct($estado, $cidade, $bairro, $rua, $numero, $cep)
 		{
 			$this->pais = $pais; 
 			$this->estado = $estado;
@@ -21,7 +21,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "INSERT INTO `enderecos` (`pais`, `estado`, `cidade`, `bairro`, `cep`, `numero`) VALUES ('$this->pais', '$this->estado', '$this->cidade','$this->bairro', '$this->cep', '$this->numero')";
+			$sql = "INSERT INTO `enderecos` (`estado`, `cidade`, `bairro`, `cep`, `numero`) VALUES ('$this->estado', '$this->cidade','$this->bairro', '$this->cep', '$this->numero')";
 			$temp = $conexao->prepare($sql);
 			$result =$temp->execute();
 
@@ -45,7 +45,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "UPDATE `enderecos` SET `cidade`='$this->cidade', `estado`='$this->estado', `cep`='$this->cep' WHERE id='$id'";
+			$sql = "UPDATE `enderecos` SET `estado`='$this->estado', `cidade`='$this->cidade', `bairro`='$this->bairro', `cep`='$this->cep' , `numero`='$this->numero' WHERE id='$id'";
 			$temp = $conexao->prepare($sql);
 			$result =$temp->execute();
 
@@ -57,7 +57,6 @@
 			echo $temp->rowCount(). "Linhas inseridas / ATUALIZADO COM SUCESSO";
 
 		}
-
 
 
 	}
