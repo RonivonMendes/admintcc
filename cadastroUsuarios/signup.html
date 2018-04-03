@@ -1,0 +1,673 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Cadastro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<style>
+	.ds{
+  cursor: pointer;
+}
+
+</style>
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+<!-- Custom CSS -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+
+<!-- font-awesome  icons CSS-->
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons CSS-->
+
+ <!-- js-->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/modernizr.custom.js"></script>
+
+<!--webfonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+<!--//webfonts-->
+ 
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+
+
+<!--//Metis Menu -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+$(document).ready(function(){
+	$("div#d1").show();
+	$("div#d2").hide();
+	$("div#d3").hide();
+	$("div#d4").hide();
+	
+	$("button#f1").click(function(){
+
+		$("div#d2").hide();
+		$("div#d3").hide();
+		$("div#d4").hide();
+		$("div#d1").show();
+	});
+
+	$("button#f2").click(function(){
+		$("div#d1").hide();
+		$("div#d3").hide();
+		$("div#d4").hide();		
+		$("div#d2").show();
+	});
+
+	$("button#f3").click(function(){
+		$("div#d1").hide();
+		$("div#d2").hide();
+		$("div#d4").hide();
+		$("div#d3").show();
+	});
+
+	$("button#f4").click(function(){
+		$("div#d1").hide();
+		$("div#d2").hide();
+		$("div#d3").hide();
+		$("div#d4").show();
+	});
+});
+</script>
+</head> 
+<body>
+
+<div id="page-wrapper" style="padding-top: 40px;">
+			<div class="main-page login-page" style="width: 1200px"> 
+				<h2 class="title1" style="text-align: center;">Cadastrar Novo Usuário</h2>
+				<div class="widget-shadow">
+			
+
+					<div id="ds" style="text-align: center;">
+						<br>
+						<button id="f1">Aluno</button>
+						<button id="f2">Orientador</button>
+						<button id="f3">Coorientador</button>
+						<button id="f4">Supervisor</button>
+					</div>
+					
+					<br>
+				</div>
+				<div class="widget-shadow">		
+					<div id="d1">
+						
+						<form action="dataAluno.php" method="post" class="form-horizontal">	
+							
+								<div class="form-group">
+									<br>
+									<h4 style="text-align: center;">Aluno</h4>
+								</div>
+
+							<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">RG</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="rg" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Orgão Epeditor</label>
+									<div class="col-sm-8">
+										<input style="width: 10%" type="text" class="form-control1" name="orgao_expeditor" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">CPF</label>
+									<div class="col-sm-8">
+										<input style="width: 15%" type="text" class="form-control1" name="cpf" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Curso</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="curso" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Matrícula (RA)</label>
+									<div class="col-sm-8">
+										<input style="width: 19%" type="text" class="form-control1" name="ra" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Telefone</label>
+									<div class="col-sm-8">
+										<input style="width: 15%" type="text" class="form-control1" name="telefone" value="" required="">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">País</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="pais" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Estado</label>
+									<div class="col-sm-8">
+										<select name="estado" required="">
+											<option value="Acre">AC</option>
+											<option value="Alagoas">AL</option>
+											<option value="Amapá">AP</option>
+											<option value="Amazonas">AM</option>
+											<option value="Bahía">BA</option>
+											<option value="Ceará">CE</option>
+											<option value="Distrito Federal">DF</option>
+											<option value="Espírito Santo">ES</option>
+											<option value="Goiás">GO</option>
+											<option value="Maranhão">MA</option>
+											<option value="Mato Grosso">MT</option>
+											<option value="Mato Grosso do Sul">MS</option>
+											<option value="Minas Gerais">MG</option>
+											<option value="Pará">PA</option>
+											<option value="Paranaiba">PB</option>
+											<option value="Paraná">PR</option>
+											<option value="Pernambuco">PE</option>
+											<option value="Piauí">PI</option>
+											<option value="Rio de Janeiro">RJ</option>
+											<option value="Rio Grandde do Norte">RN</option>
+											<option value="Rio Grande do Sul">RS</option>
+											<option value="Rondônia">RO</option>
+											<option value="Roraima">RR</option>
+											<option value="Santa Catarina">SC</option>
+											<option value="São Paulo">SP</option>
+											<option value="Sergipe">SE</option>
+											<option value="Tocantins">TO</option> 
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Cidade</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="cidade" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Bairro</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="bairro" value="" required="">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="rua" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Número</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="numero" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Cep</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="cep" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="email" class="form-control1" name="email" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
+									<div class="col-sm-8">
+										<input style="width: 30%" type="password" class="form-control1" name="senha" value="" required="">
+									</div>
+								</div>
+								 
+								<div style="text-align: center;" class="form-group">
+									<input type="submit" name="enviar" value="Cadastrar">
+									<input type="reset" name="limpar" value="Limpar">
+
+								</div>
+								<br>
+							</form>
+						</div>	
+					<div id="d2">
+
+						<form action="dataOrientador.php" method="post" class="form-horizontal">
+								
+								<div class="form-group">
+									<br>
+									<h4 style="text-align: center;">Orientador</h4>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Titulação</label>
+									<div class="col-sm-8">
+										<input style="width: 45%" type="text" class="form-control1" name="titulacao" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Telefone</label>
+									<div class="col-sm-8">
+										<input style="width: 15%" type="text" class="form-control1" name="telefone" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">País</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="pais" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Estado</label>
+									<div class="col-sm-8">
+										<select name="estado" required="">
+											<option value="Acre">AC</option>
+											<option value="Alagoas">AL</option>
+											<option value="Amapá">AP</option>
+											<option value="Amazonas">AM</option>
+											<option value="Bahía">BA</option>
+											<option value="Ceará">CE</option>
+											<option value="Distrito Federal">DF</option>
+											<option value="Espírito Santo">ES</option>
+											<option value="Goiás">GO</option>
+											<option value="Maranhão">MA</option>
+											<option value="Mato Grosso">MT</option>
+											<option value="Mato Grosso do Sul">MS</option>
+											<option value="Minas Gerais">MG</option>
+											<option value="Pará">PA</option>
+											<option value="Paranaiba">PB</option>
+											<option value="Paraná">PR</option>
+											<option value="Pernambuco">PE</option>
+											<option value="Piauí">PI</option>
+											<option value="Rio de Janeiro">RJ</option>
+											<option value="Rio Grandde do Norte">RN</option>
+											<option value="Rio Grande do Sul">RS</option>
+											<option value="Rondônia">RO</option>
+											<option value="Roraima">RR</option>
+											<option value="Santa Catarina">SC</option>
+											<option value="São Paulo">SP</option>
+											<option value="Sergipe">SE</option>
+											<option value="Tocantins">TO</option> 
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Cidade</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="cidade" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Bairro</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="bairro" value="" required="">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="rua" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Número</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="numero" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Cep</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="cep" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="email" class="form-control1" name="email" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="password" class="form-control1" name="senha" value="" required="">
+									</div>
+								</div>
+								 
+								<div class="form-group" style="text-align: center;">
+									<input type="submit" name="enviar" value="Cadastrar">
+									<input type="reset" name="limpar" value="Limpar">
+								</div>
+								<br>
+							</form>
+						</div>
+					<div id="d3">
+
+						<form action="dataCoorientador.php" method="post" class="form-horizontal">
+								
+								<div class="form-group">
+									<br>
+									<h4 style="text-align: center;">Coorientador</h4>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="text" class="form-control1" name="nomeAluno" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Titulação</label>
+									<div class="col-sm-8">
+										<input style="width: 45%" type="text" class="form-control1" name="titulacao" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Instituição</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control1" name="institucao" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Telefone</label>
+									<div class="col-sm-8">
+										<input style="width: 15%" type="text" class="form-control1" name="telefoneAluno" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">País</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="pais" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Estado</label>
+									<div class="col-sm-8">
+										<select name="estado" required="">
+											<option value="Acre">AC</option>
+											<option value="Alagoas">AL</option>
+											<option value="Amapá">AP</option>
+											<option value="Amazonas">AM</option>
+											<option value="Bahía">BA</option>
+											<option value="Ceará">CE</option>
+											<option value="Distrito Federal">DF</option>
+											<option value="Espírito Santo">ES</option>
+											<option value="Goiás">GO</option>
+											<option value="Maranhão">MA</option>
+											<option value="Mato Grosso">MT</option>
+											<option value="Mato Grosso do Sul">MS</option>
+											<option value="Minas Gerais">MG</option>
+											<option value="Pará">PA</option>
+											<option value="Paranaiba">PB</option>
+											<option value="Paraná">PR</option>
+											<option value="Pernambuco">PE</option>
+											<option value="Piauí">PI</option>
+											<option value="Rio de Janeiro">RJ</option>
+											<option value="Rio Grandde do Norte">RN</option>
+											<option value="Rio Grande do Sul">RS</option>
+											<option value="Rondônia">RO</option>
+											<option value="Roraima">RR</option>
+											<option value="Santa Catarina">SC</option>
+											<option value="São Paulo">SP</option>
+											<option value="Sergipe">SE</option>
+											<option value="Tocantins">TO</option> 
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Cidade</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="cidade" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Bairro</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="bairro" value="" required="">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="rua" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Número</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="numero" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Cep</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="cep" value="" required="">
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="email" class="form-control1" name="emailAluno" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="password" class="form-control1" name="senhaAluno" value="" required="">
+									</div>
+								</div>
+								 
+								<div class="form-group" style="text-align: center;">
+									<input type="submit" name="enviar" value="Cadastrar">
+									<input type="reset" name="limpar" value="Limpar">
+								</div>
+								<br>
+							</form></div>
+					<div id="d4">
+						<form action="dataSupervisor.php" method="post" class="form-horizontal">
+								
+								<div class="form-group">
+									<br>
+									<h4 style="text-align: center;">Supervisor</h4>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="text" class="form-control1" name="nomeAluno" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Titulação</label>
+									<div class="col-sm-8">
+										<input style="width: 45%" type="text" class="form-control1" name="titulacao" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Telefone</label>
+									<div class="col-sm-8">
+										<input style="width: 15%" type="text" class="form-control1" name="telefoneAluno" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">País</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="pais" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Estado</label>
+									<div class="col-sm-8">
+										<select name="estado" required="">
+											<option value="Acre">AC</option>
+											<option value="Alagoas">AL</option>
+											<option value="Amapá">AP</option>
+											<option value="Amazonas">AM</option>
+											<option value="Bahía">BA</option>
+											<option value="Ceará">CE</option>
+											<option value="Distrito Federal">DF</option>
+											<option value="Espírito Santo">ES</option>
+											<option value="Goiás">GO</option>
+											<option value="Maranhão">MA</option>
+											<option value="Mato Grosso">MT</option>
+											<option value="Mato Grosso do Sul">MS</option>
+											<option value="Minas Gerais">MG</option>
+											<option value="Pará">PA</option>
+											<option value="Paranaiba">PB</option>
+											<option value="Paraná">PR</option>
+											<option value="Pernambuco">PE</option>
+											<option value="Piauí">PI</option>
+											<option value="Rio de Janeiro">RJ</option>
+											<option value="Rio Grandde do Norte">RN</option>
+											<option value="Rio Grande do Sul">RS</option>
+											<option value="Rondônia">RO</option>
+											<option value="Roraima">RR</option>
+											<option value="Santa Catarina">SC</option>
+											<option value="São Paulo">SP</option>
+											<option value="Sergipe">SE</option>
+											<option value="Tocantins">TO</option> 
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Cidade</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="cidade" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Bairro</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="bairro" value="" required="">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<div class="col-sm-8">
+										<input style="width: 40%" type="text" class="form-control1" name="rua" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Número</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="numero" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Cep</label>
+									<div class="col-sm-8">
+										<input style="width: 12%" type="text" class="form-control1" name="cep" value="" required="">
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="email" class="form-control1" name="emailAluno" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="password" class="form-control1" name="senhaAluno" value="" required="">
+									</div>
+								</div>
+								 
+								<div class="form-group" style="text-align: center;">
+									<input type="submit" name="enviar" value="Cadastrar">
+									<input type="reset" name="limpar" value="Limpar">
+								</div>
+								<br>
+							</form>
+						</div>		
+				</div>
+
+					<div class="registration">Já possui uma conta?
+						<a class="" href="login.html">Login</a>
+				 		<br>
+					</div>
+		</div>
+		</div>
+		<!--footer-->
+		<div class="footer">
+		   <p>&copy; 2018 Todos os direitos reservados a ARCH Software.</a></p>		
+		</div>
+        <!--//footer-->
+
+	
+</body>
+</html>
+
+
