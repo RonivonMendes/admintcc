@@ -1,30 +1,26 @@
 <?php	
 	require_once './conexao.php';
 
-	class Usuario
+	class Aluno extends Usuario
 	{
-		private $nome, $cpf, $rg, $orgaoexpedidor, $telefone, $email, $senha;
+		private $ra;
 
-		function __construct($nome, $cpf, $rg, $orgaoexpedidor, $telefone)
+		function __construct($nome, $cpf, $rg, $orgaoexpedidor, $telefone, $ra)
 		{
-			$this->nome = $nome;
-			$this->cpf = $cpf;
-			$this->rg = $rg;
-			$this->orgaoexpedidor = $orgaoexpedidor;
-			$this->telefone=$telefone;
+			parent::__construct($nome, $cpf, $rg, $orgaoexpedidor, $telefone);
+			$this->ra = $ra;
 		}
 
 		function cadastra(Usuario $user, Endereco $endereco, Acesso $acesso)
 		{
 			#cadastrando acesso e pegando id
-			$idAcesso = $acesso->Cadastra($acesso);
+			$idUser = parent::cadastra($user, $endereco, $acesso);
 
-			#cadastrando o endereço e pegando o ultimo id para associar ao cadastro de usuario
-			$idEndereco = $endereco->Cadastra($endereco);
+			echo "<br>Id usuario cadastrado".$idUser."<br>";
 
 			$conexao = Database::conexao();
 
-			$sql = "INSERT INTO usuarios (nome, cpf, rg, orgao_expeditor, telefone, acessos_id, enderecos_id) VALUES ('$this->nome', '$this->cpf', '$this->rg', '$this->orgaoexpedidor','$this->telefone', '1', '$idEndereco')";
+			$sql = "INSERT INTO `alunos` (`ra`, `usuarios_id`, `acessos_id`) VALUES ('$this->ra', '$idUser', '1')"; #id de quem está cadastrando
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
 
@@ -33,17 +29,10 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}
-
-			echo $temp->rowCount(). "Usuario cadastrado com sucesso<br>";
-
-			if ($temp->rowCount()>0)
-			{
-				$ultimoId = $conexao->lastInsertId();
-
-				return $ultimoId;
-			}
+			echo $temp->rowCount(). "Aluno Cadastrado com sucesso";
 		}
 
+		/*
 		function atualiza($iduser, Usuario $user, $idend, Endereco $endereco)
 		{
 			#atualizando o endereço
@@ -61,7 +50,7 @@
 				exit();
 			}
 			echo $temp->rowCount(). "Linhas inseridas / ATUALIZADO COM SUCESSO";
-		}
+		}*/
 
 	}
 
