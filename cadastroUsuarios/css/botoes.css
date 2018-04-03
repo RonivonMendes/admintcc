@@ -1,5 +1,4 @@
-	
-input[type=submit]{
+input[type=submit], input[type=reset]{
     background-color: #73adb7;
     border: none;
     color: white;
@@ -10,21 +9,8 @@ input[type=submit]{
     -webkit-transition-duration: 1s;
   }
 
-input[type=reset]{
-    background-color: #73adb7;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    -webkit-transition-duration: 1s;
-  }
 
-input[type=submit]:hover{
-    background-color: #598c93;
-  }
 
-input[type=reset]:hover{
+input[type=submit]:hover, input[type=reset]:hover{
     background-color: #598c93;
   }

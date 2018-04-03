@@ -36,6 +36,7 @@ ul,label{
 body a:hover{
 	text-decoration:none;
 }
+
 .main-content {
     position: relative;
 }
@@ -145,7 +146,8 @@ button#showLeftPush:hover {
 	transition: all 0.3s ease;
 }
 .cbp-spmenu-push div#page-wrapper {
-    margin: 0 0 0 13.5em;
+    
+    margin: 0 0 0 0.5em;
 	transition:.5s all;
 	-webkit-transition:.5s all;
 	-moz-transition:.5s all;
@@ -1723,11 +1725,11 @@ form.search-form {
 }
 .login-page input[type="email"], .login-page input[type="password"] {
     font-size: 1em;
-    padding: 14px 15px 14px 37px;
+    padding: 5px 15px 5px 8px;
     width: 100%;
     color: #A8A8A8;
     outline: none;
-    border: 1px solid #D3D3D3;
+    border: 1px solid #ccc;
     background: #FFFFFF;
     margin: 0em 0em 1.5em 0em;
 }
@@ -1770,25 +1772,26 @@ form.search-form {
 .forgot a:hover{
     color: #f2b33f;
 }
-.login-page input[type="submit"] {
+.login-page input[type=submit], input[type=reset]{
+    background-color: #73adb7;
     border: none;
-    outline: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
     cursor: pointer;
-    color: #fff;
-    background: #F2B33F;
-    width: 40%;
-    padding: .6em 1em;
-    font-size: 1em;
-    margin: 0.5em auto 0;
-    display: block;
-	transition: 0.5s all;
-	-webkit-transition: 0.5s all;
-	-moz-transition: 0.5s all;
-	-ms-transition: 0.5s all;
-	-o-transition: 0.5s all;
+    -webkit-transition-duration: 1s;
+  }
+
+button{
+   background-color: white;
+   border: none;
+   color: #73adb7;
 }
-.login-page input[type="submit"]:hover{
-    background: #337ab7;
+
+.login-page input[type=submit]:hover, input[type=reset]:hover{
+    background-color: #598c93;
+  }
 }
 .login-page-bottom {
     text-align: center;
@@ -2084,12 +2087,12 @@ p.creating {
 .signup-page input[type="text"] {
     background: url(../images/user.png)no-repeat 8px 16px #fff;
 }
-.signup-page input[type="text"]:focus ,.signup-page 
+/*.signup-page input[type="text"]:focus ,.signup-page 
              input[type="email"]:focus,.signup-page 
              input[type="password"]:focus,.login-page 
              input[type="email"]:focus,.login-page 
              input[type="password"]:focus {border-color: #337ab7;
-}
+}*/
 .signup-page h5,.signup-page h6{
 	margin: 0 0 1em;
     color: #629aa9;
@@ -6367,7 +6370,7 @@ h4.asd label {
 /*---- responsive-design -----*/
 @media(max-width:1440px){
 	.login-page {
-		width: 43%;
+		width: 45%;
 	}
 	.general .tab-content {
 		padding: 1em 0.5em 0;
@@ -6581,7 +6584,7 @@ h4.asd label {
 	}
 	.cbp-spmenu-push div#page-wrapper {
 		margin:0 0 0 14.5em;
-		padding: 5em 1em 2em;
+		padding: 0em 0em 0em;
 	}
 	.sidebar ul li {
 		margin-bottom: 0.8em;
@@ -7079,7 +7082,7 @@ h4.asd label {
 		padding: .5em .9em;
 	}
 	.login-page,.signup-page {
-		width: 75%;
+		width: 100%;
 	}
 	.login-top h4 {
 		font-size: 1em;
@@ -7164,7 +7167,8 @@ h4.asd label {
 		width: 210px !important; 
 	}
 	.cbp-spmenu-push div#page-wrapper {
-		margin: 0 0 0 13em;
+		
+    margin: 0 0 0 13em;
 	}
 	.header-right {
 		float: right;
