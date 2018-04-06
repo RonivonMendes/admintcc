@@ -39,12 +39,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <link href="css/custom.css" rel="stylesheet">
 
 
-<!--//Metis Menu -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
 
-	<script>
-	$(document).ready(function(){
+<script>
+		$(document).ready(function(){
 		$("div#d1").fadeIn();
 		$("div#d2").hide();
 		$("div#d3").hide();
@@ -79,7 +78,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			$("div#d4").fadeIn();
 		});
 
-	function limpa_formulário_cep() {
+		function limpa_formulário_cep() {
 	    		// Limpa valores do formulário de cep.
 	   	 		$(".rua").val("");
 				$(".bairro").val("");
@@ -141,17 +140,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	            	limpa_formulário_cep();
 	        	}
 	    	});
-		});
-	</script>
-
-
+		});</script>
 
 	</head> 
 <body>
 
 <div id="page-wrapper" style="padding-top: 40px;">
 			<div class="main-page login-page" style="width: 1200px"> 
-				<h2 class="title1" style="text-align: center;">Cadastrar Novo Usuário</h2>
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Cadastrar Novo Usuário</h2>
 				<div class="widget-shadow">
 		
 					<div style="text-align: center;">
@@ -169,11 +165,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<!--Aluno-->
 					<div id="d1">
 						
-						<form action="dataAluno.php" method="post" class="form-horizontal">	
+						<form action="./php/aluno.php" method="post" class="form-horizontal">	
 							
 								<div class="form-group">
 									<br>
-									<h4 style="text-align: center;">Aluno</h4>
+									<h3 style="text-align: center;">Aluno</h3>
 								</div>
 
 							<div class="form-group">
@@ -186,7 +182,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">RG</label>
 									<div class="col-sm-8">
-										<input style="width: 12%" type="text" class="form-control1" name="rg" value="" required="">
+										<input style="width: 16%" type="text" class="form-control1" name="rg" value="" required="" maxlength="14">
 									</div>
 								</div>
 
@@ -198,9 +194,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">CPF</label>
+									<label for="focusedinput" class="col-sm-2 control-label">CPF (Somente números)</label>
 									<div class="col-sm-8">
-										<input style="width: 15%" type="text" class="form-control1" name="cpf" value="" required="">
+										<input style="width: 13%" type="text" class="form-control1" name="cpf" value="" required=""  maxlength="11">
 									</div>
 								</div>
 
@@ -297,13 +293,34 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								
 								<div class="form-group">
 									<br>
-									<h4 style="text-align: center;">Orientador</h4>
+									<h3 style="text-align: center;">Orientador</h3>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">RG</label>
+									<div class="col-sm-8">
+										<input style="width: 16%" type="text" class="form-control1" name="rg" value="" required="" maxlength="14">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Orgão Epeditor</label>
+									<div class="col-sm-8">
+										<input style="width: 10%" type="text" class="form-control1" name="orgao_expeditor" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">CPF (Somente números)</label>
+									<div class="col-sm-8">
+										<input style="width: 13%" type="text" class="form-control1" name="cpf" value="" required=""  maxlength="11">
 									</div>
 								</div>
 
@@ -399,13 +416,34 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								
 								<div class="form-group">
 									<br>
-									<h4 style="text-align: center;">Coorientador</h4>
+									<h3 style="text-align: center;">Coorientador</h3>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nomeAluno" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">RG</label>
+									<div class="col-sm-8">
+										<input style="width: 16%" type="text" class="form-control1" name="rg" value="" required="" maxlength="14">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Orgão Epeditor</label>
+									<div class="col-sm-8">
+										<input style="width: 10%" type="text" class="form-control1" name="orgao_expeditor" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">CPF (Somente números)</label>
+									<div class="col-sm-8">
+										<input style="width: 13%" type="text" class="form-control1" name="cpf" value="" required=""  maxlength="11">
 									</div>
 								</div>
 
@@ -498,7 +536,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								
 								<div class="form-group">
 									<br>
-									<h4 style="text-align: center;">Supervisor</h4>
+									<h3 style="text-align: center;">Supervisor</h3>
 								</div>
 
 								<div class="form-group">
@@ -507,6 +545,28 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 										<input style="width: 50%" type="text" class="form-control1" name="nomeAluno" value="" required="">
 									</div>
 								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">RG</label>
+									<div class="col-sm-8">
+										<input style="width: 16%" type="text" class="form-control1" name="rg" value="" required="" maxlength="14">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Orgão Epeditor</label>
+									<div class="col-sm-8">
+										<input style="width: 10%" type="text" class="form-control1" name="orgao_expeditor" value="" required="">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">CPF (Somente números)</label>
+									<div class="col-sm-8">
+										<input style="width: 13%" type="text" class="form-control1" name="cpf" value="" required=""  maxlength="11">
+									</div>
+								</div>
+
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Titulação</label>
