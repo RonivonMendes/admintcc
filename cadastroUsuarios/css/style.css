@@ -1789,6 +1789,10 @@ button{
    color: #73adb7;
 }
 
+button:hover{
+  color: #598c93
+}
+
 .login-page input[type=submit]:hover, input[type=reset]:hover{
     background-color: #598c93;
   }
