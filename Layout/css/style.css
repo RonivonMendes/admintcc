@@ -37,6 +37,10 @@ body a:hover{
 	text-decoration:none;
 }
 
+.ds{
+  cursor: pointer;
+}
+
 .main-content {
     position: relative;
 }
