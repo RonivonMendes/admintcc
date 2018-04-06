@@ -13,12 +13,12 @@ import com.gargoylesoftware.htmlunit.javascript.host.dom.Text;
 
 import junit.framework.Assert;
 
-public class Google extends Config{
-	WebDriver driver;
-	@SuppressWarnings("deprecation")
-	@Test	
+public class Testes extends Config{
+	
+	
+	/*@Test	
 	public  void testeLogin() throws InterruptedException {
-		/*Teste automatizado da parte de login do software*/
+		/*Teste automatizado da parte de login do software
 		driver = new ChromeDriver();
 		
 		String link = "http://localhost/Projeto/login.php";
@@ -34,14 +34,25 @@ public class Google extends Config{
 		Assert.assertEquals(driver.findElement(By.id("texto_1")).getText().toString(),"Login certo");
 	
 	}
+*/
 	
-	@Before
-	public void inicia(){
-		String exePath ="C:\\Drivers\\chromedriver.exe";
-		System.setProperty("webdriver.chrome.driver",exePath);
+	public static void testeCadastroAluno() throws InterruptedException{
+		/*Teste automatizado da parte de cadastro de aluno do software*/
+		driver = new ChromeDriver();
+		
+		String link = "http://localhost/Trabalho%20Ailton/admintcc/cadastroUsuarios/signup.html";
+		driver.navigate().to(link);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
+		driver.findElement(btnAluno).click();
+		driver.findElement(txtNome).sendKeys(nomeAluno);
+		driver.findElement(txtRg).sendKeys(rgAluno);
+		driver.findElement(txtOrgao).sendKeys(orgaoAluno);
+		driver.findElement(txtCpf).sendKeys(cpfAluno);
+		driver.findElement(txtCurso).sendKeys(cursoAluno);
+		Thread.sleep(100000);
 	}
-	@After
-	public void  encerra(){
-		driver.quit();
-	}
+	
+	
 }
