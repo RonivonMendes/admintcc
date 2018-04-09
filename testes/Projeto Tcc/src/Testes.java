@@ -40,7 +40,7 @@ public class Testes extends Config{
 		/*Teste automatizado da parte de cadastro de aluno do software*/
 		driver = new ChromeDriver();
 		
-		String link = "http://localhost/Trabalho%20Ailton/admintcc/cadastroUsuarios/signup.html";
+		String link = "http://ronivonmendes.tk/iftm/admintcc/cadastrarUsuario.php";
 		driver.navigate().to(link);
 		
 		WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -51,6 +51,12 @@ public class Testes extends Config{
 		driver.findElement(txtOrgao).sendKeys(orgaoAluno);
 		driver.findElement(txtCpf).sendKeys(cpfAluno);
 		driver.findElement(txtCurso).sendKeys(cursoAluno);
+		driver.findElement(txtRa).sendKeys(raAluno);
+		driver.findElement(txtTelefone).sendKeys(telefoneAluno);
+		driver.findElement(txtCep).sendKeys(cepAluno);
+		driver.findElement(txtNumero).sendKeys(numeroAluno);
+		driver.findElement(txtEmail).sendKeys(email);
+		driver.findElement(txtSenha).sendKeys(senha);
 		Thread.sleep(100000);
 	}
 	
