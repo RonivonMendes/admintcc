@@ -1,6 +1,6 @@
 <?php
 	
-	require_once './conexao.php';
+	require_once 'conexao.php';
 
 	class Endereco
 	{
@@ -39,7 +39,6 @@
 			}
 		}
 
-
 		function atualiza($id, Endereco $endereco)
 		{
 			$conexao = Database::conexao();
@@ -53,8 +52,7 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}
-			echo $temp->rowCount(). "Linhas inseridas / ATUALIZADO COM SUCESSO";
-
+			echo $temp->rowCount(). "Endereço atualizado com sucesso";
 		}
 
 

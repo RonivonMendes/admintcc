@@ -1,19 +1,18 @@
 <?php	
 	require_once 'conexao.php';
-	require_once 'usuario.php';
 
-	class Aluno extends Usuario
+	class Integrante extends Usuario
 	{
-		private $ra, $curso;
+		private $titulacao, $instituicao;
 
-		function __construct($nome, $cpf, $rg, $orgaoexpedidor, $telefone, $ra, $curso)
+		function __construct($nome, $cpf, $rg, $orgaoexpedidor, $telefone, $titulacao, $instituicao)
 		{
 			parent::__construct($nome, $cpf, $rg, $orgaoexpedidor, $telefone);
-			$this->ra = $ra;
-			$this->curso = $curso;
+			$this->titulacao = $titulacao;
+			$this->instituicao=$instituicao;
 		}
 
-		function cadastra(Usuario $user, Endereco $endereco, Acesso $acesso)
+		function cadastra(Integrante $user, Endereco $endereco, Acesso $acesso)
 		{
 			#cadastrando acesso e pegando id
 			$idUser = parent::cadastra($user, $endereco, $acesso);
@@ -22,28 +21,27 @@
 
 			$conexao = Database::conexao();
 
-			#idAcesso é quem está realizando o cadastro no sistema!
-			#idCurso é o id do curso selecionado!
-			$sql = "INSERT INTO `alunos` (`idUsuario`, `idAcesso`, `idCurso`, `ra`) VALUES ('$idUser', '1', '1', '$this->ra')";
+			$sql = "INSERT INTO `integrantes`(`acessos_id`, `usuarios_id`, `instituicao`, `titulacao`) VALUES ('1','$idUser', '$this->instituicao', '$this->titulacao')"; #acesso id, é o id de quem está realizando o cadastro
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
+
 			if(!$result)
 			{
 				var_dump($temp->errorInfo());
 				exit();
 			}
-			echo $temp->rowCount(). "Aluno Cadastrado com sucesso";
+			echo $temp->rowCount(). "Cadastrado com sucesso";
 		}
-
-		function atualiza($idAluno, $idUser, Aluno $aluno, $idend, Endereco $endereco)
+		
+		function atualiza($idIntegrante, Integrante $user, $idend, Endereco $endereco)
 		{
-			#atualizando dados de usuario e endereço
-			$user->atualiza($idUser, $aluno);
+			#atualizando o endereço e o usuario
 			$endereco->atualiza($idend, $endereco);
+			$user->atualiza($this->iduser, $user);
 
 			$conexao = Database::conexao();
 
-			$sql = "UPDATE `alunos` SET `idCurso`='$this->curso', `ra`='$this->ra' WHERE id='$idAluno'";
+			$sql = "UPDATE `integrantes` SET `instituicao`='$this->instituicao', `titulacao`='$this->titulacao' WHERE id='$idIntegrante'";
 			$temp = $conexao->prepare($sql);
 			$result =$temp->execute();
 
@@ -52,20 +50,20 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}
-			echo $temp->rowCount(). "Aluno atualizando com sucesso!";
+			echo $temp->rowCount(). "Linhas inseridas / ATUALIZADO COM SUCESSO";
 		}
 
-		function buscarAluno($cpf)
+		function buscarIntegrante($cpf)
 		{
 			#buscando o id de Usuario primeiro referente ao cpf para buscar o aluno
-			$consulta = parent::buscarUsuario($aluno);
+			$consulta = parent::buscarUsuario($cpf);
 
 			#se encontrar o usuario com cpf passado, então vamos consultar o aluno associado a ele:
 			if ($consulta!=0)
 			{
 				$conexao = Database::conexao();
 
-				$sql = "SELECT *FROM `alunos`";
+				//$sql = "SELECT *FROM `alunos` WHERE `idUsuario`='$consulta['id']'";
 				$temp = $conexao->prepare($sql);
 				$temp->execute();
 				$res = $temp->fetchAll();
@@ -89,5 +87,7 @@
 			else
 				return 0;
 		}
+
+
 	}
 ?>

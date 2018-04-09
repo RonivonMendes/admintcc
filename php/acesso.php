@@ -1,22 +1,23 @@
 <?php	
-	require_once './conexao.php';
+	require_once 'conexao.php';
 
 	class Acesso
 	{
-		private $nivelUsuario, $email, $senha;
+		private $perfilUsuario, $email, $senha, $status;
 
-		function __construct($nivelUsuario, $email, $senha)
+		function __construct($perfilUsuario, $email, $senha, $status)
 		{
-			$this->nivelUsuario = $nivelUsuario;
+			$this->perfilUsuario = $perfilUsuario;
 			$this->email = $email;
 			$this->senha = sha1($senha);
+			$this->status = $status;
 		}
 
 		function cadastra(Acesso $acesso)
 		{
 			$conexao = Database::conexao();
 
-			$sql = "INSERT INTO `acessos` (`perfis_id`, `email`, `senha`) VALUES ('$this->nivelUsuario', '$this->email', '$this->senha')";
+			$sql = "INSERT INTO `acessos` (`idPerfis`, `email`, `senha`, `status`) VALUES ('$this->perfilUsuario', '$this->email', '$this->senha', '$this->status')";
 			$temp = $conexao->prepare($sql);
 			$result =$temp->execute();
 
@@ -39,7 +40,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "UPDATE `acessos` SET `perfis_id`='$this->nivelUsuario', `email`='$this->email', `senha`='$this->senha' WHERE id='$id'";
+			$sql = "UPDATE `acessos` SET `perfis_id`='$this->perfilUsuario', `email`='$this->email', `senha`='$this->senha' WHERE id='$id'";
 			$temp = $conexao->prepare($sql);
 			$result =$temp->execute();
 

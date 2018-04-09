@@ -1,3 +1,10 @@
+<?php
+	require_once 'php/aluno.php';
+	require_once 'php/endereco.php';
+	require_once 'php/acesso.php';
+	require_once 'php/usuario.php';
+	require_once 'php/integrante.php';
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -165,7 +172,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<!--Aluno-->
 					<div id="d1">
 						
-						<form action="./php/aluno.php" method="post" class="form-horizontal">	
+						<form action="?action=aluno" method="post" class="form-horizontal">	
 							
 								<div class="form-group">
 									<br>
@@ -203,7 +210,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Curso</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="curso" value="" required="">
+										<input type="text" class="form-control1" name="curso" value="" >
 									</div>
 								</div>
 
@@ -281,6 +288,51 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 									<input type="submit" name="enviar" value="Cadastrar">
 									<input type="reset" name="limpar" value="Limpar">
 
+									<?php
+									if(isset($_GET['action'])) 
+									{
+										if($_GET['action']=="aluno")
+										{
+											//echo $_POST['nome'];
+
+											#CADASTRANDO UM ALUNO
+											$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], $_POST['1']);
+											$endcadastra = new Endereco( $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+											$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
+											$alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
+										}
+
+										else if($_GET['action']=='orientador')
+										{
+											#CADASTRANDO UM INTEGRANTE
+											$orientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+											$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+											$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
+											$orientadorCadastra->cadastra($orientadorCadastra, $endCadastra, $acessoCadastra);
+										}
+
+										else if($_GET['action']=='coorientador')
+										{
+											#CADASTRANDO UM INTEGRANTE
+											$coorientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+											$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+											$acessoCadastra = new Acesso('4',$_POST['email'],$_POST['senha'], '1');
+											$coorientadorCadastra->cadastra($coorientadorCadastra, $endCadastra, $acessoCadastra);
+										}
+
+										else if($_GET['action']=='supervisor')
+										{
+											echo "<br><br>E-MAIL:".$_POST[''];
+											#CADASTRANDO UM INTEGRANTE
+											$supervisorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+											$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+											$acessoCadastra = new Acesso('2',$_POST['email'],$_POST['senha'], '1');
+											$supervisorCadastra->cadastra($supervisorCadastra, $endCadastra, $acessoCadastra);
+										}
+									}
+
+									?>
+
 								</div>
 								<br>
 							</form>
@@ -289,7 +341,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<!--Orientador-->
 					<div id="d2">
 
-						<form action="dataOrientador.php" method="post" class="form-horizontal">
+						<form action="?action=orientador" method="post" class="form-horizontal">
 								
 								<div class="form-group">
 									<br>
@@ -412,7 +464,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<!--Coorientador-->
 					<div id="d3">
 
-						<form action="dataCoorientador.php" method="post" class="form-horizontal">
+						<form action="?action=coorientador" method="post" class="form-horizontal">
 								
 								<div class="form-group">
 									<br>
@@ -532,7 +584,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					
 					<!--Supervisor-->
 					<div id="d4">
-						<form action="dataSupervisor.php" method="post" class="form-horizontal">
+						<form action="?action=supervisor" method="post" class="form-horizontal">
 								
 								<div class="form-group">
 									<br>
