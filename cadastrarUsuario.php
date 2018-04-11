@@ -48,53 +48,6 @@
 		
 	}
 
-	/*if(isset($_GET['action'])) 
-	{
-		if($_GET['action']=="aluno")
-		{
-			//echo $_POST['nome'];
-
-			#CADASTRANDO UM ALUNO
-			$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], $_POST['1']);
-			$endcadastra = new Endereco( $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
-			$alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
-		}
-
-		else if($_GET['action']=='orientador')
-		{
-			#CADASTRANDO UM INTEGRANTE
-			$orientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
-			$orientadorCadastra->cadastra($orientadorCadastra, $endCadastra, $acessoCadastra);
-		}
-
-		else if($_GET['action']=='coorientador')
-		{
-			#CADASTRANDO UM INTEGRANTE
-			$coorientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra = new Acesso('4',$_POST['email'],$_POST['senha'], '1');
-			$coorientadorCadastra->cadastra($coorientadorCadastra, $endCadastra, $acessoCadastra);
-		}
-
-		else if($_GET['action']=='supervisor')
-		{
-			echo "<br><br>E-MAIL:".$_POST[''];
-			#CADASTRANDO UM INTEGRANTE
-			$supervisorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra = new Acesso('2',$_POST['email'],$_POST['senha'], '1');
-			$supervisorCadastra->cadastra($supervisorCadastra, $endCadastra, $acessoCadastra);
-		}
-		
-		alert("Teste alert");
-
-		"<meta http-equiv='refresh' content='5'; url=cadastrarUsuario.php'>";	
-	}*/
-
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -243,8 +196,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	</head> 
 <body>
 
-<div id="page-wrapper" style="padding-top: 40px;">
-			<div class="main-page login-page" style="width: 1200px"> 
+<div id="page-wrapper" style="padding-top: 5%;">
+			<div class="main-page login-page" style="width: 80%"> 
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Cadastrar Novo Usuário</h2>
 				<div class="widget-shadow">
 		
