@@ -26,7 +26,7 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}
-			echo $temp->rowCount(). "Acesso cadastrado com sucesso<br>";
+			#echo $temp->rowCount(). "Acesso cadastrado com sucesso<br>";
 
 			if ($temp->rowCount()>0)
 			{
@@ -34,6 +34,8 @@
 
 				return $ultimoId;
 			}
+			else
+				return "false";
 		}
 
 		function atualiza($id, Acesso $acesso)

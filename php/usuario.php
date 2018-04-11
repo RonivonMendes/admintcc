@@ -23,26 +23,34 @@
 			#cadastrando o endereço e pegando o ultimo id para associar ao cadastro de usuario
 			$idEndereco = $endereco->Cadastra($endereco);
 
-			$conexao = Database::conexao();
-
-			$sql = "INSERT INTO `usuarios` (`idAcesso`, `idEndereco`, `nome`, `cpf`, `rg`, `orgao_expeditor`, `telefone`) VALUES ('$idAcesso', '$idEndereco', '$this->nome', '$this->cpf', '$this->rg', '$this->orgaoexpedidor','$this->telefone')";
-			$temp = $conexao->prepare($sql);
-			$result = $temp->execute();
-
-			if(!$result)
+			if ($idAcesso!="false"&&$idEndereco!="false") 
 			{
-				var_dump($temp->errorInfo());
-				exit();
+				$conexao = Database::conexao();
+
+				$sql = "INSERT INTO `usuarios` (`idAcesso`, `idEndereco`, `nome`, `cpf`, `rg`, `orgao_expeditor`, `telefone`) VALUES ('$idAcesso', '$idEndereco', '$this->nome', '$this->cpf', '$this->rg', '$this->orgaoexpedidor','$this->telefone')";
+				$temp = $conexao->prepare($sql);
+				$result = $temp->execute();
+
+				if(!$result)
+				{
+					var_dump($temp->errorInfo());
+					exit();
+				}
+
+				#echo $temp->rowCount(). "Usuario cadastrado com sucesso<br>";
+
+				if ($temp->rowCount()>0)
+				{
+					$ultimoId = $conexao->lastInsertId();
+
+					return $ultimoId;
+				}
 			}
 
-			echo $temp->rowCount(). "Usuario cadastrado com sucesso<br>";
+			else
+				return "false";
 
-			if ($temp->rowCount()>0)
-			{
-				$ultimoId = $conexao->lastInsertId();
-
-				return $ultimoId;
-			}
+			
 		}
 
 		function atualiza($iduser, Usuario $user)

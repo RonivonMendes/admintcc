@@ -4,6 +4,97 @@
 	require_once 'php/acesso.php';
 	require_once 'php/usuario.php';
 	require_once 'php/integrante.php';
+	
+	if(isset($_POST['tipocadastro'])) 
+	{
+
+		if($_POST['tipocadastro']=="aluno")
+		{
+			$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], '1');
+			$endcadastra = new Endereco($_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
+			$alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
+			
+
+		}
+
+		else if($_POST['tipocadastro']=='orientador')
+		{
+			#CADASTRANDO UM INTEGRANTE
+			$orientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
+			$orientadorCadastra->cadastra($orientadorCadastra, $endCadastra, $acessoCadastra);
+		}
+
+		else if($_POST['tipocadastro']=='coorientador')
+		{
+			#CADASTRANDO UM INTEGRANTE
+			$coorientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra = new Acesso('4',$_POST['email'],$_POST['senha'], '1');
+			$coorientadorCadastra->cadastra($coorientadorCadastra, $endCadastra, $acessoCadastra);
+		}
+
+		else if($_POST['tipocadastro']=='supervisor')
+		{
+			echo "<br><br>E-MAIL:".$_POST[''];
+			#CADASTRANDO UM INTEGRANTE
+			$supervisorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra = new Acesso('2',$_POST['email'],$_POST['senha'], '1');
+			$supervisorCadastra->cadastra($supervisorCadastra, $endCadastra, $acessoCadastra);
+		}
+		
+	}
+
+	/*if(isset($_GET['action'])) 
+	{
+		if($_GET['action']=="aluno")
+		{
+			//echo $_POST['nome'];
+
+			#CADASTRANDO UM ALUNO
+			$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], $_POST['1']);
+			$endcadastra = new Endereco( $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
+			$alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
+		}
+
+		else if($_GET['action']=='orientador')
+		{
+			#CADASTRANDO UM INTEGRANTE
+			$orientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
+			$orientadorCadastra->cadastra($orientadorCadastra, $endCadastra, $acessoCadastra);
+		}
+
+		else if($_GET['action']=='coorientador')
+		{
+			#CADASTRANDO UM INTEGRANTE
+			$coorientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra = new Acesso('4',$_POST['email'],$_POST['senha'], '1');
+			$coorientadorCadastra->cadastra($coorientadorCadastra, $endCadastra, $acessoCadastra);
+		}
+
+		else if($_GET['action']=='supervisor')
+		{
+			echo "<br><br>E-MAIL:".$_POST[''];
+			#CADASTRANDO UM INTEGRANTE
+			$supervisorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
+			$acessoCadastra = new Acesso('2',$_POST['email'],$_POST['senha'], '1');
+			$supervisorCadastra->cadastra($supervisorCadastra, $endCadastra, $acessoCadastra);
+		}
+		
+		alert("Teste alert");
+
+		"<meta http-equiv='refresh' content='5'; url=cadastrarUsuario.php'>";	
+	}*/
+
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -172,8 +263,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<!--Aluno-->
 					<div id="d1">
 						
-						<form action="?action=aluno" method="post" class="form-horizontal">	
-							
+						<form action="cadastrarUsuario.php" method="post" class="form-horizontal">
+							<input type="hidden" name="tipocadastro" value="aluno">
 								<div class="form-group">
 									<br>
 									<h3 style="text-align: center;">Aluno</h3>
@@ -257,9 +348,9 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								</div>
 								
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Logradouro</label>
 									<div class="col-sm-8">
-										<input style="width: 40%" type="text" class="rua" class="form-control1" name="rua" value="" required="">
+										<input style="width: 40%" type="text" class="rua" class="form-control1" name="logradouro" value="" required="">
 									</div>
 								</div>
 
@@ -287,52 +378,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<div style="text-align: center;" class="form-group">
 									<input type="submit" name="enviar" value="Cadastrar">
 									<input type="reset" name="limpar" value="Limpar">
-
-									<?php
-									if(isset($_GET['action'])) 
-									{
-										if($_GET['action']=="aluno")
-										{
-											//echo $_POST['nome'];
-
-											#CADASTRANDO UM ALUNO
-											$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], $_POST['1']);
-											$endcadastra = new Endereco( $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-											$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
-											$alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
-										}
-
-										else if($_GET['action']=='orientador')
-										{
-											#CADASTRANDO UM INTEGRANTE
-											$orientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-											$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-											$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
-											$orientadorCadastra->cadastra($orientadorCadastra, $endCadastra, $acessoCadastra);
-										}
-
-										else if($_GET['action']=='coorientador')
-										{
-											#CADASTRANDO UM INTEGRANTE
-											$coorientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-											$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-											$acessoCadastra = new Acesso('4',$_POST['email'],$_POST['senha'], '1');
-											$coorientadorCadastra->cadastra($coorientadorCadastra, $endCadastra, $acessoCadastra);
-										}
-
-										else if($_GET['action']=='supervisor')
-										{
-											echo "<br><br>E-MAIL:".$_POST[''];
-											#CADASTRANDO UM INTEGRANTE
-											$supervisorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-											$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['endereco'], $_POST['numero'], $_POST['cep']);
-											$acessoCadastra = new Acesso('2',$_POST['email'],$_POST['senha'], '1');
-											$supervisorCadastra->cadastra($supervisorCadastra, $endCadastra, $acessoCadastra);
-										}
-									}
-
-									?>
-
 								</div>
 								<br>
 							</form>

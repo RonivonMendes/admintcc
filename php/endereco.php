@@ -29,7 +29,7 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}
-			echo $temp->rowCount(). "Endereço cadastrado com sucesso<br>";
+			#echo $temp->rowCount(). "Endereço cadastrado com sucesso<br>";
 
 			if ($temp->rowCount()>0)
 			{

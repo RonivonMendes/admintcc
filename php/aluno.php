@@ -18,21 +18,32 @@
 			#cadastrando acesso e pegando id
 			$idUser = parent::cadastra($user, $endereco, $acesso);
 
-			echo "<br>Id usuario cadastrado".$idUser."<br>";
+			//echo "<br>Id usuario cadastrado".$idUser."<br>";
 
-			$conexao = Database::conexao();
-
-			#idAcesso é quem está realizando o cadastro no sistema!
-			#idCurso é o id do curso selecionado!
-			$sql = "INSERT INTO `alunos` (`idUsuario`, `idAcesso`, `idCurso`, `ra`) VALUES ('$idUser', '1', '1', '$this->ra')";
-			$temp = $conexao->prepare($sql);
-			$result = $temp->execute();
-			if(!$result)
+			if($idUser!="false")
 			{
-				var_dump($temp->errorInfo());
-				exit();
+				$conexao = Database::conexao();
+
+				#idAcesso é quem está realizando o cadastro no sistema!
+				#idCurso é o id do curso selecionado!
+				$sql = "INSERT INTO `alunos` (`idUsuario`, `idAcesso`, `idCurso`, `ra`) VALUES ('$idUser', '1', '1', '$this->ra')";
+				$temp = $conexao->prepare($sql);
+				$result = $temp->execute();
+				if(!$result)
+				{
+					var_dump($temp->errorInfo());
+					exit();
+				}
+				#echo $temp->rowCount(). "Aluno Cadastrado com sucesso";
+				if($temp->rowCount()>0)
+				{
+					return "Aluno cadastrado com sucesso!";
+				}
+				else
+					return "Erro ao cadastrar aluno!";
+
 			}
-			echo $temp->rowCount(). "Aluno Cadastrado com sucesso";
+
 		}
 
 		function atualiza($idAluno, $idUser, Aluno $aluno, $idend, Endereco $endereco)
