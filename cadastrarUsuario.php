@@ -4,18 +4,24 @@
 	require_once 'php/acesso.php';
 	require_once 'php/usuario.php';
 	require_once 'php/integrante.php';
+	require_once 'php/curso.php';
+
+	session_start();
+
+	if (($_SESSION['logado']==0))
+	{
+		header('location: login.php');
+	}
 	
 	if(isset($_POST['tipocadastro'])) 
 	{
 
 		if($_POST['tipocadastro']=="aluno")
 		{
-			$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], '1');
+			$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], $_POST['curso']);
 			$endcadastra = new Endereco($_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
 			$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
-			$alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
-			
-
+			$alerta = $alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
 		}
 
 		else if($_POST['tipocadastro']=='orientador')
@@ -48,6 +54,10 @@
 		
 	}
 
+	#consultando cursos para listar
+	$buscaCurso = new Curso("","","");
+	$lista = $buscaCurso->buscar();
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -56,15 +66,37 @@
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<meta name="keywords" content="TCC, Admim, Sistema" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <style>
 	.ds{
   cursor: pointer;
 }
 
+/**Alert Teste**/
+.alert {
+    padding: 20px;
+    background-color: #2196F3;
+    color: white;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
 </style>
+
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -197,7 +229,20 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
+	<?php
+		if(isset($_POST['tipocadastro']))
+		{
+			echo "<div class='alert'>";
+			  echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''>&times;</span>"; 
+			  echo "<strong>Atenção, </strong>".$alerta.".";
+			echo "</div>";
+		}
+	?>
+	
 			<div class="main-page login-page" style="width: 80%"> 
+				<?php
+					echo "Seja bem vindo(a), ".$_SESSION['nomeUser'].".";
+				?>
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Cadastrar Novo Usuário</h2>
 				<div class="widget-shadow">
 		
@@ -254,7 +299,15 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Curso</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="curso" value="" >
+										<select name="curso" class="form-control1">
+											<option value=""></option>
+											<?php
+												foreach ($lista as $valor)
+												{
+													echo "<option value'".$valor['id']."'>".$valor['nome']."</option>";
+												}	//$dados['nome']
+											?>
+										</select>
 									</div>
 								</div>
 
@@ -717,5 +770,3 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
         <!--//footer-->	
 </body>
 </html>
-
-

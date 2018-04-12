@@ -1,5 +1,5 @@
 <?php	
-	require_once './conexao.php';
+	require_once 'conexao.php';
 
 	class Curso
 	{
@@ -45,13 +45,14 @@
 			$temp->execute();
 			$res = $temp->fetchAll();
 
+			return $res;
 			#rodar consulta
-			foreach ($res as $dados)
-			{
+			//foreach ($res as $dados)
+			/*{
 				echo $dados['id']."<br>";
 				echo $dados['nome']."<br>";
 				echo $dados['status']."<br>";
-			}
+			}*/
 		}
 
 		#consultar por nome

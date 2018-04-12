@@ -1,3 +1,24 @@
+<?php
+	require_once 'php/acesso.php';
+
+	session_start();
+
+	if(isset($_POST['logon']))
+	{
+		if($_POST['logon']=='true')
+		{
+			$acesso = new Acesso('','','','');
+			$acesso->logar($_POST['email'], $_POST['senha']);
+		}
+	}
+	if (isset($_SESSION))
+	{
+		echo $_SESSION['nomeUser'];
+	}
+
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -31,17 +52,18 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				<h2 style="font-weight: bold;" class="title1">SATI - Sistema de acompanhamento de TCC IFTM</h2>
 				<div class="widget-shadow">
 					<div class="login-body">
-						<form action="./php/login.php" method="post">
+						<form action="login.php" method="post">
+							<input type="hidden" name="logon" value="true">
 							<input type="email" class="user" name="email" placeholder="Entre com seu e-mail" required="">
-							<input type="password" name="password" class="lock" placeholder="Senha" required="">
+							<input type="password" name="senha" class="lock" placeholder="Senha" required="">
 							<div class="forgot-grid">
 								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Lembrar me</label>
 								<div class="forgot">
-									<a href="esqueceu-senha.html">Esqueceu sua senha?</a>
+									<a href="#">Esqueceu sua senha?</a>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
-							<input type="submit" name="Sign In" value="Logar">
+							<input type="submit" name="logar" value="Logar">
 							<div class="registration">
 								Não tem uma conta ?
 								<a class="" href="signup.html">
