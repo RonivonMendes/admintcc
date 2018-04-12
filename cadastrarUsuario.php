@@ -24,34 +24,14 @@
 			$alerta = $alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
 		}
 
-		else if($_POST['tipocadastro']=='orientador')
+		else if($_POST['tipocadastro']=="integrante")
 		{
 			#CADASTRANDO UM INTEGRANTE
-			$orientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
+			$integranteCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
 			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
 			$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
-			$orientadorCadastra->cadastra($orientadorCadastra, $endCadastra, $acessoCadastra);
+			$alerta = $integranteCadastra->cadastra($integranteCadastra, $endCadastra, $acessoCadastra);
 		}
-
-		else if($_POST['tipocadastro']=='coorientador')
-		{
-			#CADASTRANDO UM INTEGRANTE
-			$coorientadorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra = new Acesso('4',$_POST['email'],$_POST['senha'], '1');
-			$coorientadorCadastra->cadastra($coorientadorCadastra, $endCadastra, $acessoCadastra);
-		}
-
-		else if($_POST['tipocadastro']=='supervisor')
-		{
-			echo "<br><br>E-MAIL:".$_POST[''];
-			#CADASTRANDO UM INTEGRANTE
-			$supervisorCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra = new Acesso('2',$_POST['email'],$_POST['senha'], '1');
-			$supervisorCadastra->cadastra($supervisorCadastra, $endCadastra, $acessoCadastra);
-		}
-		
 	}
 
 	#consultando cursos para listar
@@ -233,9 +213,9 @@
 		if(isset($_POST['tipocadastro']))
 		{
 			echo "<div class='alert'>";
-			  echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''>&times;</span>"; 
-			  echo "<strong>Atenção, </strong>".$alerta.".";
-			echo "</div>";
+			 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''>&times;</span>"; 
+			  	echo "<strong>Atenção, </strong>".$alerta.".";
+				echo "</div>";
 		}
 	?>
 	
@@ -392,7 +372,7 @@
 					<!--Orientador-->
 					<div id="d2">
 
-						<form action="?action=orientador" method="post" class="form-horizontal">
+						<form action="cadastrarUsuario.php" method="post" class="form-horizontal">
 								
 								<div class="form-group">
 									<br>
@@ -400,6 +380,7 @@
 								</div>
 
 								<div class="form-group">
+									<input type="hidden" name="tipocadastro" value="integrante">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
@@ -477,9 +458,9 @@
 								</div>
 								
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Logradouro</label>
 									<div class="col-sm-8">
-										<input style="width: 40%" type="text" class="rua" class="form-control1" name="rua" value="" required="">
+										<input style="width: 40%" type="text" class="rua" class="form-control1" name="logradouro" value="" required="">
 									</div>
 								</div>
 
@@ -515,7 +496,7 @@
 					<!--Coorientador-->
 					<div id="d3">
 
-						<form action="?action=coorientador" method="post" class="form-horizontal">
+						<form action="cadastrarUsuario.php" method="post" class="form-horizontal">
 								
 								<div class="form-group">
 									<br>
@@ -523,9 +504,10 @@
 								</div>
 
 								<div class="form-group">
+									<input type="hidden" name="tipocadastro" value="integrante">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="nomeAluno" value="" required="">
+										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
 									</div>
 								</div>
 
@@ -567,7 +549,7 @@
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Telefone</label>
 									<div class="col-sm-8">
-										<input style="width: 15%" type="text" class="form-control1" class="telefone" name="telefoneAluno" value="" required="" maxlength="15">
+										<input style="width: 15%" type="text" class="form-control1" class="telefone" name="telefone" value="" required="" maxlength="15">
 									</div>
 								</div>
 
@@ -600,9 +582,9 @@
 								</div>
 								
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Logradouro</label>
 									<div class="col-sm-8">
-										<input style="width: 40%" type="text" class="rua" class="form-control1" name="rua" value="" required="">
+										<input style="width: 40%" type="text" class="rua" class="form-control1" name="logradouro" value="" required="">
 									</div>
 								</div>
 
@@ -615,14 +597,14 @@
 								<div class="form-group">
 									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="email" class="form-control1" name="emailAluno" value="" required="">
+										<input style="width: 50%" type="email" class="form-control1" name="email" value="" required="">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="password" class="form-control1" name="senhaAluno" value="" required="">
+										<input style="width: 50%" type="password" class="form-control1" name="senha" value="" required="">
 									</div>
 								</div>
 								 
@@ -635,7 +617,7 @@
 					
 					<!--Supervisor-->
 					<div id="d4">
-						<form action="?action=supervisor" method="post" class="form-horizontal">
+						<form action="cadastrarUsuario.php" method="post" class="form-horizontal">
 								
 								<div class="form-group">
 									<br>
@@ -643,9 +625,10 @@
 								</div>
 
 								<div class="form-group">
+									<input type="hidden" name="tipocadastro" value="integrante">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="nomeAluno" value="" required="">
+										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
 									</div>
 								</div>
 
@@ -688,7 +671,7 @@
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Telefone</label>
 									<div class="col-sm-8">
-										<input style="width: 15%" type="text" class="form-control1" class="telefone" name="telefoneAluno" value="" required="" maxlength="15">
+										<input style="width: 15%" type="text" class="form-control1" class="telefone" name="telefone" value="" required="" maxlength="15">
 									</div>
 								</div>
 
@@ -721,9 +704,9 @@
 								</div>
 								
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Rua</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Logradouro</label>
 									<div class="col-sm-8">
-										<input style="width: 40%" type="text" class="rua" class="form-control1" name="rua" value="" required="">
+										<input style="width: 40%" type="text" class="rua" class="form-control1" name="logradouro" value="" required="">
 									</div>
 								</div>
 
@@ -737,14 +720,14 @@
 								<div class="form-group">
 									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="email" class="form-control1" name="emailAluno" value="" required="">
+										<input style="width: 50%" type="email" class="form-control1" name="email" value="" required="">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="password" class="form-control1" name="senhaAluno" value="" required="">
+										<input style="width: 50%" type="password" class="form-control1" name="senha" value="" required="">
 									</div>
 								</div>
 								 
@@ -757,10 +740,7 @@
 						</div>		
 				</div>
 
-					<div class="registration">Já possui uma conta?
-						<a class="" href="login.html">Login</a>
-				 		<br>
-					</div>
+				
 		</div>
 		</div>
 		<!--footer-->

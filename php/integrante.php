@@ -17,7 +17,7 @@
 			#cadastrando acesso e pegando id
 			$idUser = parent::cadastra($user, $endereco, $acesso);
 
-			echo "<br>Id usuario cadastrado".$idUser."<br>";
+			//echo "<br>Id usuario cadastrado".$idUser."<br>";
 
 			$conexao = Database::conexao();
 
@@ -30,7 +30,13 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}
-			echo $temp->rowCount(). "Cadastrado com sucesso";
+			//$temp->rowCount(). "Cadastrado realizado com sucesso!";
+			if($temp->rowCount()>0)
+			{
+				return "Cadastro realizado com sucesso!";
+			}
+			else
+				return "Erro ao realizar o cadastro, verifique os dados informados ou contacte o administrador do sistema!";
 		}
 		
 		function atualiza($idIntegrante, Integrante $user, $idend, Endereco $endereco)
