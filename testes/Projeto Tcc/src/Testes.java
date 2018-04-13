@@ -24,14 +24,9 @@ public class Testes extends Config{
 		String link = "http://ronivonmendes.tk/iftm/admintcc/login.php";
 		driver.navigate().to(link);
 		
-		//WebDriverWait wait = new WebDriverWait(driver, 10);
-		
-		
 		driver.findElement(By.name("email")).sendKeys(email);
 		driver.findElement(By.name("senha")).sendKeys(senha);
 		driver.findElement(By.name("logar")).submit();
-		
-	
 	}
 
 	
@@ -43,6 +38,7 @@ public class Testes extends Config{
 		//driver.navigate().to(link);
 		
 
+		
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(btnAluno));
@@ -62,6 +58,7 @@ public class Testes extends Config{
 		wait.until(ExpectedConditions.presenceOfElementLocated(alerta));
 		System.out.println(driver.findElement(alerta).getText());
 		Assert.assertEquals("Atenção,", driver.findElement(alerta).getText());
+	
 		
 	}
 
