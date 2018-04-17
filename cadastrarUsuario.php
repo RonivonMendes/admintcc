@@ -107,6 +107,9 @@
 
 <script>
 		$(document).ready(function(){
+		
+		$(".alert").fadeIn(1000).delay(500).fadeOut(1000);
+
 		$("div#d1").fadeIn();
 		$("div#d2").hide();
 		$("div#d3").hide();
@@ -209,12 +212,12 @@
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
-	<?php
+		<?php
 		if(isset($_POST['tipocadastro']))
 		{
 			echo "<div class='alert'>";
-			 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''>&times;</span>"; 
-			  	echo "<strong>Atenção, </strong>".$alerta.".";
+			 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''></span>"; 
+			  	echo .$alerta.;
 				echo "</div>";
 		}
 	?>
