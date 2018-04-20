@@ -81,7 +81,7 @@
 <script>
 		$(document).ready(function(){
 		
-		$(".alert").fadeIn(1000).delay(500).fadeOut(1000);
+		$(".alert").fadeIn(1000).delay(5000).fadeOut(1000);
 
 		$("div#d1").fadeIn();
 		$("div#d2").hide();
