@@ -190,7 +190,7 @@
 		{
 			echo "<div class='alert'>";
 			 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''></span>"; 
-			  	echo .$alerta.;
+			  	echo $alerta;
 				echo "</div>";
 		}
 	?>
