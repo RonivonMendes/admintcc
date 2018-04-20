@@ -20,7 +20,7 @@ public class Config {
 	protected static String telefoneAluno = "1235678";
 	protected static String cepAluno = "38304-258";
 	protected static String numeroAluno = "2213";
-	protected static String emailAluno =  "teste16@mail.com";
+	protected static String emailAluno =  "teste19@mail.com";
 	
 	//CAMPOS CADASTRO
 	protected static By btnAluno =  By.id("f1");
