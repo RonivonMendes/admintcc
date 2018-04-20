@@ -37,6 +37,25 @@ body a:hover{
 	text-decoration:none;
 }
 
+.txt-aceitar{
+    padding-left: 10px; 
+    padding-right: 10px;
+   
+}
+
+.check-aceitar{
+    text-align: center;
+}
+
+.txt-aceitar-box{
+    width: 98%;
+    background-color: white;
+    border: 1px solid #73adb7;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 30px;
+}
+
 #text-control{
   border: 1px solid #73adb7;
   margin-right: auto;
