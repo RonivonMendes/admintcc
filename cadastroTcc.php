@@ -34,13 +34,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-<script>
-		$(document).ready(function(){
-		
-		$(".alert").fadeIn(1000).delay(5000).fadeOut(1000);
-
-</script>
-
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -67,6 +60,14 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+	
+	<script>
+			$(document).ready(function(){		
+			
+			$(".alert").fadeIn(1000).delay(3000).fadeOut(1000);
+		});
+	</script>
+
 	</head> 
 <body>
 
