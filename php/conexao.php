@@ -9,7 +9,7 @@ class Database
     {
         # Informações sobre o banco de dados:
         $db_host = "localhost";
-        $db_nome = "tccdata";
+        $db_nome = "ronivonm_tccdata";
         $db_usuario = "root";
         $db_senha = "";
         $db_driver = "mysql";

@@ -29,11 +29,11 @@
 				$sql = "INSERT INTO `alunos` (`idUsuario`, `idAcesso`, `idCurso`, `ra`) VALUES ('$idUser', '1', '1', '$this->ra')";
 				$temp = $conexao->prepare($sql);
 				$result = $temp->execute();
-				if(!$result)
+				/*if(!$result)
 				{
 					var_dump($temp->errorInfo());
 					exit();
-				}
+				}*/
 				#echo $temp->rowCount(). "Aluno Cadastrado com sucesso";
 				if($temp->rowCount()>0)
 				{
@@ -41,7 +41,6 @@
 				}
 				else
 					return "Erro ao cadastrar aluno!";
-
 			}
 
 		}
@@ -64,6 +63,21 @@
 				exit();
 			}
 			echo $temp->rowCount(). "Aluno atualizando com sucesso!";
+		}
+
+		#buscartodos alunos
+		function buscar()
+		{
+			
+			#consultar todos alunos 
+			$conexao = Database::conexao();
+
+			$sql = "SELECT usuarios.nome, alunos.id, cursos.nome as nomeCurso FROM usuarios JOIN alunos JOIN cursos ON alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id;";
+
+			$temp = $conexao->prepare($sql);
+			$temp->execute();
+			$res = $temp->fetchAll();
+			return $res;
 		}
 
 		function buscarAluno($cpf)

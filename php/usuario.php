@@ -80,7 +80,7 @@
 			$res = $temp->fetchAll();
 
 			#rodar consulta
-			foreach ($res as $dados)
+			/*foreach ($res as $dados)
 			{
 				echo $dados['id']."<br>";
 				echo $dados['nome']."<br>";
@@ -88,7 +88,7 @@
 				echo $dados['rg']."<br>";
 				echo $dados['orgao_expeditor']."<br>";
 				echo $dados['telefone']."<br>";
-			}
+			}*/
 			return $res;
 		}
 
@@ -103,7 +103,7 @@
 			$res = $temp->fetchAll();
 
 			#rodar consulta
-			foreach ($res as $dados)
+			/*foreach ($res as $dados)
 			{
 				echo $dados['id']."<br>";
 				echo $dados['idAcesso']."<br>";
@@ -113,7 +113,7 @@
 				echo $dados['rg']."<br>";
 				echo $dados['orgao_expeditor']."<br>";
 				echo $dados['telefone']."<br>";
-			}
+			}*/
 			if(isset($res))
 				return $res;
 			else

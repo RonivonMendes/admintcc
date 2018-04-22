@@ -1,3 +1,30 @@
+<?php
+	require_once 'php/aluno.php';
+	require_once 'php/tcc.php';
+
+	session_start();
+
+	if (($_SESSION['logado']==0))
+	{
+		header('location: login.php');
+	}
+
+
+	if(isset($_POST['cadastro']))
+	{
+		if ($_POST['cadastro']=='cadastroTcc')
+		{
+			$tcc = new CadastroTcc($_POST['aluno'], "1", $_POST['projeto'], $_POST['gPesquisa'], " ");
+			$alerta = $tcc->cadastrar($tcc);
+
+			$_POST['cadastro']="false";
+		}
+	}
+
+	#Consulta de alunos, para listar
+	$buscaAluno = new Aluno("","","","","","","");
+	$lista = $buscaAluno->buscar();
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -6,6 +33,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<script>
+		$(document).ready(function(){
+		
+		$(".alert").fadeIn(1000).delay(5000).fadeOut(1000);
+
+</script>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -37,25 +71,44 @@
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
+	<?php
+		if(isset($_POST['cadastro']))
+		{
+			echo "<div class='alert'>";
+			 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''></span>"; 
+			  	echo $alerta;
+				echo "</div>";
+		}
+	?>
+
 			<div class="main-page login-page" style="width: 90%"> 
+				<?php
+					echo "Seja bem vindo(a), ".$_SESSION['nomeUser'].".";
+				?>
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Cadastrar Projeto TCC</h2>
 				<div class="widget-shadow">
+
+					
 		
 					
 						
-						<form action="./php/aluno.php" method="post" class="form-horizontal">	
+						<form action="cadastroTcc.php" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
 
+
 							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Aluno</label>
 									<div class="col-sm-8">
-										<select class="form-control1" name="aluno" id="c1" style="width: 75%" place>
-    										<option selected="" value="0">Selecione o Aluno</option>	
-    										<option value="1">Christyan</option>
-   											<option value="2">Ronivon</option>
-    										<option value="3">Adelino</option>
+										<select class="form-control1" name="aluno" id="c1" style="width: 75%" place required>
+    										<option value="" ></option>
+    										<?php
+    											foreach ($lista as $valor)
+    											{
+    												echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")</option>";
+    											}
+    										?>
 										</select>
 									</div>
 								</div>
@@ -72,6 +125,7 @@
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="gPesquisa" id="c3" value="" required="">
 									</div>
+									<input type="hidden" name="cadastro" value="cadastroTcc">
 								</div>
 
 								<div style="text-align: center;" class="form-group">

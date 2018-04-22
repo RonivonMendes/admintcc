@@ -22,6 +22,8 @@
 			$endcadastra = new Endereco($_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
 			$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
 			$alerta = $alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
+
+			$_POST['tipocadastro'] = "";
 		}
 
 		else if($_POST['tipocadastro']=="integrante")
@@ -31,6 +33,8 @@
 			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
 			$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
 			$alerta = $integranteCadastra->cadastra($integranteCadastra, $endCadastra, $acessoCadastra);
+
+			$_POST['tipocadastro'] = "";
 		}
 	}
 
@@ -39,6 +43,7 @@
 	$lista = $buscaCurso->buscar();
 
 ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -81,7 +86,7 @@
 <script>
 		$(document).ready(function(){
 		
-		$(".alert").fadeIn(1000).delay(5000).fadeOut(1000);
+		$(".alert").fadeIn(1000).delay(1000).fadeOut(1000);
 
 		$("div#d1").fadeIn();
 		$("div#d2").hide();
@@ -186,14 +191,14 @@
 
 <div id="page-wrapper" style="padding-top: 5%;">
 		<?php
-		if(isset($_POST['tipocadastro']))
-		{
-			echo "<div class='alert'>";
-			 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''></span>"; 
-			  	echo $alerta;
-				echo "</div>";
-		}
-	?>
+			if(isset($_POST['tipocadastro']))
+			{
+				echo "<div class='alert'>";
+				 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''></span>"; 
+				  	echo $alerta;
+					echo "</div>";
+			}
+		?>
 	
 			<div class="main-page login-page" style="width: 80%"> 
 				<?php
@@ -260,8 +265,8 @@
 											<?php
 												foreach ($lista as $valor)
 												{
-													echo "<option value'".$valor['id']."'>".$valor['nome']."</option>";
-												}	//$dados['nome']
+													echo "<option value='".$valor['id']."'>".$valor['nome']." - (".$valor['tipo'].")</option>";
+												}
 											?>
 										</select>
 									</div>

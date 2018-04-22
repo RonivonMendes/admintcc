@@ -40,7 +40,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "SELECT *FROM cursos";
+			$sql = "SELECT cursos.nome, tiposCursos.tipo FROM cursos JOIN tiposCursos ON cursos.idTipo = tiposCursos.id;";
 			$temp = $conexao->prepare($sql);
 			$temp->execute();
 			$res = $temp->fetchAll();

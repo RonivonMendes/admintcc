@@ -21,7 +21,7 @@ public class Testes extends Config{
 		//Teste automatizado da parte de login do software
 		driver = new ChromeDriver();
 		
-		String link = "http://ronivonmendes.tk/iftm/admintcc/login.php";
+		String link = "localhost/admintcc/login.php";
 		driver.navigate().to(link);
 		
 		driver.findElement(By.name("email")).sendKeys(email);

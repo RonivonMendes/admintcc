@@ -7,8 +7,8 @@ public class Config {
 	protected static WebDriver driver;
 
 	//LOGIN
-	protected static String email ="ronivonmendes.jr@gmail.com";
-	protected static String senha ="senha";
+	protected static String email ="user@master.com";
+	protected static String senha ="senha123";
 	
 	//CADASTRO ALUNO
 	protected static String nomeAluno = "Teste teste teste";
@@ -20,7 +20,7 @@ public class Config {
 	protected static String telefoneAluno = "1235678";
 	protected static String cepAluno = "38304-258";
 	protected static String numeroAluno = "2213";
-	protected static String emailAluno =  "teste19@mail.com";
+	protected static String emailAluno =  "teste1@mail.com";
 	
 	//CAMPOS CADASTRO
 	protected static By btnAluno =  By.id("f1");
