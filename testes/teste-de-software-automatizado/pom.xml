@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ 
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <groupId>com.tsa</groupId>
+  <artifactId>teste-de-software-automatizado</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+ 
+  <name>TSA - Testes de Software Automatizados</name>
+  <description>Projeto tem como base realizar e documentar testes em projetos web</description>
+
+	<dependencies>
+	  <dependency>
+	      <groupId>com.jayway.restassured</groupId>
+	      <artifactId>rest-assured</artifactId>
+	      <version>2.4.1</version>
+	      <scope>test</scope>
+	  </dependency>
+	  <dependency>
+	      <groupId>com.jayway.restassured</groupId>
+	      <artifactId>json-path</artifactId>
+	      <version>2.4.1</version>
+	  </dependency>
+	  <dependency>
+	      <groupId>com.jayway.restassured</groupId>
+	      <artifactId>json-schema-validator</artifactId>
+	      <version>2.4.1</version>
+	      <scope>test</scope>
+	  </dependency>
+	  <!-- JUNIT -->
+	  <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>4.12</version>
+	  </dependency>
+	  
+	   <!-- SELENIUM -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.3.1</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-remote-driver</artifactId>
+        <version>3.3.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
+	<dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+	    <artifactId>selenium-chrome-driver</artifactId>
+	    <version>2.9.0</version>
+	</dependency>
+    <!-- APACHE IO -->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>1.3.2</version>
+    </dependency>
+    <!-- EXCEL -->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>3.13</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>3.13</version>
+    </dependency>
+    <dependency>
+        <groupId>xml-apis</groupId>
+        <artifactId>xml-apis</artifactId>
+        <version>1.4.01</version>
+    </dependency>
+    <!-- BEANSHELL -->
+    <dependency>
+        <groupId>bsh</groupId>
+        <artifactId>bsh</artifactId>
+        <version>1.3.0</version>
+    </dependency>
+    <!-- TESTLINK -->
+    <dependency>
+        <groupId>br.eti.kinoshita</groupId>
+        <artifactId>testlink-java-api</artifactId>
+        <version>1.9.14-0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.xmlrpc</groupId>
+        <artifactId>xmlrpc-client</artifactId>
+        <version>3.1.3</version>
+    </dependency>
+    <!-- WEB CONTAINER -->
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>9.4.0.RC0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-servlet</artifactId>
+        <version>9.4.0.RC0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-webapp</artifactId>
+        <version>9.4.0.RC0</version>
+    </dependency>
+    <!-- CUCUMBER -->
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>1.2.0</version>
+    </dependency>
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>1.2.0</version>
+    </dependency>
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-core</artifactId>
+        <version>1.2.0</version>
+    </dependency>
+    <!-- APPIUM -->
+    <dependency>
+        <groupId>io.appium</groupId>
+        <artifactId>java-client</artifactId>
+        <version>5.0.0-BETA1</version>
+    </dependency>
+    <!-- SQL SERVER -->
+    <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>mssql-jdbc</artifactId>
+        <version>6.1.0.jre8</version>
+    </dependency>
+<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+	<dependency>
+   		 <groupId>com.googlecode.json-simple</groupId>
+   		 <artifactId>json-simple</artifactId>
+  		  <version>1.1.1</version>
+	</dependency>
+	
+    
+	</dependencies>
+
+   
+</project>
