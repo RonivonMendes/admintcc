@@ -24,6 +24,7 @@ public class Excel {
 	public static String pullData(String plano,String local) throws IOException {
 		String filePath = "data//cases.xlsx";
 		int indice = 0;
+	
 		//Abre o arquivo xlsx
 		FileInputStream file = new FileInputStream(new File(filePath));
 		XSSFWorkbook wb = new XSSFWorkbook(file);
@@ -57,9 +58,35 @@ public class Excel {
 		file.close();
 		return "Erro na leitura";
 	}
-	public static void pushData(String plano, String result) {
-		
-	}
+	public static void pushData(String plano, String result) throws IOException {
+		String filePath = "data//cases.xlsx";
+        FileInputStream file = new FileInputStream(new File(filePath));
+        XSSFWorkbook wb = new XSSFWorkbook(file); 
+        XSSFSheet linhas = wb.getSheet(plano);
+        int indice = 0;
+		Iterator<Row> l1 = linhas.iterator();
+		while(l1.hasNext()) {
+			Row l2 = l1.next();
+			Iterator<Cell> c1 = l2.iterator();
+ 			while(c1.hasNext()) {
+ 				Cell ce = c1.next();
+ 				if(ce.getStringCellValue().equals("Result")) {
+ 					indice=ce.getColumnIndex();
+ 					break;
+ 				}
+ 			}
+		}
+		  Cell cell = null;
+	      cell = linhas.getRow(1).getCell(indice);
+	      cell.setCellValue(result);
+	      file.close();
+	      FileOutputStream output_file =new FileOutputStream(new File(filePath));
+	      wb.write(output_file);
+	      output_file.close(); 
+}
+
+	
+	
 	
 
 }
