@@ -17,7 +17,7 @@ import config.Config;
 import junit.framework.Assert;
 import methods.Excel;
 
-public class search extends Config{
+public class Search extends Config{
 	
 	
 	
@@ -34,7 +34,7 @@ public class search extends Config{
 	}
 
 	
-	public static void testeCadastroAluno() throws InterruptedException{
+	public static void CadastroAluno() throws InterruptedException{
 		/*Teste automatizado da parte de cadastro de aluno do software*/
 		//driver = new ChromeDriver();
 		try {
@@ -50,7 +50,7 @@ public class search extends Config{
 		
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		
-		wait.until(ExpectedConditions.presenceOfElementLocated(btnAluno));
+		/*wait.until(ExpectedConditions.presenceOfElementLocated(btnAluno));
 		driver.findElement(btnAluno).click();
 		driver.findElement(txtNome).sendKeys(nomeAluno);
 		driver.findElement(txtRg).sendKeys(rgAluno);
@@ -68,11 +68,14 @@ public class search extends Config{
 		System.out.println(driver.findElement(alerta).getText());
 	//	Assert.assertEquals("Atenção,", driver.findElement(alerta).getText());
 	
+		*/
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("title1")));
+		resultado = driver.findElement(By.className("title1")).getText().toString();
 		
 	}
 
 
-	public static void testeCadastroOrientador() throws InterruptedException, IOException {
+	public static void CadastroOrientador() throws InterruptedException, IOException {
 		testeLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 20);		
 		wait.until(ExpectedConditions.presenceOfElementLocated(bntOrientador));
@@ -100,7 +103,7 @@ public class search extends Config{
 	}
 
 
-	public static void testeCoorientador() throws InterruptedException, IOException {
+	public static void Coorientador() throws InterruptedException, IOException {
 		testeLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 20);		
 		wait.until(ExpectedConditions.presenceOfElementLocated(bntOrientador));
@@ -130,7 +133,7 @@ public class search extends Config{
 	}
 
 
-	public static void testeCadastroSupervisor() throws InterruptedException, IOException {
+	public static void CadastroSupervisor() throws InterruptedException, IOException {
 		testeLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 20);		
 		wait.until(ExpectedConditions.presenceOfElementLocated(bntOrientador));
@@ -155,6 +158,30 @@ public class search extends Config{
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
+	}
+
+
+	public static String getResultCadastroAluno() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+
+
+	public static String getResultCadastroCoorientador() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+
+
+	public static String getResultCadastroSupervisor() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+
+
+	public static String getResultCadastroOrientador() {
+		// TODO Auto-generated method stub
+		return resultado;
 	}
 	
 	

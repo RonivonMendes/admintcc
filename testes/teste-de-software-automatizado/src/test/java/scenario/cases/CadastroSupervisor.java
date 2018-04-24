@@ -7,15 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import config.Config;
-import test.search;
+import methods.Excel;
+import test.Search;
 
 
 public class CadastroSupervisor  {
-	@SuppressWarnings("deprecation")
-	@Test
-	public  void main() throws InterruptedException, IOException {
-		search.testeCadastroSupervisor();
-	}
+	
+
 	
 	@Before
 	public void inicia(){
@@ -25,7 +23,22 @@ public class CadastroSupervisor  {
 	@After
 	public void  encerra(){
 		Config.driver.quit();
-	}
+	}    
+	@Test
+	public void toResemble(){
+    	String output = null;
+        try
+        {	
+            Search.CadastroAluno();
+            output = Search.getResultCadastroSupervisor();
+            Excel.toCompare(output, CadastroSupervisor.class.getName().toString());
+        } 
+        catch(Exception ex)
+        {
+            output = ex.getMessage();
+        }
+      
+    }
 
 }
 

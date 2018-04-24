@@ -1,5 +1,5 @@
 package methods;
-
+import junit.framework.Assert;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,17 +22,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class Excel {
 	
 	public static String pullData(String plano,String local) throws IOException {
+		/*Metodo pullData irá puxar dados de uma célula da planilha de testes para atribuir nos 
+		 * campos do caso de teste.*/
 		String filePath = "data//cases.xlsx";
 		int indice = 0;
-	
-		//Abre o arquivo xlsx
 		FileInputStream file = new FileInputStream(new File(filePath));
 		XSSFWorkbook wb = new XSSFWorkbook(file);
-		//Abre a aba do teste
 		XSSFSheet planilha =  wb.getSheet(plano);
-		//Pega a linha
 		Iterator<Row> l1 = planilha.iterator();
-		//Acha a celula
 		while(l1.hasNext()) {
 			Row l2 = l1.next();
 			Iterator<Cell> c1 = l2.iterator();
@@ -44,7 +41,6 @@ public class Excel {
  				}
  			}
 		}
-
 		try {
 			Row linhas =  planilha.getRow(1);
 			Cell celulas  = linhas.getCell(indice);
@@ -58,7 +54,9 @@ public class Excel {
 		file.close();
 		return "Erro na leitura";
 	}
-	public static void pushData(String plano, String result) throws IOException {
+	public static void pushData(String plano, String result, String res) throws IOException {
+		/*Método para salvar dados dentro da planilha de testes*/
+	
 		String filePath = "data//cases.xlsx";
         FileInputStream file = new FileInputStream(new File(filePath));
         XSSFWorkbook wb = new XSSFWorkbook(file); 
@@ -70,7 +68,7 @@ public class Excel {
 			Iterator<Cell> c1 = l2.iterator();
  			while(c1.hasNext()) {
  				Cell ce = c1.next();
- 				if(ce.getStringCellValue().equals("Result")) {
+ 				if(ce.getStringCellValue().equals(res)) {
  					indice=ce.getColumnIndex();
  					break;
  				}
@@ -82,8 +80,28 @@ public class Excel {
 	      file.close();
 	      FileOutputStream output_file =new FileOutputStream(new File(filePath));
 	      wb.write(output_file);
+	   
 	      output_file.close(); 
 }
+	public static void toCompare(String output, String plano) throws IOException {
+		/*Método que salva o resultado retornado pelo caso de testes e compara com o resultado esperado na planilha
+		 * de testes, salvando se o teste passou ou deu erro*/
+		
+		pushData(plano,output, "Result");
+		
+		String expectedResult = pullData(plano,"Expected Result");
+		
+		String result = pullData(plano, "Result");
+		
+		if(expectedResult.equals(result)) {
+			pushData(plano,"passed", "Final Result");
+		}else {
+			 String resultado = null;
+			 Assert.assertEquals(expectedResult, result, resultado);
+			pushData(plano,resultado, "Final Result");
+		}
+		
+	}
 
 	
 	

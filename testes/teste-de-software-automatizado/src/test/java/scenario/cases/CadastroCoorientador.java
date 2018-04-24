@@ -7,15 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import config.Config;
-import test.search;
+import methods.Excel;
+import test.Search;
 
 
-public class CadastroCoorientador extends search {
-	@SuppressWarnings("deprecation")
-	@Test
-	public  void main() throws InterruptedException, IOException {
-		search.testeCoorientador();
-	}
+public class CadastroCoorientador extends Search {
+	
+
+
 	
 	@Before
 	public void inicia(){
@@ -26,5 +25,19 @@ public class CadastroCoorientador extends search {
 	public void  encerra(){
 		Config.driver.quit();
 	}
-
+	@Test
+    public void toResemble(){
+    	String output = null;
+        try
+        {	
+            Search.CadastroAluno();
+            output = Search.getResultCadastroCoorientador();
+            Excel.toCompare(output, "CadastroCoorientador");
+        } 
+        catch(Exception ex)
+        {
+            output = ex.getMessage();
+        }
+      
+    }
 }

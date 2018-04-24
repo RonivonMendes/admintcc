@@ -6,7 +6,7 @@ import com.gargoylesoftware.htmlunit.javascript.host.Element;
 
 public class Config {
 	public static WebDriver driver;
-
+	protected static String resultado="";
 	//LOGIN
 	protected static String email ="admin@master.com.br";
 	protected static String senha ="senha123";
