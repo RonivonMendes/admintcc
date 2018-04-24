@@ -2,14 +2,14 @@ package config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.gargoylesoftware.htmlunit.javascript.host.Element;
-
 public class Config {
 	public static WebDriver driver;
 	protected static String resultado="";
+	protected static By btnLogin = By.name("logar");
+	public static int indice=0 ;
 	//LOGIN
-	protected static String email ="admin@master.com.br";
-	protected static String senha ="senha123";
+	protected static By email = By.name("email");
+	protected static By senha = By.name("senha");
 	
 	//CADASTRO ALUNO
 	protected static String nomeAluno = "Teste teste teste";

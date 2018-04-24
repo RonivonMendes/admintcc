@@ -14,23 +14,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.gargoylesoftware.htmlunit.javascript.host.dom.Text;
 
 import config.Config;
+
 import junit.framework.Assert;
 import methods.Excel;
+import methods.TSA;
 
-public class Search extends Config{
+public class Search extends Config implements TSA{
 	
-	
+	public static String local = TSA.pasteCreate();
 	
 	public static  void testeLogin() throws InterruptedException, IOException {
 		//Teste automatizado da parte de login do software
-		driver = new ChromeDriver();
 		
+		driver = new ChromeDriver();
+		driver.manage().window().fullscreen();
 		String link = "http://ronivonmendes.tk/iftm/admintcc/login.php";
 		driver.navigate().to(link);
 		
-		driver.findElement(By.name("email")).sendKeys(Excel.pullData("Login", "email"));
-		driver.findElement(By.name("senha")).sendKeys(Excel.pullData("Login", "senha"));
-		driver.findElement(By.name("logar")).submit();
+		TSA.loatToPerformSendKeys(email,Excel.pullData("Login", "email"), driver);
+		TSA.loatToPerformSendKeys(senha, Excel.pullData("Login", "senha"), driver);
+		TSA.loadToPerformClick(btnLogin, driver);
 	}
 
 	
@@ -91,7 +94,7 @@ public class Search extends Config{
 		driver.findElement(txtCepOrientador).sendKeys(cepAluno);
 		driver.findElement(txtNumeroOrientador).sendKeys(numeroAluno);
 		driver.findElement(txtEmailOrientador).sendKeys(emailAluno);
-		driver.findElement(txtSenhaOrientador).sendKeys(senha);
+	//	driver.findElement(txtSenhaOrientador).sendKeys(senha);
 		driver.findElement(btnEnviarOrientador).submit();
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(alerta));
@@ -119,7 +122,7 @@ public class Search extends Config{
 		driver.findElement(txtCepCoorientador).sendKeys(cepAluno);
 		driver.findElement(txtNumeroCoorientador).sendKeys(numeroAluno);
 		driver.findElement(txtEmailCoorientador).sendKeys(emailAluno);
-		driver.findElement(txtSenhaCoorientador).sendKeys(senha);
+		//driver.findElement(txtSenhaCoorientador).sendKeys(senha);
 		driver.findElement(btnEnviarCoorientador).submit();
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(alerta));
@@ -149,7 +152,7 @@ public class Search extends Config{
 		driver.findElement(txtCepSupervisor).sendKeys(cepAluno);
 		driver.findElement(txtNumeroSupervisor).sendKeys(numeroAluno);
 		driver.findElement(txtEmailSupervisor).sendKeys(emailAluno);
-		driver.findElement(txtSenhaSupervisor).sendKeys(senha);
+	//	driver.findElement(txtSenhaSupervisor).sendKeys(senha);
 		driver.findElement(btnEnviarSupervisor).submit();
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(alerta));

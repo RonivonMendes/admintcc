@@ -17,6 +17,7 @@ public class CadastroAluno extends Search {
 	public void inicia(){
 		String exePath ="driver\\chromedriver.exe";
 		System.setProperty("webdriver.chrome.driver",exePath);
+		
 	}
 	@After
 	public void  encerra(){
