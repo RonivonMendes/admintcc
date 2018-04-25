@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Aprovação Projeto</title>
+<title>Resumo TCC</title>
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
+<link rel="shortcut icon" href="icon1.ico" type="image/x-icon" />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -38,14 +39,21 @@
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
+			
+			<?php
+
+			include 'menu.php';
+
+			?>
+
 			<div class="main-page login-page" style="width: 90%"> 
 				
-				<h2 class="title1" style="text-align: center; font-weight: bold;">Aprovação do Projeto</h2>
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Resumo TCC</h2>
 				<div class="widget-shadow">
 		
 					
 						
-						<form action="./php/aprova.php" method="post" class="form-horizontal">	
+						<form action="./php/aluno.php" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
@@ -53,55 +61,45 @@
 							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome do Autor</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" id="a1" name="autor" value="" required="" disabled="">	
+										<input style="width: 50%" type="text" class="form-control1" id="r1" name="autor" value="" required="" disabled="">	
 										</div>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Título da Tese</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" id="a2" name="titulo-tese" value="" required="" disabled="">
+										<input style="width: 50%" type="text" class="form-control1" id="r2" name="titulo-tese" value="" disabled="" required="">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Nome Orientador</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Nome do Orientador</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" id="a3" name="orientador" value="" required="" disabled="">
+										<input style="width: 50%" type="text" class="form-control1" id="r3" name="orientador" value="" disabled="" required="">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Instituição</label>
 									<div class="col-sm-8">
-										<input style="width: 75%" type="text" class="form-control1" id="a5" name="instituiucao" value="" required="" disabled="">
+										<input style="width: 75%" type="text" class="form-control1" id="r4" name="instituiucao" value="" disabled="" required="">
 										
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Data</label>						
-									
-									<div class="col-sm-8">
-										<input style="width: 22%" type="date" name="data" class="form-control1" value="" id="a4" required="">										
-									</div>
-								</div>								
-								<div class="form-group">
 									<h2 style="text-align: center;">Resumo</h2>
 								</div>
 								<div>
-								<textarea style="width: 98%" id="text-control" id="a6" name="resumo" rows="13" cols="143" required="" disabled=""></textarea>
+								<textarea style="width: 98%" id="text-control" id="r5" name="resumo" rows="13" cols="143" placeholder="Insira o seu resumo aqui..." required="" ></textarea>
+
+							</div>
+								<div style="text-align: center;" class="form-group">
+									<input type="submit" name="enviar" id="r6" value="Enviar Resumo">
 								</div>
 								<br>
-								<div style="text-align: center;" class="form-group">
-									<input type="submit" name="aprovar" id="a7" value="Aprovar">
-									<input type="submit" name="recusar" id="a8" value="Recusar">
-								</div>	
-
-								<br>
 							</form>
-						</div>	
-
+						</div>		
 					</div>
 				<br>
 			<br>

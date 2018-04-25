@@ -1,12 +1,15 @@
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Aprovação Projeto</title>
+<title>Inicio</title>
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
+<link rel="shortcut icon" href="icon1.ico" type="image/x-icon" />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -37,41 +40,23 @@
 	</head> 
 <body>
 
-<div id="page-wrapper" style="padding-top: 5%;">
-			<div class="main-page login-page" style="width: 90%"> 
-				
-				<h2 class="title1" style="text-align: center; font-weight: bold;">Dashboard</h2>
+
+
+
+<div id="page-wrapper" style="padding-top: 5%">
+
+			<?php
+
+			include 'menu.php';
+
+			?>
+
+		<div class="main-page login-page" style="width: 90%"> 
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Início</h2>
 				<div class="widget-shadow">
-		<br>
-		<br>
-		<br>
-			<div class="menu-dash">
-				<div class="dropdown">
-  					<button id="d1" class="dropbtn"> <a href="cadastrarUsuario.php"> Cadastrar Usuário</a></button>
-				</div>
-
-				<div class="dropdown">
-  					<button id="d2" class="dropbtn"> <a href="cadastroTcc.php"> Cadastrar TCC</a></button>
-  					
-				</div>
-
-				<div class="dropdown">
-  				    <button id="d3" class="dropbtn"> <a href="aceitarcadastrotcc.html"> Aceitar Cadastro TCC</a></button>
-        		    
-         		</div>
-
-        		<div class="dropdown">
-            		<button id="d4" class="dropbtn"> <a href="cadastrarUsuario.php"> Resumo TCC</a></button>
-            		
-				</div>
-
-				<div class="dropdown">
-            		<button id="d5" class="dropbtn"> <a href="resumotccsupervisor.html"> Resumo TCC Supervisor</a></button>
-            		
-				</div>
-			
-			<div class="bs-example widget-shadow" data-example-id="bordered-table" class="tabela-dash" style="margin-right: 2%"> 
-						
+		
+					
+						<div class="bs-example widget-shadow" data-example-id="bordered-table" class="tabela-dash" > 
 						<table class="table table-bordered"> 
 							<thead> 
 								<tr> 
@@ -102,20 +87,11 @@
 								</tr> 
 							</tbody> 
 						</table>
-					</div>		
-					
 			</div>
-
-			
-					
-					<br>	
 						
-						</div>	
-
-					</div>
-				<br>
-			<br>
-		<br><br><br><br><br><br><br>
+		</div>		
+	</div>
+			
 		
 	</div>
 
