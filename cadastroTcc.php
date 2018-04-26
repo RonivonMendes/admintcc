@@ -82,8 +82,13 @@
 				echo "</div>";
 		}
 
-		include 'menu.php';
+		
 	?>
+
+	<?php
+
+		include 'menu.php'; 
+	 ?>
 
 			<div class="main-page login-page" style="width: 90%"> 
 				<?php
