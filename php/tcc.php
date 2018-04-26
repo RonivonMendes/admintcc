@@ -29,7 +29,6 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}*/
-
 			#echo $temp->rowCount(). "Projeto cadastrado<br>";
 
 			if ($temp->rowCount()>0)
@@ -51,6 +50,18 @@
 			return $res;
 		}
 
+		function buscarCadastroTcc($idAluno)
+		{
+			$conexao = Database::conexao();
+
+			$sql = "SELECT *FROM cadastroTcc WHERE idAluno=$idAluno;";
+			$temp = $conexao->prepare($sql);
+			$temp->execute();
+			$res = $temp->fetchAll();
+
+			return $res;
+		}
+
 		function atualizar($id, CadastroTcc $atualizar)
 		{
 			$conexao = Database::conexao();
@@ -64,7 +75,6 @@
 				var_dump($temp->errorInfo());
 				exit();
 			}*/
-
 			#echo $temp->rowCount(). "Projeto cadastrado<br>";
 
 			if ($temp->rowCount()>0)

@@ -1,3 +1,7 @@
+<?php
+ require once'cadastroTcc.php';
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -43,7 +47,7 @@
 		
 					
 						
-						<form action="./php/aluno.php" method="post" class="form-horizontal">	
+						<form action="aceitartcc.php" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
