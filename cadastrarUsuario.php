@@ -56,6 +56,7 @@
 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
+<link rel="shortcut icon" href="icon1.ico" type="image/x-icon" />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -198,9 +199,11 @@
 				  	echo $alerta;
 					echo "</div>";
 			}
+
+			include 'menu.php';
 		?>
 	
-			<div class="main-page login-page" style="width: 80%"> 
+			<div class="main-page login-page" style="width: 90%"> 
 				<?php
 					echo "Seja bem vindo(a), ".$_SESSION['nomeUser'].".";
 				?>

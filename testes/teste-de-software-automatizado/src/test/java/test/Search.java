@@ -14,27 +14,30 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.gargoylesoftware.htmlunit.javascript.host.dom.Text;
 
 import config.Config;
+
 import junit.framework.Assert;
 import methods.Excel;
+import methods.TSA;
 
-public class search extends Config{
+public class Search extends Config implements TSA{
 	
-	
+	public static String local = TSA.pasteCreate();
 	
 	public static  void testeLogin() throws InterruptedException, IOException {
 		//Teste automatizado da parte de login do software
-		driver = new ChromeDriver();
 		
+		driver = new ChromeDriver();
+		driver.manage().window().fullscreen();
 		String link = "http://ronivonmendes.tk/iftm/admintcc/login.php";
 		driver.navigate().to(link);
 		
-		driver.findElement(By.name("email")).sendKeys(Excel.pullData("Login", "email"));
-		driver.findElement(By.name("senha")).sendKeys(Excel.pullData("Login", "senha"));
-		driver.findElement(By.name("logar")).submit();
+		TSA.loatToPerformSendKeys(email,Excel.pullData("Login", "email"), driver);
+		TSA.loatToPerformSendKeys(senha, Excel.pullData("Login", "senha"), driver);
+		TSA.loadToPerformClick(btnLogin, driver);
 	}
 
 	
-	public static void testeCadastroAluno() throws InterruptedException{
+	public static void CadastroAluno() throws InterruptedException{
 		/*Teste automatizado da parte de cadastro de aluno do software*/
 		//driver = new ChromeDriver();
 		try {
@@ -50,7 +53,7 @@ public class search extends Config{
 		
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		
-		wait.until(ExpectedConditions.presenceOfElementLocated(btnAluno));
+		/*wait.until(ExpectedConditions.presenceOfElementLocated(btnAluno));
 		driver.findElement(btnAluno).click();
 		driver.findElement(txtNome).sendKeys(nomeAluno);
 		driver.findElement(txtRg).sendKeys(rgAluno);
@@ -68,11 +71,14 @@ public class search extends Config{
 		System.out.println(driver.findElement(alerta).getText());
 	//	Assert.assertEquals("Atenção,", driver.findElement(alerta).getText());
 	
+		*/
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("title1")));
+		resultado = driver.findElement(By.className("title1")).getText().toString();
 		
 	}
 
 
-	public static void testeCadastroOrientador() throws InterruptedException, IOException {
+	public static void CadastroOrientador() throws InterruptedException, IOException {
 		testeLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 20);		
 		wait.until(ExpectedConditions.presenceOfElementLocated(bntOrientador));
@@ -88,7 +94,7 @@ public class search extends Config{
 		driver.findElement(txtCepOrientador).sendKeys(cepAluno);
 		driver.findElement(txtNumeroOrientador).sendKeys(numeroAluno);
 		driver.findElement(txtEmailOrientador).sendKeys(emailAluno);
-		driver.findElement(txtSenhaOrientador).sendKeys(senha);
+	//	driver.findElement(txtSenhaOrientador).sendKeys(senha);
 		driver.findElement(btnEnviarOrientador).submit();
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(alerta));
@@ -100,7 +106,7 @@ public class search extends Config{
 	}
 
 
-	public static void testeCoorientador() throws InterruptedException, IOException {
+	public static void Coorientador() throws InterruptedException, IOException {
 		testeLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 20);		
 		wait.until(ExpectedConditions.presenceOfElementLocated(bntOrientador));
@@ -116,7 +122,7 @@ public class search extends Config{
 		driver.findElement(txtCepCoorientador).sendKeys(cepAluno);
 		driver.findElement(txtNumeroCoorientador).sendKeys(numeroAluno);
 		driver.findElement(txtEmailCoorientador).sendKeys(emailAluno);
-		driver.findElement(txtSenhaCoorientador).sendKeys(senha);
+		//driver.findElement(txtSenhaCoorientador).sendKeys(senha);
 		driver.findElement(btnEnviarCoorientador).submit();
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(alerta));
@@ -130,7 +136,7 @@ public class search extends Config{
 	}
 
 
-	public static void testeCadastroSupervisor() throws InterruptedException, IOException {
+	public static void CadastroSupervisor() throws InterruptedException, IOException {
 		testeLogin();
 		WebDriverWait wait = new WebDriverWait(driver, 20);		
 		wait.until(ExpectedConditions.presenceOfElementLocated(bntOrientador));
@@ -146,7 +152,7 @@ public class search extends Config{
 		driver.findElement(txtCepSupervisor).sendKeys(cepAluno);
 		driver.findElement(txtNumeroSupervisor).sendKeys(numeroAluno);
 		driver.findElement(txtEmailSupervisor).sendKeys(emailAluno);
-		driver.findElement(txtSenhaSupervisor).sendKeys(senha);
+	//	driver.findElement(txtSenhaSupervisor).sendKeys(senha);
 		driver.findElement(btnEnviarSupervisor).submit();
 		
 		wait.until(ExpectedConditions.presenceOfElementLocated(alerta));
@@ -155,6 +161,30 @@ public class search extends Config{
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
+	}
+
+
+	public static String getResultCadastroAluno() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+
+
+	public static String getResultCadastroCoorientador() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+
+
+	public static String getResultCadastroSupervisor() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+
+
+	public static String getResultCadastroOrientador() {
+		// TODO Auto-generated method stub
+		return resultado;
 	}
 	
 	
