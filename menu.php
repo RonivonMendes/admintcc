@@ -1,3 +1,8 @@
+<?php
+	
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +47,7 @@
 	<div class="menu-dash" style="text-align: center; padding-top: 1px;">
 				
 				<div class="dropdown">
-  					<button id="m1" class="dropbtn"> <a href="inicio.php"> Início</a></button>
+  					<button id="m1" class="dropbtn"> <a href="index.php"> Início</a></button>
 				</div>		
 
 				<div class="dropdown">
@@ -75,10 +80,10 @@
 				</div>
 
 				<div class="dropdown">
-            		<button id="m8" class="dropbtn" style="background-color: red"> <a href=""> Sair</a></button>
+            		<button id="m8" type="button"  class="dropbtn"  style="background-color: red"> <a href="php/deslogar.php"> Sair</a></button>
             		
 				</div>
-
+            		
 			</div>
 	</div>
 </body>

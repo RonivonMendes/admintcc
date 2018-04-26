@@ -11,11 +11,13 @@
 			$acesso->logar($_POST['email'], $_POST['senha']);
 		}
 	}
-	if (isset($_SESSION))
-	{
-		echo $_SESSION['nomeUser'];
-	}
+	
+	session_start();
 
+	if (($_SESSION['logado']==1))
+	{
+		header('location: index.php');
+	}
 
 ?>
 
