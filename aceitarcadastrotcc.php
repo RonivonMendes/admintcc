@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
+<link rel="shortcut icon" href="icon1.ico" type="image/x-icon" />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -41,6 +42,13 @@
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
+			
+			<?php
+
+			include 'menu.php';
+
+			?>
+
 			<div class="main-page login-page" style="width: 90%"> 
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Aceitar Projeto TCC</h2>
 				<div class="widget-shadow">
