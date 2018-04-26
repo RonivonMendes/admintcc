@@ -53,11 +53,16 @@
 
 		<div class="main-page login-page" style="width: 90%"> 
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Início</h2>
-				<div class="widget-shadow">
+					<div class="widget-shadow">
 		
-					
-						<div class="bs-example widget-shadow" data-example-id="bordered-table" class="tabela-dash" > 
 						<table class="table table-bordered"> 
+							
+							<div>
+								<br>
+								<h2 style="text-align: center">Projetos em Andamento</h2>
+								<br>
+							</div>
+
 							<thead> 
 								<tr> 
 									<th>#</th> 
@@ -87,13 +92,10 @@
 								</tr> 
 							</tbody> 
 						</table>
-			</div>
-						
+						<br>
+					</div>
 		</div>		
-	</div>
-			
-		
-	</div>
+</div>
 
 		<!--footer-->
 		<div class="footer">
