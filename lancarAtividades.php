@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Aprovação Projeto</title>
+<title>Lançar Atividades</title>
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,7 +13,6 @@
 
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-
 
 <!-- font-awesome  icons CSS-->
 <link href="css/font-awesome.css" rel="stylesheet"> 
@@ -47,74 +46,64 @@
 			?>
 
 			<div class="main-page login-page" style="width: 90%"> 
-				
-				<h2 class="title1" style="text-align: center; font-weight: bold;">Aprovação do Projeto</h2>
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Lançar Atividades</h2>
 				<div class="widget-shadow">
 		
 					
 						
-						<form action="./php/aprova.php" method="post" class="form-horizontal">	
+						<form action="aceitartcc.php" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
 
 							<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Nome do Autor</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Aluno</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" id="a1" name="autor" value="" required="" disabled="">	
-										</div>
-								</div>
-
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Título da Tese</label>
-									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" id="a2" name="titulo-tese" value="" required="" disabled="">
+										<input style="width: 50%" type="text" class="form-control1" name="nome" id="l1" value="" required="" maxlength="14" disabled="">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Nome do Orientador</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Título do Projeto</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" id="a3" name="orientador" value="" required="" disabled="">
+										<input style="width: 50%" type="text" class="form-control1" name="projeto" id="l2" value="" required="" maxlength="14" disabled="">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Instituição</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Data Início</label>
 									<div class="col-sm-8">
-										<input style="width: 75%" type="text" class="form-control1" id="a5" name="instituiucao" value="" required="" disabled="">
-										
+										<input style="width: 23%" type="datetime-local" class="form-control1" name="dInicio" id="l5" value="" required="">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Data</label>						
-									
+									<label for="focusedinput" class="col-sm-2 control-label">Data Término</label>
 									<div class="col-sm-8">
-										<input style="width: 22%" type="date" name="data" class="form-control1" value="" id="a4" required="">										
+										<input style="width: 23%" type="datetime-local" class="form-control1" name="dFim" id="l6" value="" required="">
 									</div>
-								</div>								
-								<div class="form-group">
-									<h2 style="text-align: center;">Resumo</h2>
 								</div>
+
 								<div>
-								<textarea style="width: 98%" id="text-control" id="a6" name="resumo" rows="13" cols="143" required="" disabled=""></textarea>
-								</div>
-								<br>
-								<div style="text-align: center;" class="form-group">
-									<input type="submit" name="aprovar" id="a7" value="Aprovar">
-									<input type="submit" name="recusar" id="a8" value="Recusar">
-								</div>	
+									<label for="focusedinput" class="col-sm-2 control-label">Atividade</label>
+									<textarea style="width: 50%; height: 60%; margin-left: 0.5%; margin-bottom: 1%" id="text-control" id="rs5" name="atividade" placeholder="Insira a sua atividade aqui..." required=""></textarea>
 
+								</div>
+
+								<br>
+
+								<br>
+
+								<div style="text-align: center;" class="form-group">
+									<input type="submit" name="lancar" id="a7" value="Lançar">
+								</div>
 								<br>
 							</form>
-						</div>	
-
+						</div>		
 					</div>
+				<br><br>
+				<br><br>
 				<br>
-			<br><br><br><br>
-			<br><br><br><br>
-		
 	</div>
 
 		<!--footer-->
@@ -124,3 +113,5 @@
         <!--//footer-->	
 </body>
 </html>
+
+
