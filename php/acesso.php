@@ -111,7 +111,7 @@
 					}
 				}
 
-				echo "<script>location.href='cadastroTcc.php';</script>";
+				echo "<script>location.href='index.php';</script>";
 				//header('location: cadastrarUsuario.php');
 
 				#se não é aluno, buscar na tabela integrantes
