@@ -7,21 +7,11 @@ public class Config {
 	protected static String resultado="";
 	protected static By btnLogin = By.name("logar");
 	public static int indice=0 ;
+	
 	//LOGIN
 	protected static By email = By.name("email");
 	protected static By senha = By.name("senha");
 	
-	//CADASTRO ALUNO
-	protected static String nomeAluno = "Teste teste teste";
-	protected static String rgAluno = "MG-19.134.345";
-	protected static String orgaoAluno = "UFG";
-	protected static String cpfAluno = "123456789";
-	protected static String cursoAluno = "Análise e Desenvolvimento de Sistemas";
-	protected static String raAluno = "123456789101";
-	protected static String telefoneAluno = "1235678";
-	protected static String cepAluno = "38304-258";
-	protected static String numeroAluno = "2213";
-	public static String emailAluno =  "teste11@mail.com";
 	
 	//CAMPOS CADASTRO
 	protected static By btnAluno =  By.id("f1");
@@ -45,8 +35,8 @@ public class Config {
 	protected static By txtSenha = By.name("senha");
 	
 	protected static By alerta = By.xpath("//*[@id='page-wrapper']/div[1]/strong");
-	//ORIENTADOR
 	
+	//ORIENTADOR
 	protected static By txtNomeOrientador = By.xpath("//*[@id='d2']/form/div[2]/div/input");
 	protected static By txtRgOrientador = By.xpath("//*[@id='d2']/form/div[3]/div/input");
 	protected static By txtOrgaoOrientador =  By.xpath("//*[@id='d2']/form/div[4]/div/input");
@@ -60,15 +50,9 @@ public class Config {
 	protected static By txtSenhaOrientador = By.xpath("//*[@id='d2']/form/div[16]/div/input");
 	protected static By btnEnviarOrientador = By.xpath("//*[@id='d2']/form/div[17]/input[1]");
 	
-	protected static String cpfOrientador = "teste";
-	protected static String orgaoOrientador = "MG";
-	protected static String rgOrienatador =  "teste";
-	protected static String nomeOrientador = "Orientador Teste";
-	protected static String titulacao = "Mestre";
-	protected static String instituica = "Instituto Federal de Ciências e Tecnologia do Triângulo Mineiro";
+
 	
 	//COORIENTADOR
-	
 	protected static By txtNomeCoorientador = By.xpath("//*[@id='d3']/form/div[2]/div/input");
 	protected static By txtRgCoorientador = By.xpath("//*[@id='d3']/form/div[3]/div/input");
 	protected static By txtOrgaoCoorientador=  By.xpath("//*[@id='d3']/form/div[4]/div/input");

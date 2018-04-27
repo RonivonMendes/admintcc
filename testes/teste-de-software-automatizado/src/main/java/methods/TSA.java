@@ -24,10 +24,11 @@ import config.Config;
 import test.Search;
 
 public interface TSA {
-	public String instance ="";
-	
-	
+
 	static void loadToPerformClick(By name, WebDriver driver) {
+		/*Método para clicar em um elemento.
+		 * Possui doi comandos de espera explicita, um para verificar se ele é visivel e 
+		 * outrro para verificar se ele é clicavel*/
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(name))!=null) {
 			if(wait.until(ExpectedConditions.elementToBeClickable(name)) != null){
@@ -37,6 +38,10 @@ public interface TSA {
 		}	
 	}
 	static void loatToPerformSendKeys(By element,String text ,WebDriver driver) {
+		/*Método para escrever dados em um elemento.
+		 * Vem com doi comandos de espera explicita para verificar se o elemento é visivel e
+		 * se ele está presente 
+		 * */
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(element))!=null) {
 			if(wait.until(ExpectedConditions.presenceOfElementLocated(element))!=null) {
@@ -46,6 +51,7 @@ public interface TSA {
 		}
 	}
 	static String pasteCreate() {
+		/*Método que cria uma pasta em evidences com a data e hora do teste*/
 		   try {
 			   Instant data = java.time.Instant.now();
 			  String dat= data.toString();
@@ -60,7 +66,28 @@ public interface TSA {
 	 		   return "Erro";
 		   }
 	}
+
+	static void evidence() {
+		/*Método responsável por salvar as evidências dentro da pasta criada pelo método pasteCreate */
+		try{
+             Robot robot = new Robot();
+             int y = Toolkit.getDefaultToolkit().getScreenSize().width;
+             int x = Toolkit.getDefaultToolkit().getScreenSize().height;
+             Instant data = java.time.Instant.now();
+			  String dat= data.toString();
+			   String in = TSA.convertData(dat);
+             String instance2= Search.local+"/"+in+".jpg" ;
+             BufferedImage bi = robot.createScreenCapture(new Rectangle(0, 0, y, x)); 
+             ImageIO.write(bi, "jpg", new File(instance2));
+         } catch(AWTException e){
+             e.printStackTrace();
+         } catch(IOException e){
+             e.printStackTrace();
+         }
+	}
+	
 	static String convertData(String data) {
+		/*Método responsável por tirar : e espaços de um date*/
 		 char[] b = data.toString().toCharArray();
 		 for(int i=0;i<b.length;i++) {
 			 if(b[i]==':'||b[i]==' ') {
@@ -69,27 +96,5 @@ public interface TSA {
 		 }
 		 String text = String.copyValueOf(b);
 		 return text;
-	}
-	static void evidence() {
-		 try{
-             Robot robot = new Robot();
-             int y = Toolkit.getDefaultToolkit().getScreenSize().width;
-             int x = Toolkit.getDefaultToolkit().getScreenSize().height;
-             Instant data = java.time.Instant.now();
-			  String dat= data.toString();
-			   String in = TSA.convertData(dat);
-
-             String instance2= Search.local+"/"+in+".jpg" ;
-              
-             BufferedImage bi = robot.createScreenCapture(new // Captura a tela na àrea definida pelo retângulo
-          		   Rectangle(0, 0, y, x)); // aqui vc configura as posições xy e o tam da área que quer capturar
-             ImageIO.write(bi, "jpg", new File(instance2));// Salva a imagem
-         } catch(AWTException e){
-             e.printStackTrace();
-         } catch(IOException e){
-             e.printStackTrace();
-         }
-	
-		  
 	}
 }
