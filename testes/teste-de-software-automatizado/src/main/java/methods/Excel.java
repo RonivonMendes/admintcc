@@ -46,6 +46,8 @@ public class Excel {
 			Cell celulas  = linhas.getCell(indice);
 			celulas.getStringCellValue();			
 			file.close();
+			//Alteração aqui
+			wb.close();
 			return celulas.getStringCellValue();			
 			
 		}catch (Exception e) {
@@ -81,7 +83,8 @@ public class Excel {
 	      file.close();
 	      FileOutputStream output_file =new FileOutputStream(new File(filePath));
 	      wb.write(output_file);
-	   
+	      //Alteração aqui
+	      wb.close();
 	      output_file.close(); 
 }
 	public static void toCompare(String output, String plano) throws IOException {

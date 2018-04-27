@@ -46,6 +46,7 @@ public class Search extends Config implements TSA{
 		TSA.loatToPerformSendKeys(txtRg, Excel.pullData("CadastroAluno", "rg"), driver);
 		TSA.loatToPerformSendKeys(txtOrgao, Excel.pullData("CadastroAluno", "orgao"), driver);
 		TSA.loatToPerformSendKeys(txtCpf, Excel.pullData("CadastroAluno", "cpf"), driver);
+		resultado = "oi";
 	}
 
 
