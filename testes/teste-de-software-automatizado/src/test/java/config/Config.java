@@ -11,7 +11,7 @@ public class Config {
 	//LOGIN
 	protected static By email = By.name("email");
 	protected static By senha = By.name("senha");
-	
+	protected static By btnCadastro = By.id("m2");
 	
 	//CAMPOS CADASTRO
 	protected static By btnAluno =  By.id("f1");

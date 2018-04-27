@@ -28,7 +28,7 @@ public class Search extends Config implements TSA{
 		
 		driver = new ChromeDriver();
 		driver.manage().window().fullscreen();
-		String link = "http://ronivonmendes.tk/iftm/admintcc/login.php";
+		String link = Excel.pullData("Login", "link");
 		driver.navigate().to(link);
 		
 		TSA.loatToPerformSendKeys(email,Excel.pullData("Login", "email"), driver);
@@ -37,10 +37,15 @@ public class Search extends Config implements TSA{
 	}
 
 	
-	public static void CadastroAluno() throws InterruptedException{
+	public static void CadastroAluno() throws InterruptedException, IOException{
 		/*Teste automatizado da parte de cadastro de aluno do software*/
-		
-		
+		testeLogin();
+		TSA.loadToPerformClick(btnCadastro, driver);
+		TSA.loadToPerformClick(btnAluno, driver);
+		TSA.loatToPerformSendKeys(txtNome, Excel.pullData("CadastroAluno", "nome"), driver);
+		TSA.loatToPerformSendKeys(txtRg, Excel.pullData("CadastroAluno", "rg"), driver);
+		TSA.loatToPerformSendKeys(txtOrgao, Excel.pullData("CadastroAluno", "orgao"), driver);
+		TSA.loatToPerformSendKeys(txtCpf, Excel.pullData("CadastroAluno", "cpf"), driver);
 	}
 
 

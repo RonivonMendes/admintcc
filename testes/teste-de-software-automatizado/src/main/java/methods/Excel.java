@@ -63,6 +63,7 @@ public class Excel {
         XSSFSheet linhas = wb.getSheet(plano);
         int indice = 0;
 		Iterator<Row> l1 = linhas.iterator();
+		
 		while(l1.hasNext()) {
 			Row l2 = l1.next();
 			Iterator<Cell> c1 = l2.iterator();
