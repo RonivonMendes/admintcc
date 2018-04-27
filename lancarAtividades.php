@@ -1,34 +1,7 @@
-<?php
-	require_once 'php/aluno.php';
-	require_once 'php/tcc.php';
-
-	session_start();
-
-	if (($_SESSION['logado']==0))
-	{
-		header('location: login.php');
-	}
-
-
-	if(isset($_POST['cadastro']))
-	{
-		if ($_POST['cadastro']=='cadastroTcc')
-		{
-			$tcc = new CadastroTcc($_POST['aluno'], "1", $_POST['projeto'], $_POST['gPesquisa'], " ");
-			$alerta = $tcc->cadastrar($tcc);
-
-			$_POST['cadastro']="false";
-		}
-	}
-
-	#Consulta de alunos, para listar
-	$buscaAluno = new Aluno("","","","","","","");
-	$lista = $buscaAluno->buscar();
-?>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Cadastro</title>
+<title>Lançar Atividades</title>
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,90 +34,76 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-	
-	<script>
-			$(document).ready(function(){		
-			
-			$(".alert").fadeIn(1000).delay(3000).fadeOut(1000);
-		});
-	</script>
-
 	</head> 
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
-	
-	<?php
+			
+			<?php
 
-		include 'menu.php'; 
-	 ?>
+			include 'menu.php';
 
-	<?php
-		if(isset($_POST['cadastro']))
-		{
-			echo "<div class='alert'>";
-			 echo "<span class='closebtn' onclick='this.parentElement.style.display='none';''></span>"; 
-			  	echo $alerta;
-				echo "</div>";
-		}
-
-		
-	?>
+			?>
 
 			<div class="main-page login-page" style="width: 90%"> 
-				<h2 class="title1" style="text-align: center; font-weight: bold;">Cadastrar Projeto TCC</h2>
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Lançar Atividades</h2>
 				<div class="widget-shadow">
+		
+					
 						
-						<form action="cadastroTcc.php" method="post" class="form-horizontal">	
+						<form action="aceitartcc.php" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
 
-
 							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Aluno</label>
 									<div class="col-sm-8">
-										<select class="form-control1" name="aluno" id="c1" style="width: 75%" place required>
-    										<option value="" ></option>
-    										<?php
-    											foreach ($lista as $valor)
-    											{
-    												echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")</option>";
-    											}
-    										?>
-										</select>
+										<input style="width: 50%" type="text" class="form-control1" name="nome" id="l1" value="" required="" maxlength="14" disabled="">
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Título do Projeto</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="projeto" id="c2" value="" required="" maxlength="14">
+										<input style="width: 50%" type="text" class="form-control1" name="projeto" id="l2" value="" required="" maxlength="14" disabled="">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Grupo de Pesquisa</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Data Início</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="gPesquisa" id="c3" value="" required="">
+										<input style="width: 23%" type="datetime-local" class="form-control1" name="dInicio" id="l5" value="" required="">
 									</div>
-									<input type="hidden" name="cadastro" value="cadastroTcc">
 								</div>
 
-								<div style="text-align: center;" class="form-group">
-									<input type="submit" name="enviar" id="c4" value="Cadastrar">
-									<input type="reset" name="limpar" id="c5" value="Limpar">
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Data Término</label>
+									<div class="col-sm-8">
+										<input style="width: 23%" type="datetime-local" class="form-control1" name="dFim" id="l6" value="" required="">
+									</div>
+								</div>
 
+								<div>
+									<label for="focusedinput" class="col-sm-2 control-label">Atividade</label>
+									<textarea style="width: 50%; height: 60%; margin-left: 0.5%; margin-bottom: 1%" id="text-control" id="rs5" name="atividade" placeholder="Insira a sua atividade aqui..." required=""></textarea>
+
+								</div>
+
+								<br>
+
+								<br>
+
+								<div style="text-align: center;" class="form-group">
+									<input type="submit" name="lancar" id="a7" value="Lançar">
 								</div>
 								<br>
 							</form>
 						</div>		
 					</div>
+				<br><br>
+				<br><br>
 				<br>
-			<br>
-		<br>
-	<br>
-	<br>
 	</div>
 
 		<!--footer-->
