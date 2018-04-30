@@ -24,6 +24,10 @@
 	#Consulta de alunos, para listar
 	$buscaAluno = new Aluno("","","","","","","");
 	$lista = $buscaAluno->buscar();
+
+	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
+	$tcc = new CadastroTcc("","","","","");
+	$consultatcc = $tcc->buscar();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -115,11 +119,22 @@
     										<?php
     											foreach ($lista as $valor)
     											{
-    												echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")</option>";
+    												
+    												if(array_key_exists($valor['id'], $consultatcc))
+    												{
+
+    												}
+    												else
+    												{
+    													echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")</option>";		
+    												}
+    												
     											}
     										?>
 										</select>
+										<p> *caso o aluno não esteja sendo listado, ele já possuí um Tcc Ativo, ou ele não está cadastrado no sistema! consulte o aluno <a href="#">Lista de alunos</a></p>
 									</div>
+
 								</div>
 
 								<div class="form-group">

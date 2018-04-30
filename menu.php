@@ -1,4 +1,15 @@
 <?php
+	require_once 'php/tcc.php';
+	
+	session_start();
+
+	if ($_SESSION['tipoPerfil']==5)
+	{
+		$tcc = new CadastroTcc("","","","","");
+
+		$consulta = $tcc->buscar($_SESSION['idAluno']);
+	}
+
 	
 ?>
 
@@ -60,12 +71,12 @@
 				</div>
 
 				<div class="dropdown">
-  				    <button id="m4" class="dropbtn"> <a href="aceitarcadastrotcc.php"> Aceitar Projeto TCC</a></button>
+  				    <button id="m4" class="dropbtn"> <a href="aceitarcadastrotcc.php"> Projeto TCC</a></button>
         		    
          		</div>
 
         		<div class="dropdown">
-            		<button id="m5" class="dropbtn"> <a href="resumotcc.php"> Resumo TCC</a></button>
+            		<button id="m5" class="dropbtn" image="fa-exclamation"> <a href="resumotcc.php"> Resumo TCC</a></button>
             		
 				</div>
 
