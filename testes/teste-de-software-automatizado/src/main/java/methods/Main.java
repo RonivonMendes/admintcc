@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		//System.out.println(java.time.Instant.now());
 	
-	Excel.pushData("CadastroAluno", "papagaio", "nome");
+	//Excel.pushData("CadastroAluno", "papagaio", "nome");
 	
 	}
 

@@ -37,7 +37,7 @@ public interface TSA {
 			}
 		}	
 	}
-	static void loatToPerformSendKeys(By element,String text ,WebDriver driver) {
+	static void loadToPerformSendKeys(By element,String text ,WebDriver driver) {
 		/*Método para escrever dados em um elemento.
 		 * Vem com doi comandos de espera explicita para verificar se o elemento é visivel e
 		 * se ele está presente 
@@ -49,6 +49,16 @@ public interface TSA {
 				evidence();
 			}
 		}
+	}
+	static String loadToPerformText(By element, WebDriver driver) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		if(wait.until(ExpectedConditions.visibilityOfElementLocated(element))!=null) {
+			if(wait.until(ExpectedConditions.presenceOfElementLocated(element))!=null) {
+				return driver.findElement(element).getText().toString();
+			}
+		}
+	return "Erro ao puxar dados";
 	}
 	static String pasteCreate() {
 		/*Método que cria uma pasta em evidences com a data e hora do teste*/

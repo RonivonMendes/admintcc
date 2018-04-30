@@ -8,6 +8,7 @@ public class Config {
 	protected static By btnLogin = By.name("logar");
 	public static int indice=0 ;
 	
+	protected static By mensagem = By.className("alert");
 	//LOGIN
 	protected static By email = By.name("email");
 	protected static By senha = By.name("senha");
@@ -15,8 +16,8 @@ public class Config {
 	
 	//CAMPOS CADASTRO
 	protected static By btnAluno =  By.id("f1");
-	protected static By bntOrientador = By.id("f2");
-	protected static By bntCoorientador = By.id("f3");
+	protected static By btnOrientador = By.id("f2");
+	protected static By btnCoorientador = By.id("f3");
 	protected static By btnSupervisor = By.id("f4");
 	protected static By btnLimpar = By.name("limpar");
 	protected static By btnEnviar = By.name("enviar");

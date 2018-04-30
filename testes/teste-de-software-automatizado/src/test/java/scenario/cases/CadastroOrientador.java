@@ -30,7 +30,7 @@ public class CadastroOrientador extends Search {
     	String output = null;
         try
         {	
-            Search.CadastroAluno();
+            Search.CadastroOrientador();
             output = Search.getResultCadastroOrientador();
             Excel.toCompare(output, CadastroOrientador.class.getName().toString());
         } 
