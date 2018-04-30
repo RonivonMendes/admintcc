@@ -188,11 +188,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ronivonm_tccdata`.`cadastrosTcc`
+-- Table `ronivonm_tccdata`.`cadastrostcc`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `ronivonm_tccdata`.`cadastrosTcc` ;
+DROP TABLE IF EXISTS `ronivonm_tccdata`.`cadastrostcc` ;
 
-CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`cadastrosTcc` (
+CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`cadastrostcc` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `acessos_id` INT NOT NULL,
   `alunos_id` INT NOT NULL,
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`projetosTcc` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_projetos_cadastroTccs1`
     FOREIGN KEY (`cadastroTccs_id`)
-    REFERENCES `ronivonm_tccdata`.`cadastrosTcc` (`id`)
+    REFERENCES `ronivonm_tccdata`.`cadastrostcc` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

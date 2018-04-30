@@ -38,7 +38,7 @@
 				return "Falha ao cadastrar Projeto!";
 		}
 
-		function buscar()
+		/*function buscar()
 		{
 			$conexao = Database::conexao();
 
@@ -48,13 +48,20 @@
 			$res = $temp->fetchAll();
 
 			return $res;
-		}
+		}*/
 
-		function buscarCadastroTcc($idAluno)
+		function buscar($idAluno=false)
 		{
 			$conexao = Database::conexao();
 
-			$sql = "SELECT *FROM cadastroTcc WHERE idAluno=$idAluno;";
+			if($idAluno!=false)
+			{
+				$sql = "SELECT *FROM cadastrostcc WHERE alunos_id=$idAluno;";
+			}
+
+			else
+				$sql = "SELECT *FROM cadastrostcc;";
+			
 			$temp = $conexao->prepare($sql);
 			$temp->execute();
 			$res = $temp->fetchAll();
@@ -62,20 +69,28 @@
 			return $res;
 		}
 
+		function aceitar($id, $aceite, $resumo)
+		{
+			$conexao = Database::conexao();
+
+			$sql = "UPDATE `cadastrostcc` SET `aceite`='$aceite',`resumo`='$resumo' WHERE id = $id;";
+			$temp = $conexao->prepare($sql);
+			$result = $temp->execute();
+
+			if ($temp->rowCount()>0)
+				return "Termo Aceite Preenchido com sucesso!";
+				
+			else
+				return "Falha ao aceitar Projeto!";
+		}
+
 		function atualizar($id, CadastroTcc $atualizar)
 		{
 			$conexao = Database::conexao();
 
-			$sql = "UPDATE `cadastrosTcc` SET `acessos_id`='1',`alunos_id`='$this->idAluno',`integrantes_id`='1',`titulo`='$this->titulo',`grupoPesquisa`='$this->grupoPesquisa' WHERE id = $id;";
+			$sql = "UPDATE `cadastrostcc` SET `acessos_id`='1',`alunos_id`='$this->idAluno',`integrantes_id`='1',`titulo`='$this->titulo',`grupoPesquisa`='$this->grupoPesquisa' WHERE id = $id;";
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
-
-			/*if(!$result)
-			{
-				var_dump($temp->errorInfo());
-				exit();
-			}*/
-			#echo $temp->rowCount(). "Projeto cadastrado<br>";
 
 			if ($temp->rowCount()>0)
 				return "Projeto atualizado com sucesso!";

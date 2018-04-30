@@ -82,7 +82,7 @@
 				$temp5->execute();
 				$tpPerfil = $temp5->fetchAll();
 
-				$_SESSION['tipoPerfil']=$tpPerfil[0]['nome'];
+				$_SESSION['tipoPerfil']=$res[0]['idPerfis'];
 
 				#buscar dados basicos do objeto úsuario
 				$sql = "SELECT *FROM `usuarios` WHERE `idAcesso`='".$res[0]['id']."'";
@@ -108,6 +108,7 @@
 					if ($temp3->rowCount()==1)
 					{
 						$_SESSION['ra']=$resalunos[0]['ra'];
+						$_SESSION['idAluno'] = $resalunos[0]['id'];
 					}
 				}
 

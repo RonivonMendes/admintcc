@@ -1,11 +1,45 @@
 <?php
- require once'cadastroTcc.php';
+	require_once 'php/tcc.php';
+	session_start();
+
+	if (($_SESSION['logado']==0))
+	{
+		header('location: login.php');
+	}
+
+
+	#se for aluno que está logado, consultar se o termo está aceito ou não
+	if ($_SESSION['tipoPerfil']!=5)
+	{
+		header('location: index.php');
+	}
+
+	else
+	{
+		$tcc = new CadastroTcc("","","","","");
+
+		$consulta = $tcc->buscar($_SESSION['idAluno']);
+	}
+
+	if(isset($_POST['cadastrar']))
+	{
+		if($_POST['cadastrar']=="aceite")
+		{
+			$alerta =  $tcc->aceitar($consulta[0]['id'], $_POST['aceitar'], $_POST['resumo']);
+
+			$_POST['cadastrar']="";
+
+			#header('location: aceitarcadastrotcc.php');
+		}
+	}
+
+	
 ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Aceitar Projeto TCC</title>
+<title>Meu Projeto TCC</title>
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -50,34 +84,43 @@
 			?>
 
 			<div class="main-page login-page" style="width: 90%"> 
-				<h2 class="title1" style="text-align: center; font-weight: bold;">Aceitar Projeto TCC</h2>
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Meu Projeto TCC</h2>
 				<div class="widget-shadow">
 		
 					
 						
-						<form action="aceitartcc.php" method="post" class="form-horizontal">	
-							
+						<form action="aceitarcadastrotcc.php" method="post" class="form-horizontal">
+						<input type="hidden" name="cadastrar" value="aceite">	
 								<br>
 								<br>
 
 							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Aluno</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="nome" id="a1" value="" required="" maxlength="14" disabled="">
+										<?php
+											echo "<input style='width: 50%' type='text' class='form-control1' name='nome' id='a1' value='".$_SESSION['nomeUser']."' required='' maxlength='14' disabled=''>";
+										?>
+										
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Título do Projeto</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="projeto" id="a2" value="" required="" maxlength="14" disabled="">
+										<?php
+											echo "<input style='width: 50%' type='text' class='form-control1' name='projeto' id='a2' value='".$consulta[0]['titulo']."' required='' maxlength='14' disabled=''>";
+										?>
+										
 									</div>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Grupo de Pesquisa</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="gPesquisa" id="a3" value="" required="" disabled="">
+										<?php
+											echo "<input style='width: 50%' type='text' class='form-control1' name='gPesquisa' id='a3' value='".$consulta[0]['grupoPesquisa']."' required='' disabled=''>";
+										?>
+										
 									</div>
 								</div>
 
@@ -85,24 +128,41 @@
 									<h2 style="text-align: center;">Resumo</h2>
 								</div>
 
-								<div>
-									<textarea style="width: 98%" id="text-control" id="a4" name="resumo" rows="13" cols="143" placeholder="Insira o seu resumo aqui..." required="" ></textarea>
+								<?php
+									if($consulta[0]['aceite']!=1)
+									{
+										echo "<div>";
+										echo "<textarea style='width: 98%' id='text-control' id='a4' name='resumo' rows='13' cols='143' placeholder='Insira o seu resumo aqui...' value='' required='' ></textarea>";
+										echo "</div>
 
-								</div>
+										<br>
 
+										<div class='check-aceitar'>";
+
+										echo "<input type='radio'  name='aceitar' value='1' id='a5'>Aceitar";
+										echo "<input type='radio'  name='aceitar' value='0' id='a6'>Recusar";
+										echo "</div>";
+
+										echo "<br>
+										<div style='text-align: center;' class='form-group'>
+										<input type='submit' name='enviar' id='a7' value='Enviar'>
+										</div>";
+
+									}
+
+									else
+									{
+										echo "<div>";
+										echo "<textarea style='width: 98%' id='text-control' id='a4' name='resumo' rows='13' cols='143' disabled='' >".$consulta[0]['resumo']."</textarea>";
+										echo "</div>
+
+										<br>";
+
+									}
+
+								?>
 								<br>
-
-								<div class="check-aceitar">
-									<input type="radio"  name="aceitar" id="a5">Aceitar
-									<input type="radio"  name="aceitar" id="a6">Recusar
-								</div>
-
-								<br>
-
-								<div style="text-align: center;" class="form-group">
-									<input type="submit" name="enviar" id="a7" value="Enviar">
-								</div>
-								<br>
+									
 							</form>
 						</div>		
 					</div>

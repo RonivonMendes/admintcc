@@ -14,7 +14,7 @@
 	{
 		if ($_POST['cadastro']=='cadastroTcc')
 		{
-			$tcc = new CadastroTcc($_POST['aluno'], "1", $_POST['projeto'], $_POST['gPesquisa'], " ");
+			$tcc = new CadastroTcc($_POST['aluno'], "1", $_POST['projeto'], $_POST['gPesquisa'], "");
 			$alerta = $tcc->cadastrar($tcc);
 
 			$_POST['cadastro']="false";

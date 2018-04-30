@@ -20,7 +20,7 @@
 		{
 			$alunoCadastra = new Aluno($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['ra'], $_POST['curso']);
 			$endcadastra = new Endereco($_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra= new Acesso('1',$_POST['email'],$_POST['senha'], '1');
+			$acessoCadastra= new Acesso($_POST['tipoPerfil'],$_POST['email'],$_POST['senha'], '1');
 			$alerta = $alunoCadastra->cadastra($alunoCadastra, $endcadastra, $acessoCadastra);
 
 			$_POST['tipocadastro'] = "";
@@ -31,7 +31,7 @@
 			#CADASTRANDO UM INTEGRANTE
 			$integranteCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
 			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
-			$acessoCadastra = new Acesso('3',$_POST['email'],$_POST['senha'], '1');
+			$acessoCadastra = new Acesso($_POST['tipoPerfil'],$_POST['email'],$_POST['senha'], '1');
 			$alerta = $integranteCadastra->cadastra($integranteCadastra, $endCadastra, $acessoCadastra);
 
 			$_POST['tipocadastro'] = "";
@@ -227,6 +227,7 @@
 						
 						<form action="cadastrarUsuario.php" method="post" class="form-horizontal">
 							<input type="hidden" name="tipocadastro" value="aluno">
+							<input type="hidden" name="tipoPerfil" value="5">
 								<div class="form-group">
 									<br>
 									<h3 style="text-align: center;">Aluno</h3>
@@ -365,6 +366,7 @@
 
 								<div class="form-group">
 									<input type="hidden" name="tipocadastro" value="integrante">
+									<input type="hidden" name="tipoPerfil" value="3">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
@@ -489,6 +491,7 @@
 
 								<div class="form-group">
 									<input type="hidden" name="tipocadastro" value="integrante">
+									<input type="hidden" name="tipoPerfil" value="4">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
@@ -610,6 +613,7 @@
 
 								<div class="form-group">
 									<input type="hidden" name="tipocadastro" value="integrante">
+									<input type="hidden" name="tipoPerfil" value="2">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
