@@ -1,5 +1,5 @@
 <?php
-	require_once 'php/tcc.php';
+	/*require_once 'php/tcc.php';
 	require_once 'php/integrante.php';
 
 	session_start();
@@ -36,7 +36,7 @@
 			$alerta = $tcc->aprovar($consultatcc[0]['id'], $_POST['aprovar']);
 		}
 	}
-
+*/
 ?>
 
 
@@ -139,12 +139,21 @@
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Data</label>						
+									<label for="focusedinput" class="col-sm-2 control-label">Coorientador</label>						
 									
 									<div class="col-sm-8">
-										<input style="width: 22%" type="date" name="data" class="form-control1" value="" id="a4" >										
+										<input style="width: 50%" type="text" name="nCoorientador" class="form-control1" value="" id="a4" >										
 									</div>
-								</div>								
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Instituição Coorientador</label>						
+									
+									<div class="col-sm-8">
+										<input type="text" name="nCoorientador" class="form-control1" value="" id="a4" >										
+									</div>
+								</div>
+
 								<div class="form-group">
 									<h2 style="text-align: center;">Resumo</h2>
 								</div>
