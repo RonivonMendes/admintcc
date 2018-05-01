@@ -85,7 +85,7 @@
 	<?php
 
 		include 'menu.php'; 
-		
+
 	 ?>
 
 	<?php
@@ -143,12 +143,20 @@
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="gPesquisa" id="c3" value="" required="">
 									</div>
-									<input type="hidden" name="cadastro" value="cadastroTcc">
+									
+								</div>
+
+								<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Coorientador</label>
+									<div class="col-sm-8">
+										<input style="width: 50%" type="text" class="form-control1" name="coorientador" id="c4" value="" required="">
+									</div>
+									
 								</div>
 
 								<div style="text-align: center;" class="form-group">
-									<input type="submit" name="enviar" id="c4" value="Cadastrar">
-									<input type="reset" name="limpar" id="c5" value="Limpar">
+									<input type="submit" name="enviar" id="c5" value="Cadastrar">
+									<input type="reset" name="limpar" id="c6" value="Limpar">
 
 								</div>
 								<br>
