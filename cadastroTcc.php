@@ -14,7 +14,7 @@
 	{
 		if ($_POST['cadastro']=='cadastroTcc')
 		{
-			$tcc = new CadastroTcc($_POST['aluno'], "1", $_POST['projeto'], $_POST['gPesquisa'], "");
+			$tcc = new CadastroTcc($_POST['aluno'], $_SESSION['idAcesso'], $_POST['projeto'], $_POST['gPesquisa'], "");
 			$alerta = $tcc->cadastrar($tcc);
 
 			$_POST['cadastro']="false";
@@ -85,8 +85,6 @@
 			  	echo $alerta;
 				echo "</div>";
 		}
-
-		
 	?>
 
 	<?php
@@ -120,15 +118,10 @@
     											foreach ($lista as $valor)
     											{
     												
-    												if(array_key_exists($valor['id'], $consultatcc))
+    												if(!(array_key_exists($valor['id'], $consultatcc)))	
     												{
-
+    													echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")</option>";
     												}
-    												else
-    												{
-    													echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")</option>";		
-    												}
-    												
     											}
     										?>
 										</select>

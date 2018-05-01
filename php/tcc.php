@@ -20,7 +20,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "INSERT INTO `cadastrosTcc` (`acessos_id`, `alunos_id`, `integrantes_id`, `titulo`, `grupoPesquisa`, `resumo`) VALUES ('1', '$this->idAluno', '$this->idIntegrante', '$this->titulo', '$this->grupoPesquisa', '$this->resumo');";
+			$sql = "INSERT INTO `cadastrostcc` (`acessos_id`, `alunos_id`, `integrantes_id`, `titulo`, `grupoPesquisa`, `resumo`) VALUES ('1', '$this->idAluno', '$this->idIntegrante', '$this->titulo', '$this->grupoPesquisa', '$this->resumo');";
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
 
@@ -38,37 +38,31 @@
 				return "Falha ao cadastrar Projeto!";
 		}
 
-		/*function buscar()
+		function buscar($id=false)
 		{
 			$conexao = Database::conexao();
 
-			$sql = "SELECT *FROM cadastroTcc;";
-			$temp = $conexao->prepare($sql);
-			$temp->execute();
-			$res = $temp->fetchAll();
-
-			return $res;
-		}*/
-
-		function buscar($idAluno=false)
-		{
-			$conexao = Database::conexao();
-
-			if($idAluno!=false)
+			if($idAluno==false)
 			{
-				$sql = "SELECT *FROM cadastrostcc WHERE alunos_id=$idAluno;";
+				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id;";
 			}
 
 			else
-				$sql = "SELECT *FROM cadastrostcc;";
+				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE cadastrostcc.id=".$id.";";
 			
 			$temp = $conexao->prepare($sql);
 			$temp->execute();
 			$res = $temp->fetchAll();
 
-			return $res;
+			if($temp->rowCount()<1)
+				return "0";
+
+			else
+				return $res;
 		}
 
+
+		#aluno completa o resumo e aceita o projeto
 		function aceitar($id, $aceite, $resumo)
 		{
 			$conexao = Database::conexao();
@@ -82,6 +76,22 @@
 				
 			else
 				return "Falha ao aceitar Projeto!";
+		}
+
+		#Professor aprova o resumo do projeto
+		function aprovar($id, $aprovacao)
+		{
+			$conexao = Database::conexao();
+
+			$sql = "UPDATE `cadastrostcc` SET `aprovacaoOrientador`='$aprovacao' WHERE id = $id;";
+			$temp = $conexao->prepare($sql);
+			$result = $temp->execute();
+
+			if ($temp->rowCount()>0)
+				return "Projeto Aprovado com sucesso!";
+				
+			else
+				return "Falha ao Aprovar Projeto!";
 		}
 
 		function atualizar($id, CadastroTcc $atualizar)

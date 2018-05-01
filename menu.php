@@ -8,9 +8,7 @@
 		$tcc = new CadastroTcc("","","","","");
 
 		$consulta = $tcc->buscar($_SESSION['idAluno']);
-	}
-
-	
+	}	
 ?>
 
 

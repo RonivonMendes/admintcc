@@ -1,5 +1,6 @@
 <?php	
 	require_once 'conexao.php';
+	require_once 'usuario.php';
 
 	class Integrante extends Usuario
 	{
@@ -57,6 +58,23 @@
 				exit();
 			}
 			echo $temp->rowCount(). "Linhas inseridas / ATUALIZADO COM SUCESSO";
+		}
+
+		function buscar($id=false)
+		{
+			if ($id!=false)
+			{
+				$conexao = Database::conexao();
+
+				$sql = "SELECT integrantes.*, usuarios.nome FROM integrantes JOIN usuarios ON integrantes.usuarios_id=usuarios.id where integrantes.id= $id;";
+
+				$temp = $conexao->prepare($sql);
+				$temp->execute();
+				$res = $temp->fetchAll();
+
+				return $res;
+
+			}
 		}
 
 		function buscarIntegrante($cpf)

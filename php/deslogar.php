@@ -3,5 +3,5 @@
 
 	session_destroy();
 
-	header('location: /admintcc/login.php');
+	header('location: /iftm/admintcc/login.php');
 ?>

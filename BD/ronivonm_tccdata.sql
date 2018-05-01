@@ -197,14 +197,21 @@ CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`cadastrostcc` (
   `acessos_id` INT NOT NULL,
   `alunos_id` INT NOT NULL,
   `integrantes_id` INT NOT NULL,
+  `coorientador_id` INT NULL,
   `titulo` VARCHAR(200) NOT NULL,
   `grupoPesquisa` VARCHAR(200) NOT NULL,
-  `aceite` TINYINT NOT NULL,
   `resumo` TEXT NULL,
+  `aceite` TINYINT NOT NULL DEFAULT 0,
+  `aceitedata` DATETIME NULL,
+  `aprovacaoOrientador` TINYINT NOT NULL DEFAULT 0 COMMENT '0 - pendente ou reprovado\n1 - aprovado',
+  `dataApOrientador` DATETIME NULL,
+  `aprovacaoSuper` TINYINT NOT NULL DEFAULT 0 COMMENT '0 - pendente ou reprovado\n1 - aprovado',
+  `dataApSuper` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_cadastroTcc_acessos1_idx` (`acessos_id` ASC),
   INDEX `fk_cadastroTcc_integrantes1_idx` (`integrantes_id` ASC),
   INDEX `fk_cadastroTcc_alunos_idx` (`alunos_id` ASC),
+  INDEX `fk_cadastroTcc_integrantes2_idx` (`coorientador_id` ASC),
   CONSTRAINT `fk_cadastroTcc_acessos1`
     FOREIGN KEY (`acessos_id`)
     REFERENCES `ronivonm_tccdata`.`acessos` (`id`)
@@ -218,6 +225,11 @@ CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`cadastrostcc` (
   CONSTRAINT `fk_cadastroTcc_alunos`
     FOREIGN KEY (`alunos_id`)
     REFERENCES `ronivonm_tccdata`.`alunos` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cadastroTcc_integrantes2`
+    FOREIGN KEY (`coorientador_id`)
+    REFERENCES `ronivonm_tccdata`.`integrantes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -258,99 +270,29 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ronivonm_tccdata`.`projetosTcc`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ronivonm_tccdata`.`projetosTcc` ;
-
-CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`projetosTcc` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `acessos_id` INT NOT NULL,
-  `alunos_id` INT NOT NULL,
-  `cadastroTccs_id` INT NOT NULL,
-  INDEX `fk_projetos_acessos1_idx` (`acessos_id` ASC),
-  PRIMARY KEY (`id`),
-  INDEX `fk_projetos_alunos1_idx` (`alunos_id` ASC),
-  INDEX `fk_projetos_cadastroTccs1_idx` (`cadastroTccs_id` ASC),
-  CONSTRAINT `fk_projetos_acessos1`
-    FOREIGN KEY (`acessos_id`)
-    REFERENCES `ronivonm_tccdata`.`acessos` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_projetos_alunos1`
-    FOREIGN KEY (`alunos_id`)
-    REFERENCES `ronivonm_tccdata`.`alunos` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_projetos_cadastroTccs1`
-    FOREIGN KEY (`cadastroTccs_id`)
-    REFERENCES `ronivonm_tccdata`.`cadastrostcc` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `ronivonm_tccdata`.`coorientadoresProjetos`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ronivonm_tccdata`.`coorientadoresProjetos` ;
-
-CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`coorientadoresProjetos` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `projetos_id` INT NOT NULL,
-  `integrantes_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_integrantesProjetos_projetos1_idx` (`projetos_id` ASC),
-  INDEX `fk_integrantesProjetos_integrantes1_idx` (`integrantes_id` ASC),
-  CONSTRAINT `fk_integrantesProjetos_projetos1`
-    FOREIGN KEY (`projetos_id`)
-    REFERENCES `ronivonm_tccdata`.`projetosTcc` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_integrantesProjetos_integrantes1`
-    FOREIGN KEY (`integrantes_id`)
-    REFERENCES `ronivonm_tccdata`.`integrantes` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `ronivonm_tccdata`.`atividadesTcc`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `ronivonm_tccdata`.`atividadesTcc` ;
 
 CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`atividadesTcc` (
   `atividades` INT NOT NULL AUTO_INCREMENT,
-  `data` DATETIME NOT NULL,
-  `atividade` VARCHAR(200) NOT NULL,
-  `projetos_id` INT NOT NULL,
   `acessos_id` INT NOT NULL,
-  `alunos_id` INT NOT NULL,
-  `integrantes_id` INT NOT NULL,
-  `aceite` TINYINT NOT NULL,
+  `cadastrostcc_id` INT NOT NULL,
+  `atividade` MEDIUMTEXT NOT NULL,
+  `cargaHoraria` TIME NOT NULL,
+  `dataCadastro` DATETIME NOT NULL,
+  `aceite` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`atividades`),
-  INDEX `fk_atividades_projetos1_idx` (`projetos_id` ASC),
   INDEX `fk_atividades_acessos1_idx` (`acessos_id` ASC),
-  INDEX `fk_atividades_alunos1_idx` (`alunos_id` ASC),
-  INDEX `fk_atividades_integrantes1_idx` (`integrantes_id` ASC),
-  CONSTRAINT `fk_atividades_projetos1`
-    FOREIGN KEY (`projetos_id`)
-    REFERENCES `ronivonm_tccdata`.`projetosTcc` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_atividadesTcc_cadastrostcc1_idx` (`cadastrostcc_id` ASC),
   CONSTRAINT `fk_atividades_acessos1`
     FOREIGN KEY (`acessos_id`)
     REFERENCES `ronivonm_tccdata`.`acessos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_atividades_alunos1`
-    FOREIGN KEY (`alunos_id`)
-    REFERENCES `ronivonm_tccdata`.`alunos` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_atividades_integrantes1`
-    FOREIGN KEY (`integrantes_id`)
-    REFERENCES `ronivonm_tccdata`.`integrantes` (`id`)
+  CONSTRAINT `fk_atividadesTcc_cadastrostcc1`
+    FOREIGN KEY (`cadastrostcc_id`)
+    REFERENCES `ronivonm_tccdata`.`cadastrostcc` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

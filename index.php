@@ -1,10 +1,29 @@
 <?php
+	
+	require_once 'php/tcc.php';
+
 	session_start();
 
 	if (($_SESSION['logado']==0))
 	{
 		header('location: login.php');
 	}
+
+	if(isset($_POST['cadastro']))
+	{
+		if ($_POST['cadastro']=='cadastroTcc')
+		{
+			$tcc = new CadastroTcc($_POST['aluno'], $_SESSION['idAcesso'], $_POST['projeto'], $_POST['gPesquisa'], "");
+			$alerta = $tcc->cadastrar($tcc);
+
+			$_POST['cadastro']="false";
+		}
+	}
+
+	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
+	$tcc = new CadastroTcc("","","","","");
+	$consultatcc = $tcc->buscar();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -73,31 +92,27 @@
 
 							<thead> 
 								<tr> 
-									<th>#</th> 
-									<th>First Name</th> 
-									<th>Last Name</th> 
-									<th>Username</th>
+									<th>Id</th> 
+									<th>Aluno</th> 
+									<th>Curso</th> 
+									<th>Título do Projeto</th>
 								</tr> 
 							</thead> 
 							<tbody> 
-								<tr> 
-									<th scope="row">1</th> 
-									<td>Mark</td> 
-									<td>Otto</td> 
-									<td>@mdo</td> 
-								</tr> 
-								<tr> 
-									<th scope="row">2</th> 
-									<td>Jacob</td> 
-									<td>Thornton</td> 
-									<td>@fat</td> 
-								</tr> 
-								<tr> 
-									<th scope="row">3</th> 
-									<td>Larry</td> 
-									<td>the Bird</td> 
-									<td>@twitter</td> 
-								</tr> 
+								
+								<?php
+									foreach ($consultatcc as $key => $value)
+									{
+										echo "<a href='aprovarprojeto.php?id=".$value['id']."'><tr>";
+										echo "<td>".$value['id']."</td>"; 
+										echo "<td>".$value['nome']."</td>";
+										echo "<td>".$value['curso']."</td>";
+										echo "<td>".$value['titulo']."</td>";
+										echo "</tr></a>";
+									}
+									
+								?>  
+							
 							</tbody> 
 						</table>
 						<br>
