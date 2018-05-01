@@ -1,5 +1,5 @@
 <?php
-	
+	/*
 	require_once 'php/tcc.php';
 
 	session_start();
@@ -23,7 +23,7 @@
 	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
 	$tcc = new CadastroTcc("","","","","");
 	$consultatcc = $tcc->buscar();
-
+*/
 ?>
 
 <!DOCTYPE HTML>
@@ -100,6 +100,13 @@
 							</thead> 
 							<tbody> 
 								
+								<tr>
+									<!--teste-->
+									<td><a href="login.php">teste</a></td>
+									
+
+								</tr>
+
 								<?php
 									foreach ($consultatcc as $key => $value)
 									{
@@ -108,6 +115,7 @@
 										echo "<td>".$value['nome']."</td>";
 										echo "<td>".$value['curso']."</td>";
 										echo "<td>".$value['titulo']."</td>";
+										echo "<a href='aprovaprojeto.php</a>";
 										echo "</tr></a>";
 									}
 									

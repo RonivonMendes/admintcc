@@ -77,6 +77,13 @@
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
+	
+	<?php
+
+		include 'menu.php'; 
+		
+	 ?>
+
 	<?php
 		if(isset($_POST['cadastro']))
 		{
@@ -87,22 +94,11 @@
 		}
 	?>
 
-	<?php
-
-		include 'menu.php'; 
-	 ?>
-
 			<div class="main-page login-page" style="width: 90%"> 
-				<?php
-					echo "Seja bem vindo(a), ".$_SESSION['nomeUser'].".";
-				?>
+
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Cadastrar Projeto TCC</h2>
 				<div class="widget-shadow">
 
-					
-		
-					
-						
 						<form action="cadastroTcc.php" method="post" class="form-horizontal">	
 							
 								<br>

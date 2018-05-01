@@ -56,41 +56,51 @@
 	<div class="menu-dash" style="text-align: center; padding-top: 1px;">
 				
 				<div class="dropdown">
-  					<button id="m1" class="dropbtn"> <a href="index.php"> Início</a></button>
+  					<a href="index.php"> 
+  						<button id="m1" class="dropbtn">Início</button>
+  					</a>
 				</div>		
 
 				<div class="dropdown">
-  					<button id="m2" class="dropbtn"> <a href="cadastrarUsuario.php"> Cadastrar Usuário</a></button>
+  					<a href="cadastrarUsuario.php">
+  						<button id="m2" class="dropbtn">Cadastrar Usuário</button>
+					</a>
 				</div>
 
 				<div class="dropdown">
-  					<button id="m3" class="dropbtn"> <a href="cadastroTcc.php"> Cadastrar TCC</a></button>
-  					
+  					<a href="cadastroTcc.php">
+  						<button id="m3" class="dropbtn">Cadastrar TCC</button>
+  					</a>
 				</div>
 
 				<div class="dropdown">
-  				    <button id="m4" class="dropbtn"> <a href="aceitarcadastrotcc.php"> Projeto TCC</a></button>
-        		    
+  				    <a href="aceitarcadastrotcc.php">
+  				    	<button id="m4" class="dropbtn">Projeto TCC</button>
+        		    </a>
          		</div>
 
         		<div class="dropdown">
-            		<button id="m5" class="dropbtn" image="fa-exclamation"> <a href="resumotcc.php"> Resumo TCC</a></button>
-            		
+            		<a href="resumotcc.php">
+            			<button id="m5" class="dropbtn">Resumo TCC</button>
+            		</a>
 				</div>
 
 				<div class="dropdown">
-            		<button id="m6" class="dropbtn"> <a href="resumotccsupervisor.php"> Resumo TCC Supervisor</a></button>
-            		
+            		<a href="resumotccsupervisor.php">
+            			<button id="m6" class="dropbtn">Resumo TCC Supervisor</button>
+            		</a>
 				</div>
 
 				<div class="dropdown">
-            		<button id="m7" class="dropbtn"> <a href="aprovaprojeto.php"> Aprovar Projeto</a></button>
-            		
+            		<a href="aprovaprojeto.php">
+            			<button id="m7" class="dropbtn">Aprovar Projeto</button>
+            		</a>
 				</div>
 
 				<div class="dropdown">
-            		<button id="m8" type="button"  class="dropbtn"  style="background-color: red"> <a href="php/deslogar.php"> Sair</a></button>
-            		
+            		<a href="php/deslogar.php">
+            			<button id="m8" type="button"  class="dropbtn"  style="background-color: red">Sair</button>
+            		</a>
 				</div>
             		
 			</div>

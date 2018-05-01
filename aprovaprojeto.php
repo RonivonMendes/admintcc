@@ -116,7 +116,7 @@
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Nome Orientador</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Nome do Orientador</label>
 									<div class="col-sm-8">
 
 										<?php

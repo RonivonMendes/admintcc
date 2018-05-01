@@ -1,5 +1,5 @@
 <?php
-	require_once 'php/aluno.php';
+	/*require_once 'php/aluno.php';
 	require_once 'php/endereco.php';
 	require_once 'php/acesso.php';
 	require_once 'php/usuario.php';
@@ -41,7 +41,7 @@
 	#consultando cursos para listar
 	$buscaCurso = new Curso("","","");
 	$lista = $buscaCurso->buscar();
-
+*/
 ?>
 
 <!DOCTYPE HTML>
@@ -191,6 +191,12 @@
 <body>
 
 <div id="page-wrapper" style="padding-top: 5%;">
+		<?php  
+
+			include 'menu.php';
+
+		?>
+
 		<?php
 			if(isset($_POST['tipocadastro']))
 			{
@@ -199,14 +205,9 @@
 				  	echo $alerta;
 					echo "</div>";
 			}
-
-			include 'menu.php';
 		?>
 	
 			<div class="main-page login-page" style="width: 90%"> 
-				<?php
-					echo "Seja bem vindo(a), ".$_SESSION['nomeUser'].".";
-				?>
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Cadastrar Novo Usuário</h2>
 				<div class="widget-shadow">
 		
