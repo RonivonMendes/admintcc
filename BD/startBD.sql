@@ -27,4 +27,3 @@ INSERT INTO `acessos` (`idPerfis`, `email`, `senha`, `status`) VALUES ('5', 'alu
 INSERT INTO `enderecos` (`estado`, `cidade`, `bairro`, `rua`, `numero`, `cep`) VALUES ('Minas gerais', 'Ituiutaba', 'Centro', 'Rua 22', '123', '38300000');
 INSERT INTO `usuarios` (`idAcesso`, `idEndereco`, `nome`, `cpf`, `rg`, `orgao_expeditor`, `telefone`) VALUES ('2', '2', 'aluno1', '11111111111', 'MG123.123.12', 'PC/MG', '34999998888');
 INSERT INTO `alunos` (`idUsuario`, `idAcesso`, `idCurso`, `ra`) VALUES ('2', '2', '1', '162767656721');
-

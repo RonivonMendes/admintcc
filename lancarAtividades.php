@@ -1,3 +1,44 @@
+<?php
+	require_once 'php/tcc.php';
+	session_start();
+
+	echo "SESSÃO DO ALUNO ID". $_SESSION['idAluno'];
+
+	if (($_SESSION['logado']==0))
+	{
+		header('location: login.php');
+	}
+
+
+	#se for aluno que está logado, consultar se o termo está aceito ou não
+	if ($_SESSION['tipoPerfil']!=5)
+	{
+		header('location: index.php');
+	}
+
+	else
+	{
+		$tcc = new CadastroTcc("","","","","");
+
+		#consultar TCC do aluno para vincular a atividade, e preencher os campos do cabeçalho
+		$consultatcc = $tcc->buscar($_SESSION['idAluno']);
+	}
+
+	if(isset($_POST['autorizacao']))
+	{
+		if($_POST['autorizacao']=="autorizacao")
+		{
+
+			$lancamento = new AtividadeTcc($consultatcc[0]['id'], $_POST['atividade'], $_POST['cargaHoraria'], $_POST['dataExecucao'], "0");
+
+			$alerta = $lancamento->lancar($_SESSION['idAluno'], $consultatcc[0]['id'], $_POST['atividade'], $_POST['cargaHoraria'], $_POST['dataExecucao'], "0");
+		}
+
+	}
+
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -51,7 +92,7 @@
 		
 					
 						
-						<form action="aceitartcc.php" method="post" class="form-horizontal">	
+						<form action="" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
@@ -59,28 +100,33 @@
 							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Aluno</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="nome" id="l1" value="" required="" maxlength="14" disabled="">
-									</div>
+										<input type="hidden" name="autorizacao" value="autorizacao">
+										<?php
+											echo "<input style='width: 50%' type='text' class='form-control1' id='a1' name='autor' value='".$consultatcc[0]['nome']."' disabled=''>";
+										?>	
+										</div>
 								</div>
 
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Título do Projeto</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="projeto" id="l2" value="" required="" maxlength="14" disabled="">
+										<?php
+											echo "<input style='width: 50%' type='text' class='form-control1' id='a2' name='titulo-tese' value='".$consultatcc[0]['titulo']."' disabled=''>";
+										?>
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Data Início</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Carga horária</label>
 									<div class="col-sm-8">
-										<input style="width: 23%" type="datetime-local" class="form-control1" name="dInicio" id="l3" value="" required="">
+										<input style="width: 23%" type="time" class="form-control1" name="cargaHoraria" id="l3" value="" required="">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Data Término</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Dia de execução</label>
 									<div class="col-sm-8">
-										<input style="width: 23%" type="datetime-local" class="form-control1" name="dFim" id="l4" value="" required="">
+										<input style="width: 23%" type="date" class="form-control1" name="dataExecucao" id="l4" value="" required="">
 									</div>
 								</div>
 
