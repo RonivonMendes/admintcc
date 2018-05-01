@@ -38,17 +38,16 @@
 				return "Falha ao cadastrar Projeto!";
 		}
 
-		function buscar($id=false)
+		function buscar($cons=false)
 		{
 			$conexao = Database::conexao();
 
-			if($idAluno==false)
+			if($cons==false)
 			{
 				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id;";
 			}
-
 			else
-				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE cadastrostcc.id=".$id.";";
+				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE cadastrostcc.alunos_id=".$cons.";";
 			
 			$temp = $conexao->prepare($sql);
 			$temp->execute();
@@ -94,6 +93,22 @@
 				return "Falha ao Aprovar Projeto!";
 		}
 
+		#Professor aprova o resumo do projeto
+		function autorizar($id, $autorizacao)
+		{
+			$conexao = Database::conexao();
+
+			$sql = "UPDATE `cadastrostcc` SET `aprovacaoSuper`='$autorizacao' WHERE id = $id;";
+			$temp = $conexao->prepare($sql);
+			$result = $temp->execute();
+
+			if ($temp->rowCount()>0)
+				return "Projeto Autorizado com sucesso!";
+				
+			else
+				return "Projeto Negado!";
+		}
+
 		function atualizar($id, CadastroTcc $atualizar)
 		{
 			$conexao = Database::conexao();
@@ -112,13 +127,41 @@
 
 	}#Fim da classe CadastroTcc
 
-	Class ProjetoTcc 
-	{
-
-	}#Fim da classe ProjetoTcc
-
 	Class AtividadeTcc
 	{
+		private $idTcc, $atividade, $cargaHoraria, $dataExecucao, $aceite;
+
+		function __construct($idTcc, $atividade, $cargaHoraria, $dataExecucao, $aceite=0)
+		{
+			$this->idTcc = $idTcc;
+			$this->atividade = $atividade;
+			$this->cargaHoraria = $cargaHoraria;
+			$this->dataExecucao = $dataExecucao;
+			$this->aceite = $aceite;
+		}
+
+
+		function lancar($acesso, $idTcc, $atividade, $cargaHoraria, $dataExecucao, $aceite)
+		{
+			$conexao = Database::conexao();
+
+			$sql = "INSERT INTO `AtividadesTcc` (`acessos_id`, `cadastrostcc_id`, `atividade`, `cargaHoraria`, `dataExecucao`, `aceite`) VALUES ('$acesso', '$idTcc', '$atividade', '$cargaHoraria', '$dataExecucao', '$aceite');";
+			$temp = $conexao->prepare($sql);
+			$result = $temp->execute();
+
+			/*if(!$result)
+			{
+				var_dump($temp->errorInfo());
+				exit();
+			}*/
+			#echo $temp->rowCount(). "Projeto cadastrado<br>";
+
+			if ($temp->rowCount()>0)
+				return "Atividade Lançada com sucesso!";
+				
+			else
+				return "Falha ao lançar atividade!";
+		}
 
 	}#Fim da classe AtividadesTcc
 

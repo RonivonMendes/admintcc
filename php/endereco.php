@@ -37,6 +37,9 @@
 
 				return $ultimoId;
 			}
+
+			else
+				return "false";
 		}
 
 		function atualiza($id, Endereco $endereco)

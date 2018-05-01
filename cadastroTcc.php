@@ -28,6 +28,10 @@
 	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
 	$tcc = new CadastroTcc("","","","","");
 	$consultatcc = $tcc->buscar();
+
+	$exclusivos = array_column($consultatcc, "alunos_id");
+
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -113,10 +117,11 @@
     										<?php
     											foreach ($lista as $valor)
     											{
-    												
-    												if(!(array_key_exists($valor['id'], $consultatcc)))	
+    												if (!in_array($valor['id'], $exclusivos))
     												{
-    													echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")</option>";
+    													echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")
+    												<br>VALOR ID".$valor['id']. "<br>Alunos ID".$consultatcc[0]['alunos_id']."
+    												</option>";
     												}
     											}
     										?>

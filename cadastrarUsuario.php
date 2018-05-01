@@ -30,7 +30,7 @@
 		{
 			#CADASTRANDO UM INTEGRANTE
 			$integranteCadastra = new Integrante($_POST['nome'], $_POST['cpf'], $_POST['rg'], $_POST['orgao_expeditor'], $_POST['telefone'], $_POST['titulacao'], $_POST['institucao']);
-			$endCadastra = new Endereco(  $_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
+			$endCadastra = new Endereco($_POST['estado'], $_POST['cidade'], $_POST['bairro'], $_POST['logradouro'], $_POST['numero'], $_POST['cep']);
 			$acessoCadastra = new Acesso($_POST['tipoPerfil'],$_POST['email'],$_POST['senha'], '1');
 			$alerta = $integranteCadastra->cadastra($integranteCadastra, $endCadastra, $acessoCadastra);
 

@@ -201,11 +201,11 @@ CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`cadastrostcc` (
   `titulo` VARCHAR(200) NOT NULL,
   `grupoPesquisa` VARCHAR(200) NOT NULL,
   `resumo` TEXT NULL,
-  `aceite` TINYINT NOT NULL DEFAULT 0,
+  `aceite` TINYINT NOT NULL DEFAULT 0 COMMENT '0 - Pendente\n1 - Aceito e enviado para Orientador\n2 - Reprovado pelo Orientador',
   `aceitedata` DATETIME NULL,
-  `aprovacaoOrientador` TINYINT NOT NULL DEFAULT 0 COMMENT '0 - pendente ou reprovado\n1 - aprovado',
+  `aprovacaoOrientador` TINYINT NOT NULL DEFAULT 0 COMMENT '0 - Pendente ou Reprovado\n1 - Aprovado Enviado Para Supervisor\n2 - Reprovado pelo Supervisor',
   `dataApOrientador` DATETIME NULL,
-  `aprovacaoSuper` TINYINT NOT NULL DEFAULT 0 COMMENT '0 - pendente ou reprovado\n1 - aprovado',
+  `aprovacaoSuper` TINYINT NOT NULL DEFAULT 0 COMMENT '0 - Pendente ou Reprovado\n1 - Aprovado',
   `dataApSuper` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_cadastroTcc_acessos1_idx` (`acessos_id` ASC),
@@ -275,14 +275,14 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `ronivonm_tccdata`.`atividadesTcc` ;
 
 CREATE TABLE IF NOT EXISTS `ronivonm_tccdata`.`atividadesTcc` (
-  `atividades` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `acessos_id` INT NOT NULL,
   `cadastrostcc_id` INT NOT NULL,
   `atividade` MEDIUMTEXT NOT NULL,
   `cargaHoraria` TIME NOT NULL,
-  `dataCadastro` DATETIME NOT NULL,
+  `dataExecucao` DATETIME NOT NULL,
   `aceite` TINYINT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`atividades`),
+  PRIMARY KEY (`id`),
   INDEX `fk_atividades_acessos1_idx` (`acessos_id` ASC),
   INDEX `fk_atividadesTcc_cadastrostcc1_idx` (`cadastrostcc_id` ASC),
   CONSTRAINT `fk_atividades_acessos1`

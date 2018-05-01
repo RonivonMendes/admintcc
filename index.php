@@ -1,5 +1,5 @@
 <?php
-	/*
+
 	require_once 'php/tcc.php';
 
 	session_start();
@@ -23,7 +23,7 @@
 	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
 	$tcc = new CadastroTcc("","","","","");
 	$consultatcc = $tcc->buscar();
-*/
+
 ?>
 
 <!DOCTYPE HTML>
@@ -101,26 +101,53 @@
 							<tbody> 
 								
 								<tr>
-									<!--teste-->
-									<td><a href="login.php">teste</a></td>
-									
-
-								</tr>
-
 								<?php
-									foreach ($consultatcc as $key => $value)
+
+									#Se for aluno, ele so pode ver o projeto dele!
+									if($_SESSION['tipoPerfil']==5 && $consultatcc!="0")
 									{
-										echo "<a href='aprovarprojeto.php?id=".$value['id']."'><tr>";
-										echo "<td>".$value['id']."</td>"; 
-										echo "<td>".$value['nome']."</td>";
-										echo "<td>".$value['curso']."</td>";
-										echo "<td>".$value['titulo']."</td>";
-										echo "<a href='aprovaprojeto.php</a>";
-										echo "</tr></a>";
+										foreach ($consultatcc as $key => $value)
+										{
+											if($value['alunos_id'] == $_SESSION['idAluno'])
+											{
+												echo "<tr>";
+												echo "<td>".$value['id']."</td>"; 
+												echo "<td>".$value['nome']."</td>";
+												echo "<td>".$value['curso']."</td>";
+												echo "<td>".$value['titulo']."</td>";
+												echo "</tr>";
+											}
+										}
 									}
-									
+									#se for Orientador, visualiza todos, porém o link é para aprovar
+									else if($_SESSION['tipoPerfil']==3 && $consultatcc!="0")
+									{
+										foreach ($consultatcc as $key => $value)
+										{
+											echo "<tr>";
+											echo "<td>".$value['id']."</td>"; 
+											echo "<td>".$value['nome']."</td>";
+											echo "<td>".$value['curso']."</td>";
+											echo "<td>".$value['titulo']."</td>";
+											echo "</tr>";
+										}
+									} 
+
+									#se for Supervisor, visualiza todos, porém o link é para autorizar
+									else if($_SESSION['tipoPerfil']==1 && $consultatcc!="0")
+									{
+										foreach ($consultatcc as $key => $value)
+										{
+											echo "<tr>";
+											echo "<td>".$value['id']."</td>"; 
+											echo "<td>".$value['nome']."</td>";
+											echo "<td>".$value['curso']."</td>";
+											echo "<td>".$value['titulo']."</td>";
+											echo "</tr>";
+										}
+									}
 								?>  
-							
+							</tr>
 							</tbody> 
 						</table>
 						<br>

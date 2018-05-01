@@ -54,55 +54,53 @@
 <div id="page-wrapper" style="padding-top: 1px; padding-bottom: 2px">
 	
 	<div class="menu-dash" style="text-align: center; padding-top: 1px;">
-				
-				<div class="dropdown">
-  					<a href="index.php"> 
-  						<button id="m1" class="dropbtn">Início</button>
+				<?php
+
+					#index para todos (restrição de conteúdo feitos na página)
+					echo "<div class='dropdown'>
+  					<a href='index.php'> 
+  					<button id='m1' class='dropbtn'>Início</button>
   					</a>
-				</div>		
+					</div>";
 
-				<div class="dropdown">
-  					<a href="cadastrarUsuario.php">
-  						<button id="m2" class="dropbtn">Cadastrar Usuário</button>
-					</a>
-				</div>
+					#Cadastro de úsuario somente para quem tem permissão
+					if($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3)
+					{
+						echo "<div class='dropdown'>
+  						<a href='cadastrarUsuario.php'>
+  						<button id='m2' class='dropbtn'>Cadastrar Usuário</button>
+						</a>
+						</div>";
+					}
 
-				<div class="dropdown">
-  					<a href="cadastroTcc.php">
-  						<button id="m3" class="dropbtn">Cadastrar TCC</button>
-  					</a>
-				</div>
+					#cadastrarTcc Tem que ser Supervisor ou Orientador
+					if ($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3)
+					{
+						echo "<div class='dropdown'>
+  						<a href='cadastroTcc.php'>
+  						<button id='m3' class='dropbtn'>Cadastrar TCC</button>
+  						</a>
+						</div>";
+					}
 
-				<div class="dropdown">
-  				    <a href="aceitarcadastrotcc.php">
-  				    	<button id="m4" class="dropbtn">Projeto TCC</button>
-        		    </a>
-         		</div>
+					#Visualizar/aceitar projeto, somente aluno
+					if ($_SESSION['tipoPerfil']==5)
+					{
+						echo "<div class='dropdown'>
+  				    	<a href='aceitartcc.php'>
+  				    	<button id='m4' class='dropbtn'>Projeto TCC</button>
+        		    	</a>
+         				</div>";
+					}
 
-        		<div class="dropdown">
-            		<a href="resumotcc.php">
-            			<button id="m5" class="dropbtn">Resumo TCC</button>
+					#Deslogar para todos
+					echo "<div class='dropdown'>
+            		<a href='php/deslogar.php'>
+            		<button id='m8' type='button'  class='dropbtn'  style='background-color: red'>Sair</button>
             		</a>
-				</div>
-
-				<div class="dropdown">
-            		<a href="resumotccsupervisor.php">
-            			<button id="m6" class="dropbtn">Resumo TCC Supervisor</button>
-            		</a>
-				</div>
-
-				<div class="dropdown">
-            		<a href="aprovaprojeto.php">
-            			<button id="m7" class="dropbtn">Aprovar Projeto</button>
-            		</a>
-				</div>
-
-				<div class="dropdown">
-            		<a href="php/deslogar.php">
-            			<button id="m8" type="button"  class="dropbtn"  style="background-color: red">Sair</button>
-            		</a>
-				</div>
-            		
+					</div>";
+				?>
+	
 			</div>
 	</div>
 </body>

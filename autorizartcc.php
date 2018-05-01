@@ -14,8 +14,7 @@
 		$tcc = new CadastroTcc("","","","","");
 		$consultatcc = $tcc->buscar($_GET['id']);
 
-		if($consultatcc=="0")
-			header('location: index.php');
+		echo "GET ID". $_GET['id'];
 
 		$integrante = new Integrante("", "", "", "", "", "", "");
 		$consultaOrientador=$integrante->buscar($consultatcc[0]['integrantes_id']);
@@ -27,22 +26,34 @@
 		}
 	}
 
-	if (isset($_POST['aprovacao']))
+	else
+		header('location: index.php');
+
+	if (isset($_POST['autorizacao']))
 	{
-		if ($_POST['aprovacao']=="aprovacao")
+		if ($_POST['autorizacao']=="autorizacao")
 		{
-			echo "2ºIF";
 			$tcc = new CadastroTcc("","","","","");
-			$alerta = $tcc->aprovar($consultatcc[0]['id'], $_POST['aprovar']);
+			#se estiver autorizado, autoriza no sistema e libera as atividades para que o aluno inicie!
+			if($_POST['resposta']==1)
+				$alerta = $tcc->autorizar($consultatcc[0]['id'], $_POST['resposta']);
+			
+			#se não reabre para Orientador
+			else
+			{
+				$tcc->aprovar($consultatcc[0]['id'], $_POST['resposta']);
+				$alerta = "Resumo e aceite reaberto para que o aluno faça correções!";
+			}
+
 		}
+		
 	}
 ?>
-
-
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Aprovação Projeto</title>
+<title>Autorizar TCC</title>
+<meta charset="utf-8">
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -82,16 +93,19 @@
 <div id="page-wrapper" style="padding-top: 5%;">
 			
 			<?php
-				include 'menu.php';
+
+			include 'menu.php';
+
 			?>
 
 			<div class="main-page login-page" style="width: 90%"> 
 				
-				<h2 class="title1" style="text-align: center; font-weight: bold;">Aprovação do Projeto</h2>
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Autorizar TCC</h2>
 				<div class="widget-shadow">
+		
+					
 						
-						<form action="?id='".$consultatcc[0]['id']."' method="post" class="form-horizontal">
-							<input type="hidden" name="aprovacao" value="aprovacao">	
+						<form action="" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
@@ -99,6 +113,7 @@
 							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome do Autor</label>
 									<div class="col-sm-8">
+										<input type="hidden" name="autorizacao" value="autorizacao">
 										<?php
 											echo "<input style='width: 50%' type='text' class='form-control1' id='a1' name='autor' value='".$consultatcc[0]['nome']."' disabled=''>";
 										?>	
@@ -137,21 +152,28 @@
 									</div>
 								</div>
 
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Coorientador</label>						
-									
-									<div class="col-sm-8">
-										<input style="width: 50%" type="text" name="nCoorientador" class="form-control1" value="" id="a5" >										
-									</div>
-								</div>
+								<?php
+									if(isset($consultaCoorientador))
+									{
+										echo "<div class='form-group'> <label for='focusedinput' class='col-sm-2 control-label'>Coorientador</label>
+										<div class='col-sm-8'>";
 
-								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Instituição Coorientador</label>						
-									
-									<div class="col-sm-8">
-										<input type="text" name="nCoorientador" class="form-control1" value="" id="a6" >										
-									</div>
-								</div>
+										echo "<input style='width: 50%' type='text' name='nCoorientador' class='form-control1' value='".$consultaCoorientador[0]['nome']."' id='a5'>";
+
+										echo "</div>
+											</div>";
+
+
+										echo "<div class='form-group'> <label for='focusedinput' class='col-sm-2 control-label'>Instituição Coorientador</label>
+										<div class='col-sm-8'>";
+
+										echo "<input type='text' name='nCoorientador' class='form-control1' value='".$consultaCoorientador[0]['instituicao']."' id='a6'>";
+
+										echo "</div>
+											</div>";
+
+									}
+								?>		
 
 								<div class="form-group">
 									<h2 style="text-align: center;">Resumo</h2>
@@ -163,32 +185,47 @@
 								
 								</div>
 
-									<br>
+
+
+								<br>
 									<div class='check-aceitar'>
 
 									<?php
-										if($consultatcc[0]['aprovacaoOrientador']==0)
+										if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==1&&$consultatcc[0]['aprovacaoSuper']==0)
 										{
-											echo "<input type='radio'  name='aprovar' value='1' id='a8'>Aprovar
-													<input type='radio'  name='aprovar' value='0' id='a9'>Reprovar
+											echo "<input type='radio'  name='resposta' value='1' id='a8'>Autorizar
+													<input type='radio'  name='resposta' value='2' id='a9'>Negar
 
 													</div>
 													<br>
-								<div style='text-align: center;' class='form-group'>
-									<input type='submit' name='enviar' id='a10' value='Enviar'>
-								</div>";
-								
+											<div style='text-align: center;' class='form-group'>
+												<input type='submit' name='enviar' id='a10' value='Enviar'>
+											</div>";
+									
+										}
+										else if($consultatcc[0]['aceite']==0||$consultatcc[0]['aprovacaoOrientador']==0)
+										{
+											echo "<p style='color: red'><strong>Aguardando Aluno e Orientador enviar para autorizacao</strong></p>
+											</div>";
+
+										}
+										else if($consultatcc[0]['aprovacaoOrientador']==2)
+										{
+											echo "<p style='color: red'><strong>Projeto foi Negado, aguardando o aluno e Orientador refazer as devidas correções em seu resumo e reenviar para autorização!</strong></p>
+											</div>";
 										}
 										else
-											echo "Esse projeto, já está aprovado pelo Orientador
-										</div>";
+											echo "<p style='color: blue'><strong>Esse projeto, já está autorizado</strong></p>
+											</div>";
 									?>
-									
 
-								<br>
+								<br>			
+
+
+
+
 							</form>
-						</div>	
-
+						</div>		
 					</div>
 				<br>
 			<br>
