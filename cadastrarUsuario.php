@@ -1,5 +1,5 @@
-<?php
-	/*require_once 'php/aluno.php';
+ <?php
+	require_once 'php/aluno.php';
 	require_once 'php/endereco.php';
 	require_once 'php/acesso.php';
 	require_once 'php/usuario.php';
@@ -41,7 +41,6 @@
 	#consultando cursos para listar
 	$buscaCurso = new Curso("","","");
 	$lista = $buscaCurso->buscar();
-*/
 ?>
 
 <!DOCTYPE HTML>
@@ -491,8 +490,6 @@
 								</div>
 
 								<div class="form-group">
-									<input type="hidden" name="tipocadastro" value="integrante">
-									<input type="hidden" name="tipoPerfil" value="4">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
@@ -521,16 +518,24 @@
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Titulação</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Curso</label>
 									<div class="col-sm-8">
-										<input style="width: 45%" type="text" class="form-control1" name="titulacao" value="" required="">
+										<select name="curso" class="form-control1">
+											<option value=""></option>
+											<?php
+												foreach ($lista as $valor)
+												{
+													echo "<option value='".$valor['id']."'>".$valor['nome']." - (".$valor['tipo'].")</option>";
+												}
+											?>
+										</select>
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Instituição</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Matrícula (RA)</label>
 									<div class="col-sm-8">
-										<input type="text" class="form-control1" name="institucao" value="" required="">
+										<input style="width: 19%" type="text" class="form-control1" name="ra" value="" required="">
 									</div>
 								</div>
 
@@ -582,6 +587,7 @@
 										<input style="width: 12%" type="text" class="form-control1" name="numero" value="" required="">
 									</div>
 								</div>
+
 								<div class="form-group">
 									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-8">
@@ -592,11 +598,11 @@
 								<div class="form-group">
 									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="password" class="form-control1" name="senha" value="" required="">
+										<input style="width: 30%" type="password" class="form-control1" name="senha" value="" required="">
 									</div>
 								</div>
 								 
-								<div class="form-group" style="text-align: center;">
+								<div style="text-align: center;" class="form-group">
 									<input type="submit" name="enviar" value="Cadastrar">
 									<input type="reset" name="limpar" value="Limpar">
 								</div>
