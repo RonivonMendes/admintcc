@@ -490,6 +490,7 @@
 								</div>
 
 								<div class="form-group">
+									<input type="hidden" name="tipocadastro" value="integrante">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
@@ -518,24 +519,16 @@
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Curso</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Titulação</label>
 									<div class="col-sm-8">
-										<select name="curso" class="form-control1">
-											<option value=""></option>
-											<?php
-												foreach ($lista as $valor)
-												{
-													echo "<option value='".$valor['id']."'>".$valor['nome']." - (".$valor['tipo'].")</option>";
-												}
-											?>
-										</select>
+										<input style="width: 45%" type="text" class="form-control1" name="titulacao" value="" required="">
 									</div>
 								</div>
 
 								<div class="form-group">
-									<label for="focusedinput" class="col-sm-2 control-label">Matrícula (RA)</label>
+									<label for="focusedinput" class="col-sm-2 control-label">Instituição</label>
 									<div class="col-sm-8">
-										<input style="width: 19%" type="text" class="form-control1" name="ra" value="" required="">
+										<input type="text" class="form-control1" name="institucao" value="" required="">
 									</div>
 								</div>
 
@@ -587,7 +580,6 @@
 										<input style="width: 12%" type="text" class="form-control1" name="numero" value="" required="">
 									</div>
 								</div>
-
 								<div class="form-group">
 									<label for="inputEmail" class="col-sm-2 control-label">Email</label>
 									<div class="col-sm-8">
@@ -598,11 +590,11 @@
 								<div class="form-group">
 									<label for="inputPassword" class="col-sm-2 control-label">Senha</label>
 									<div class="col-sm-8">
-										<input style="width: 30%" type="password" class="form-control1" name="senha" value="" required="">
+										<input style="width: 50%" type="password" class="form-control1" name="senha" value="" required="">
 									</div>
 								</div>
 								 
-								<div style="text-align: center;" class="form-group">
+								<div class="form-group" style="text-align: center;">
 									<input type="submit" name="enviar" value="Cadastrar">
 									<input type="reset" name="limpar" value="Limpar">
 								</div>
