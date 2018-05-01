@@ -215,7 +215,7 @@
 											</div>";
 										}
 										else
-											echo "<p style='color: blue'><strong>Esse projeto, já está autorizado</strong></p>
+											echo "<p style='color: orange'><strong>Esse projeto, já está autorizado</strong></p>
 											</div>";
 									?>
 
