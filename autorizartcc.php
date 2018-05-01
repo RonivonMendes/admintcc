@@ -191,7 +191,7 @@
 									<div class='check-aceitar'>
 
 										<div>
-											<textarea style="width: 50%" id="text-control" id="r5" name="resumo" rows="13" cols="143" placeholder="					Termo de Responsabilidade de Autoria
+											<textarea style="width: 50%" id="text-control" id="r5" name="resumo" rows="13" cols="143" disabled="">					Termo de Responsabilidade de Autoria
 	Eu, ___________________________________________, matrícula______________,
 estudante do curso ____________________________________________, estou ciente de
 que é considerada utilização indevida, ilegal e/ou plágio, os seguintes casos:
@@ -202,9 +202,10 @@ honorários profissionais.
 Logo, declaro ser de minha inteira responsabilidade a autoria do texto referente ao Trabalho
 de Conclusão de Curso sob o título ____________________________________________.
 
-________________________, ____ de _______________ de 20___. " disabled=""></textarea>
+			  ________________________, ____ de _______________ de 20___. </textarea>
+										
 										</div>
-							</div>
+								</div>
 
 									<?php
 										if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==1&&$consultatcc[0]['aprovacaoSuper']==0)
