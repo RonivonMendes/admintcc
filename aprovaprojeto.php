@@ -131,7 +131,7 @@
 									<div class="col-sm-8">
 
 										<?php
-											echo "<input style='width: 75%' type='text' class='form-control1' id='a5' name='instituicao' value='".$consultaOrientador[0]['instituicao']."' disabled=''>";
+											echo "<input style='width: 75%' type='text' class='form-control1' id='a4' name='instituicao' value='".$consultaOrientador[0]['instituicao']."' disabled=''>";
 										?>
 										
 										
@@ -142,7 +142,7 @@
 									<label for="focusedinput" class="col-sm-2 control-label">Coorientador</label>						
 									
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" name="nCoorientador" class="form-control1" value="" id="a4" >										
+										<input style="width: 50%" type="text" name="nCoorientador" class="form-control1" value="" id="a5" >										
 									</div>
 								</div>
 
@@ -150,7 +150,7 @@
 									<label for="focusedinput" class="col-sm-2 control-label">Instituição Coorientador</label>						
 									
 									<div class="col-sm-8">
-										<input type="text" name="nCoorientador" class="form-control1" value="" id="a4" >										
+										<input type="text" name="nCoorientador" class="form-control1" value="" id="a6" >										
 									</div>
 								</div>
 
@@ -159,7 +159,7 @@
 								</div>
 								<div>
 									<?php
-										echo "<textarea style='width: 98%' id='text-control' id='a6' name='resumo' rows='13' cols='143' required='' disabled=''>".$consultatcc[0]['titulo']."</textarea>";
+										echo "<textarea style='width: 98%' id='text-control' id='a7' name='resumo' rows='13' cols='143' required='' disabled=''>".$consultatcc[0]['titulo']."</textarea>";
 									?>
 								
 								</div>
@@ -170,13 +170,13 @@
 									<?php
 										if($consultatcc[0]['aprovacaoOrientador']==0)
 										{
-											echo "<input type='radio'  name='aprovar' value='1' id='a5'>Aprovar
-													<input type='radio'  name='aprovar' value='0' id='a6'>Reprovar
+											echo "<input type='radio'  name='aprovar' value='1' id='a8'>Aprovar
+													<input type='radio'  name='aprovar' value='0' id='a9'>Reprovar
 
 													</div>
 													<br>
 								<div style='text-align: center;' class='form-group'>
-									<input type='submit' name='enviar' id='a7' value='Enviar'>
+									<input type='submit' name='enviar' id='a10' value='Enviar'>
 								</div>";
 								
 										}
