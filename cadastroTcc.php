@@ -129,7 +129,7 @@
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Título do Projeto</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="projeto" id="c2" value="" required="" maxlength="14">
+										<input style="width: 50%" type="text" class="form-control1" name="projeto" id="c2" value="" required="">
 									</div>
 								</div>
 
