@@ -1,5 +1,5 @@
 <?php
-	/*require_once 'php/tcc.php';
+	require_once 'php/tcc.php';
 	require_once 'php/integrante.php';
 
 	session_start();
@@ -36,7 +36,6 @@
 			$alerta = $tcc->aprovar($consultatcc[0]['id'], $_POST['aprovar']);
 		}
 	}
-*/
 ?>
 
 
