@@ -56,7 +56,7 @@ public class Excel {
 		file.close();
 		return "Erro na leitura";
 	}
-	public static void pushData(String plano, String result, String res) throws IOException {
+	public static void pushData1(String plano, String result, String res) throws IOException {
 		/*Método para salvar dados dentro da planilha de testes*/
 	
 		String filePath = "data//cases.xlsx";
@@ -91,18 +91,18 @@ public class Excel {
 		/*Método que salva o resultado retornado pelo caso de testes e compara com o resultado esperado na planilha
 		 * de testes, salvando se o teste passou ou deu erro*/
 		
-		pushData(plano,output, "Result");
+		pushData1(plano,output, "Result");
 		
 		String expectedResult = pullData(plano,"Expected Result");
 		
 		String result = pullData(plano, "Result");
 		
 		if(expectedResult.equals(result)) {
-			pushData(plano,"passed", "Final Result");
+			pushData1(plano,"passed", "Final Result");
 		}else {
 			 String resultado = null;
 			 Assert.assertEquals(expectedResult, result, resultado);
-			pushData(plano,resultado, "Final Result");
+			pushData1(plano,resultado, "Final Result");
 		}
 		
 	}

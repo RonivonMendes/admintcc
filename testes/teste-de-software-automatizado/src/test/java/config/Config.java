@@ -12,7 +12,7 @@ public class Config {
 	//LOGIN
 	protected static By email = By.name("email");
 	protected static By senha = By.name("senha");
-	protected static By btnCadastro = By.id("m2");
+	protected static By btnCadastro = By.xpath("//*[@id='menu']/li[2]/a");
 	
 	//CAMPOS CADASTRO
 	protected static By btnAluno =  By.id("f1");
