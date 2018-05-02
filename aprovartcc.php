@@ -89,12 +89,10 @@
 	</head> 
 <body>
 
+<?php include 'menu.php'; ?>
 <div id="page-wrapper" style="padding-top: 5%;">
 			
-			<?php
-				include 'menu.php';
-			?>
-
+			
 			<div class="main-page login-page" style="width: 90%"> 
 				
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Aprovação do Projeto</h2>

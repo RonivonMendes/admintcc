@@ -80,13 +80,9 @@
 	</head> 
 <body>
 
+<?php include 'menu.php'; ?>
 <div id="page-wrapper" style="padding-top: 5%;">
 	
-	<?php
-
-		include 'menu.php'; 
-
-	 ?>
 
 	<?php
 		if(isset($_POST['cadastro']))
@@ -108,7 +104,7 @@
 								<br>
 								<br>
 
-
+							<input type="hidden" name="cadastro" value="cadastroTcc">
 							<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Aluno</label>
 									<div class="col-sm-8">
@@ -149,7 +145,7 @@
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Coorientador</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="coorientador" id="c4" value="" required="">
+										<input style="width: 50%" type="text" class="form-control1" name="coorientador" id="c4" value="" >
 									</div>
 									
 								</div>

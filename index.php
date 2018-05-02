@@ -67,18 +67,13 @@
 <body>
 
 
-
+<?php include 'menu.php'; ?>
 
 <div id="page-wrapper" style="padding-top: 5%">
 
-			<?php
-				include 'menu.php';
-			?>
 
 		<div class="main-page login-page" style="width: 90%"> 
-			<?php
-					echo "Seja bem vindo(a), ".$_SESSION['nomeUser'].".";
-				?>
+			
 				<h2 class="title1" style="text-align: center; font-weight: bold;">Início</h2>
 					<div class="widget-shadow">
 		
@@ -98,7 +93,8 @@
 									<th>Título do Projeto</th>
 								</tr> 
 							</thead> 
-							<tbody> 
+							<tbody>
+							
 								
 								<tr>
 								<?php
@@ -110,12 +106,12 @@
 										{
 											if($value['alunos_id'] == $_SESSION['idAluno'])
 											{
-												echo "<tr>";
+												echo "<tr onclick=\"javascript:window.location.href='aceitartcc.php'; return false;\" style='cursor: hand;'>";
 												echo "<td>".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
-												echo "</tr>";
+												echo "</tr></div></a>";
 											}
 										}
 									}
@@ -124,12 +120,12 @@
 									{
 										foreach ($consultatcc as $key => $value)
 										{
-											echo "<tr>";
+											echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
 											echo "<td>".$value['id']."</td>"; 
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
-											echo "</tr>";
+											echo "</tr></div></a>";
 										}
 									} 
 
@@ -138,12 +134,12 @@
 									{
 										foreach ($consultatcc as $key => $value)
 										{
-											echo "<tr>";
+											echo "<tr onclick=\"javascript:window.location.href='autorizartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
 											echo "<td>".$value['id']."</td>"; 
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
-											echo "</tr>";
+											echo "</tr></div></a>";
 										}
 									}
 								?>  

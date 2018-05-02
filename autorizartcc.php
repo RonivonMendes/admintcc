@@ -4,7 +4,7 @@
 
 	session_start();
 
-	if (($_SESSION['logado']==0))
+	if ($_SESSION['logado']==0 || $_SESSION['tipoPerfil']!=1 && $_SESSION['tipoPerfil']!=2)
 	{
 		header('location: login.php');
 	}
@@ -13,8 +13,6 @@
 	{
 		$tcc = new CadastroTcc("","","","","");
 		$consultatcc = $tcc->buscar($_GET['id']);
-
-		echo "GET ID". $_GET['id'];
 
 		$integrante = new Integrante("", "", "", "", "", "", "");
 		$consultaOrientador=$integrante->buscar($consultatcc[0]['integrantes_id']);
@@ -90,13 +88,10 @@
 	</head> 
 <body>
 
+<?php include 'menu.php'; ?>
 <div id="page-wrapper" style="padding-top: 5%;">
 			
-			<?php
-
-			include 'menu.php';
-
-			?>
+			
 
 			<div class="main-page login-page" style="width: 90%"> 
 				

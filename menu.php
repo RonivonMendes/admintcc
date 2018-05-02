@@ -8,100 +8,59 @@
 		$tcc = new CadastroTcc("","","","","");
 
 		$consulta = $tcc->buscar($_SESSION['idAluno']);
-	}	
+	}
+date_default_timezone_set('America/Sao_Paulo');	
+$hr = date("H");
+if($hr >= 12 && $hr<18) {
+$resp = "<i class='fas fa-sun'></i> Boa tarde";}
+else if ($hr >= 0 && $hr <12 ){
+$resp = "<i class='fas fa-sun'></i> Bom dia";}
+else {
+$resp = "<i class='fas fa-moon'></i> Boa noite";}
+
 ?>
+<style>
+#menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #629aa9;
+    border-bottom: 5px solid #4b7884;
+    height: 60px;
+}
 
+#menu li {
+    float: left;
+}
 
-<!DOCTYPE html>
-<html>
-<head>
+#menu li a {
+    display: block;
+    color: white;
+    line-height: 60px;
+    text-align: center;
+    padding: 0px 16px;
+    text-decoration: none;
+}
 
-<meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+#menu li a:hover:not(.active) {
+    background-color: #4b7884;
+}
 
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-
-<!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-
-
-<!-- font-awesome  icons CSS-->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons CSS-->
-
- <!-- js-->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/modernizr.custom.js"></script>
-
-<!--webfonts-->
-<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
-<!--//webfonts-->
- 
-<!-- Metis Menu -->
-<script src="js/metisMenu.min.js"></script>
-<script src="js/custom.js"></script>
-<link href="css/custom.css" rel="stylesheet">
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-	</head>
-<body>
-
-<div id="page-wrapper" style="padding-top: 1px; padding-bottom: 2px">
-	
-	<div class="menu-dash" style="text-align: center; padding-top: 1px;">
-				<?php
-
-					#index para todos (restrição de conteúdo feitos na página)
-					echo "<div class='dropdown'>
-  					<a href='index.php'> 
-  					<button id='m1' class='dropbtn'>Início</button>
-  					</a>
-					</div>";
-
-					#Cadastro de úsuario somente para quem tem permissão
-					if($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3)
-					{
-						echo "<div class='dropdown'>
-  						<a href='cadastrarUsuario.php'>
-  						<button id='m2' class='dropbtn'>Cadastrar Usuário</button>
-						</a>
-						</div>";
-					}
-
-					#cadastrarTcc Tem que ser Supervisor ou Orientador
-					if ($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3)
-					{
-						echo "<div class='dropdown'>
-  						<a href='cadastroTcc.php'>
-  						<button id='m3' class='dropbtn'>Cadastrar TCC</button>
-  						</a>
-						</div>";
-					}
-
-					#Visualizar/aceitar projeto, somente aluno
-					if ($_SESSION['tipoPerfil']==5)
-					{
-						echo "<div class='dropdown'>
-  				    	<a href='aceitartcc.php'>
-  				    	<button id='m4' class='dropbtn'>Projeto TCC</button>
-        		    	</a>
-         				</div>";
-					}
-
-					#Deslogar para todos
-					echo "<div class='dropdown'>
-            		<a href='php/deslogar.php'>
-            		<button id='m8' type='button'  class='dropbtn'  style='background-color: red'>Sair</button>
-            		</a>
-					</div>";
-				?>
-	
-			</div>
-	</div>
-</body>
-</html>
+#menu .active {
+    background-color: #4b7884;
+}
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+<ul id="menu">
+  <li><a href="index.php"><i class="fas fa-home"></i>&nbsp;&nbsp;Início</a></li>
+  <?php if($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3) {?>
+  <li><a href="cadastrarUsuario.php"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Cadastrar Usuário</a></li>
+  <?php } if ($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3) {?>
+  <li><a href="cadastroTcc.php"><i class="fas fa-file-medical"></i>&nbsp;&nbsp;Cadastrar TCC</a></li>
+  <?php } if ($_SESSION['tipoPerfil']==5) { ?>
+  <li><a href="aceitartcc.php"><i class="fas fa-file"></i>&nbsp;&nbsp;Projeto TCC</a></li>
+  <?php } ?>
+  <li style="float:right"><a class="active" href='php/deslogar.php'><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Sair</a></li>
+    <li style="color: white; float: right; padding: 0px 20px; line-height: 60px;"><?php echo $resp.", ".$_SESSION['nomeUser']; ?>!</li>
+</ul>
