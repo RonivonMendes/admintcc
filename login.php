@@ -60,20 +60,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<input type="hidden" name="logon" value="true">
 							<input type="email" class="user" name="email" placeholder="Entre com seu e-mail" required="">
 							<input type="password" name="senha" class="lock" placeholder="Senha" required="">
-							<div class="forgot-grid">
-								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Lembrar me</label>
-								<div class="forgot">
-									<a href="#">Esqueceu sua senha?</a>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
 							<input type="submit" name="logar" value="Logar">
-							<div class="registration">
-								Não tem uma conta ?
-								<a class="" href="signup.html">
-									Criar conta
-								</a>
-							</div>
+							
 						</form>
 					</div>
 				</div>
@@ -81,7 +69,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<div class="footer">
-		   <p>&copy; 2018 Todos os direitos reservados a ARCH Software.</a></p>		</div>
+		   <p>&copy; 2018 Todos os direitos reservados a ARCH Software.</a></p></div>
 	</div>
 </body>
 </html>

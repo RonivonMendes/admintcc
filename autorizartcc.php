@@ -4,7 +4,7 @@
 
 	session_start();
 
-	if (($_SESSION['logado']==0))
+	if ($_SESSION['logado']==0 || $_SESSION['tipoPerfil']!=1 && $_SESSION['tipoPerfil']!=2)
 	{
 		header('location: login.php');
 	}
@@ -13,8 +13,6 @@
 	{
 		$tcc = new CadastroTcc("","","","","");
 		$consultatcc = $tcc->buscar($_GET['id']);
-
-		echo "GET ID". $_GET['id'];
 
 		$integrante = new Integrante("", "", "", "", "", "", "");
 		$consultaOrientador=$integrante->buscar($consultatcc[0]['integrantes_id']);
@@ -90,13 +88,10 @@
 	</head> 
 <body>
 
+<?php include 'menu.php'; ?>
 <div id="page-wrapper" style="padding-top: 5%;">
 			
-			<?php
-
-			include 'menu.php';
-
-			?>
+			
 
 			<div class="main-page login-page" style="width: 90%"> 
 				
@@ -190,6 +185,23 @@
 								<br>
 									<div class='check-aceitar'>
 
+										<div>
+											<textarea style="width: 50%" id="text-control" id="r5" name="resumo" rows="13" cols="143" disabled="">					Termo de Responsabilidade de Autoria
+	Eu, ___________________________________________, matrícula______________,
+estudante do curso ____________________________________________, estou ciente de
+que é considerada utilização indevida, ilegal e/ou plágio, os seguintes casos:
+• Texto de autoria de terceiros;
+• Texto adaptado em parte ou totalmente;
+• Texto produzido por terceiros, sob encomenda, mediante pagamento (ou não) de
+honorários profissionais.
+Logo, declaro ser de minha inteira responsabilidade a autoria do texto referente ao Trabalho
+de Conclusão de Curso sob o título ____________________________________________.
+
+			  ________________________, ____ de _______________ de 20___. </textarea>
+										
+										</div>
+								</div>
+
 									<?php
 										if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==1&&$consultatcc[0]['aprovacaoSuper']==0)
 										{
@@ -215,7 +227,7 @@
 											</div>";
 										}
 										else
-											echo "<p style='color: blue'><strong>Esse projeto, já está autorizado</strong></p>
+											echo "<p style='color: orange'><strong>Esse projeto, já está autorizado</strong></p>
 											</div>";
 									?>
 

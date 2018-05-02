@@ -98,7 +98,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "UPDATE `cadastrostcc` SET `aprovacaoSuper`='$autorizacao' WHERE id = $id;";
+			$sql = "UPDATE `cadastrostcc` SET `aprovacaoOrientador`='$autorizacao' WHERE id = $id;";
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
 

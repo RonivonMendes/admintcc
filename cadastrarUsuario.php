@@ -189,12 +189,9 @@
 	</head> 
 <body>
 
+<?php include 'menu.php'; ?>
 <div id="page-wrapper" style="padding-top: 5%;">
-		<?php  
-
-			include 'menu.php';
-
-		?>
+	
 
 		<?php
 			if(isset($_POST['tipocadastro']))
