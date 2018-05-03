@@ -23,7 +23,7 @@ public class Search extends Config implements TSA{
 	
 	public static String local = TSA.pasteCreate();
 	
-	public static  void testeLogin() throws InterruptedException, IOException {
+	public static  void testeLogin(String email1, String senha1) throws InterruptedException, IOException {
 		//Teste automatizado da parte de login do software
 		
 		driver = new ChromeDriver();
@@ -31,15 +31,15 @@ public class Search extends Config implements TSA{
 		String link = Excel.pullData("Login", "link");
 		driver.navigate().to(link);
 		
-		TSA.loadToPerformSendKeys(email,Excel.pullData("Login", "email"), driver);
-		TSA.loadToPerformSendKeys(senha, Excel.pullData("Login", "senha"), driver);
+		TSA.loadToPerformSendKeys(email,email1, driver);
+		TSA.loadToPerformSendKeys(senha, senha1, driver);
 		TSA.loadToPerformClick(btnLogin, driver);
 	}
 
 	
 	public static void CadastroAluno() throws InterruptedException, IOException{
 		/*Teste automatizado da parte de cadastro de aluno do software*/
-		testeLogin();
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
 		TSA.loadToPerformClick(btnCadastro, driver);
 		TSA.loadToPerformClick(btnAluno, driver);
 		TSA.loadToPerformSendKeys(txtNome, Excel.pullData("CadastroAluno", "nome"), driver);
@@ -60,7 +60,7 @@ public class Search extends Config implements TSA{
 
 
 	public static void CadastroOrientador() throws InterruptedException, IOException {
-		testeLogin();
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
 		TSA.loadToPerformClick(btnCadastro, driver);
 		TSA.loadToPerformClick(btnOrientador, driver);
 		TSA.loadToPerformSendKeys(txtNomeOrientador, Excel.pullData("CadastroOrientador", "nome"), driver);
@@ -81,7 +81,8 @@ public class Search extends Config implements TSA{
 
 
 	public static void CadastroCoorientador() throws InterruptedException, IOException {
-		testeLogin();
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
+		
 		TSA.loadToPerformClick(btnCadastro, driver);
 		TSA.loadToPerformClick(btnCoorientador, driver);
 		TSA.loadToPerformSendKeys(txtNomeCoorientador, Excel.pullData("CadastroCoorientador", "nome"), driver);
@@ -91,7 +92,7 @@ public class Search extends Config implements TSA{
 		TSA.loadToPerformSendKeys(txtTitulacaoCoorientador, Excel.pullData("CadastroCoorientador", "titulacao"), driver);
 		TSA.loadToPerformSendKeys(txtInstituicaoCoorientador, Excel.pullData("CadastroCoorientador", "instituicao"), driver);
 		TSA.loadToPerformSendKeys(txtTelefoneCoorientador, Excel.pullData("CadastroCoorientador", "telefone"), driver);
-		//TSA.loadToPerformSendKeys(txtCepCoorientador, Excel.pullData("CadastrCoorientador", "cep"), driver);
+		driver.findElement(By.xpath("//*[@id=\'d3\']/form/div[9]/div/input")).sendKeys(Excel.pullData("CadastroCoorientador", "bep"));
 		TSA.loadToPerformSendKeys(txtNumeroCoorientador, Excel.pullData("CadastroCoorientador", "numero"), driver);
 		TSA.loadToPerformSendKeys(txtEmailCoorientador, Excel.pullData("CadastroCoorientador", "email"), driver);
 		TSA.loadToPerformSendKeys(txtSenhaCoorientador, Excel.pullData("CadastroCoorientador", "senha"), driver);
@@ -103,10 +104,43 @@ public class Search extends Config implements TSA{
 
 
 	public static void CadastroSupervisor() throws InterruptedException, IOException {
-		
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
+		TSA.loadToPerformClick(btnCadastro, driver);
+		TSA.loadToPerformClick(btnSupervisor, driver);
+		TSA.loadToPerformSendKeys(txtNomeSupervisor, Excel.pullData("CadastroSupervisor", "nome"), driver);
+		TSA.loadToPerformSendKeys(txtRgSupervisor, Excel.pullData("CadastroSupervisor", "rg"), driver);
+		TSA.loadToPerformSendKeys(txtOrgaoSupervisor, Excel.pullData("CadastroSupervisor", "orgao"), driver);
+		TSA.loadToPerformSendKeys(txtCpfSupervisor, Excel.pullData("CadastroSupervisor", "cpf"), driver);
+		TSA.loadToPerformSendKeys(txtTitulacaoSupervisor, Excel.pullData("CadastroSupervisor", "titulacao"), driver);
+		TSA.loadToPerformSendKeys(txtInstituicaoSupervisor, Excel.pullData("CadastroSupervisor", "instituicao"), driver);
+		TSA.loadToPerformSendKeys(txtTelefoneSupervisor, Excel.pullData("CadastroSupervisor", "telefone"), driver);
+		TSA.loadToPerformSendKeys(txtCepSupervisor, Excel.pullData("CadastroSupervisor", "cep"), driver);
+		TSA.loadToPerformSendKeys(txtNumeroSupervisor, Excel.pullData("CadastroSupervisor", "numero"), driver);
+		TSA.loadToPerformSendKeys(txtEmailSupervisor, Excel.pullData("CadastroSupervisor", "email"), driver);
+		TSA.loadToPerformSendKeys(txtSenhaSupervisor, Excel.pullData("CadastroSupervisor", "senha"), driver);
+		TSA.loadToPerformClick(btnEnviarSupervisor, driver);
+		System.out.println(TSA.loadToPerformText(mensagem, driver));
+		resultado = TSA.loadToPerformText(mensagem, driver);
 		
 	}
-
+	public static void CT01() throws InterruptedException, IOException {
+		testeLogin(Excel.pullData("CT01", "emailOrientador"),Excel.pullData("CT01", "emailOrientador"));
+		TSA.loadToPerformClick(cadastrarTCC, driver);
+		TSA.loadToPerformSendKeys(cadastroAluno, Excel.pullData("CT01", "nomeAluno"), driver);
+		TSA.loadToPerformSendKeys(tituloProjeto, Excel.pullData("CT01", "titulo"), driver);
+		TSA.loadToPerformSendKeys(grupoPesquisa, Excel.pullData("CT01", "grupo"), driver);
+		TSA.loadToPerformClick(btnEnviarTCC, driver);
+		TSA.loadToPerformClick(sair, driver);
+		System.out.println(TSA.loadToPerformText(mensagem, driver));
+		//Assert.assertEquals(TSA.loadToPerformText(mensagem, driver), Excel.pullData("CT01", "mensagem"));
+		testeLogin(Excel.pullData("CT01", "emailAluno"),Excel.pullData("CT01", "senhaAluno"));
+		TSA.loadToPerformClick(projetoTCC, driver);
+		TSA.loadToPerformSendKeys(textResumo, Excel.pullData("CT01", "resumo"), driver);
+		TSA.loadToPerformClick(selectAceito, driver);
+		TSA.loadToPerformClick(aceitaTCC, driver);
+		TSA.loadToPerformClick(sair, driver);
+		
+	}
 
 	public static String getResultCadastroAluno() {
 		// TODO Auto-generated method stub
@@ -130,6 +164,15 @@ public class Search extends Config implements TSA{
 		// TODO Auto-generated method stub
 		return resultado;
 	}
+
+
+	public static String getResultCT01() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+
+
+	
 	
 	
 }

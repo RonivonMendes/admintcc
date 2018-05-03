@@ -29,7 +29,7 @@ public class CadastroSupervisor  {
     	String output = null;
         try
         {	
-            Search.CadastroAluno();
+            Search.CadastroSupervisor();
             output = Search.getResultCadastroSupervisor();
             Excel.toCompare(output, CadastroSupervisor.class.getName().toString());
         } 
