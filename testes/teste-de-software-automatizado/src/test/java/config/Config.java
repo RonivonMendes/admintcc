@@ -8,7 +8,7 @@ public class Config {
 	protected static By btnLogin = By.name("logar");
 	public static int indice=0 ;
 	protected static By mensagem = By.className("alert");
-	
+	protected static By sair = By.xpath("//*[@id=\'menu\']/li[4]/a/i");
 	//CADASTRAR TCC
 	protected static By cadastrarTCC = By.xpath("//*[@id=\'menu\']/li[3]/a/i");
 	protected static By cadastroAluno = By.name("aluno");
