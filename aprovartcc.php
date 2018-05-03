@@ -6,7 +6,6 @@
 
 	if (($_SESSION['logado']==0))
 	{
-		echo "AQUI NO IF";
 		header('location: login.php');
 	}
 
@@ -14,6 +13,12 @@
 	{
 		$tcc = new CadastroTcc("","","","","");
 		$consultatcc = $tcc->buscar($_GET['id']);
+
+		#se não encontrar projeto com esse ID, redireciona pata index
+		if($consultatcc==0)
+		{
+			header('location: index.php');
+		}
 
 		$integrante = new Integrante("", "", "", "", "", "", "");
 		$consultaOrientador=$integrante->buscar($consultatcc[0]['integrantes_id']);
@@ -182,18 +187,24 @@
 									<div class='check-aceitar'>
 
 									<?php
-										if($consultatcc[0]['aprovacaoOrientador']==0&&$consultatcc[0]['aceite']==1)
+										if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==0||$consultatcc[0]['aprovacaoOrientador']==2)
 										{
 											echo "<input type='radio'  name='aprovar' value='1' id='a8'>Aprovar
 													<input type='radio'  name='aprovar' value='2' id='a9'>Reprovar
+											</div>
+											<br>
+											<div style='text-align: center;' class='form-group'>
+												<input type='submit' name='enviar' id='a10' value='Enviar'>";
 
-													</div>
-													<br>
-								<div style='text-align: center;' class='form-group'>
-									<input type='submit' name='enviar' id='a10' value='Enviar'>
-								</div>";
+											if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==2)
+												echo "<p style='color: red'><strong>O projeto foi reprovado pelo Supervisor de TCC, o aluno já efetuar suas correções, envie novamente para autorização!</strong></p>
+												</div>
+												</div>";
+											
+
 									
 										}
+
 										else if($consultatcc[0]['aceite']==0)
 										{
 											echo "<p style='color: red'><strong>Aguardando o aluno concluir seu resumo e/ou aceitar os termos!</strong></p>
@@ -205,9 +216,13 @@
 											echo "<p style='color: red'><strong>Projeto foi reprovado, aguardando o aluno fazer as devidas correções em seu resumo e/ou aceitar os termos!</strong></p>
 											</div>";
 										}
-										else
-											echo "<p style='color: blue'><strong>Esse projeto, já está aprovado</strong></p>
+										else if($consultatcc[0]['aceite']==3&&$consultatcc[0]['aprovacaoOrientador']==2)
+											echo "<p style='color: red'><strong>O projeto foi reprovado pelo Supervisor de TCC, aguardando o aluno efetuar correções e  enviar novamente para sua aprovação!</strong></p>
 											</div>";
+										else if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==1&&$consultatcc[0]['aprovacaoSuper'==0])
+											echo "<p style='color: red'><strong>O projeto já foi aprovado, aguardando autorização do Supervisor</strong></p>
+											</div>";
+
 									?>
 
 								<br>

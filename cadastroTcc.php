@@ -1,6 +1,7 @@
 <?php
 	require_once 'php/aluno.php';
 	require_once 'php/tcc.php';
+	require_once 'php/integrante.php';
 
 	session_start();
 
@@ -9,13 +10,17 @@
 		header('location: login.php');
 	}
 
-
 	if(isset($_POST['cadastro']))
 	{
 		if ($_POST['cadastro']=='cadastroTcc')
 		{
-			$tcc = new CadastroTcc($_POST['aluno'], $_SESSION['idAcesso'], $_POST['projeto'], $_POST['gPesquisa'], "");
-			$alerta = $tcc->cadastrar($tcc);
+			$tcc = new CadastroTcc($_POST['aluno'], $_SESSION['idIntegrante'], $_POST['projeto'], $_POST['gPesquisa'], "");
+			if ($_POST['coorientador']!="")
+			{
+				$alerta = $tcc->cadastrar($tcc, $_POST['coorientador']);
+			}
+			else
+				$alerta = $tcc->cadastrar($tcc);
 
 			$_POST['cadastro']="false";
 		}
@@ -24,6 +29,10 @@
 	#Consulta de alunos, para listar
 	$buscaAluno = new Aluno("","","","","","","");
 	$lista = $buscaAluno->buscar();
+
+	#Consulta de alunos, para listar
+	$buscaIntegrante = new Integrante("","","","","","","");
+	$listaIntegrante = $buscaIntegrante->buscar();
 
 	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
 	$tcc = new CadastroTcc("","","","","");
@@ -116,7 +125,6 @@
     												if (!in_array($valor['id'], $exclusivos))
     												{
     													echo "<option value='".$valor['id']."'>".$valor['nome']." (".$valor['nomeCurso'].")
-    												<br>VALOR ID".$valor['id']. "<br>Alunos ID".$consultatcc[0]['alunos_id']."
     												</option>";
     												}
     											}
@@ -145,7 +153,16 @@
 								<div class="form-group">
 									<label for="focusedinput" class="col-sm-2 control-label">Coorientador</label>
 									<div class="col-sm-8">
-										<input style="width: 50%" type="text" class="form-control1" name="coorientador" id="c4" value="" >
+										<select class="form-control1" name="coorientador" id="c4" style="width: 75%" required="">
+    										<option value="" ></option>
+    										<?php
+    											foreach ($listaIntegrante as $valor2)
+    											{
+    												echo "<option value='".$valor2['id']."'>".$valor2['nome']." (".$valor2['instituicao'].")
+    												</option>";
+    											}
+    										?>
+										</select>
 									</div>
 									
 								</div>

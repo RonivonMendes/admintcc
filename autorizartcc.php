@@ -14,6 +14,12 @@
 		$tcc = new CadastroTcc("","","","","");
 		$consultatcc = $tcc->buscar($_GET['id']);
 
+		#se não encontrar projeto com esse ID, redireciona pata index
+		if($consultatcc==0)
+		{
+			header('location: index.php');
+		}
+
 		$integrante = new Integrante("", "", "", "", "", "", "");
 		$consultaOrientador=$integrante->buscar($consultatcc[0]['integrantes_id']);
 
@@ -36,15 +42,14 @@
 			if($_POST['resposta']==1)
 				$alerta = $tcc->autorizar($consultatcc[0]['id'], $_POST['resposta']);
 			
-			#se não reabre para Orientador
-			else
+			#se não reabre para o Aluno
+			else if($_POST['resposta']==3)
 			{
-				$tcc->aprovar($consultatcc[0]['id'], $_POST['resposta']);
+				$tcc->aceitar($consultatcc[0]['id'], $_POST['resposta'], $consultatcc[0]['resumo']);
+				$tcc->aprovar($consultatcc[0]['id'], "2");
 				$alerta = "Resumo e aceite reaberto para que o aluno faça correções!";
 			}
-
 		}
-		
 	}
 ?>
 <!DOCTYPE HTML>
@@ -185,28 +190,11 @@
 								<br>
 									<div class='check-aceitar'>
 
-										<div>
-											<textarea style="width: 50%" id="text-control" id="r5" name="resumo" rows="13" cols="143" disabled="">					Termo de Responsabilidade de Autoria
-	Eu, ___________________________________________, matrícula______________,
-estudante do curso ____________________________________________, estou ciente de
-que é considerada utilização indevida, ilegal e/ou plágio, os seguintes casos:
-• Texto de autoria de terceiros;
-• Texto adaptado em parte ou totalmente;
-• Texto produzido por terceiros, sob encomenda, mediante pagamento (ou não) de
-honorários profissionais.
-Logo, declaro ser de minha inteira responsabilidade a autoria do texto referente ao Trabalho
-de Conclusão de Curso sob o título ____________________________________________.
-
-			  ________________________, ____ de _______________ de 20___. </textarea>
-										
-										</div>
-								</div>
-
 									<?php
 										if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==1&&$consultatcc[0]['aprovacaoSuper']==0)
 										{
 											echo "<input type='radio'  name='resposta' value='1' id='a8'>Autorizar
-													<input type='radio'  name='resposta' value='2' id='a9'>Negar
+													<input type='radio'  name='resposta' value='3' id='a9'>Negar
 
 													</div>
 													<br>
@@ -221,7 +209,7 @@ de Conclusão de Curso sob o título ___________________________________________
 											</div>";
 
 										}
-										else if($consultatcc[0]['aprovacaoOrientador']==2)
+										else if($consultatcc[0]['aceite']==3||$consultatcc[0]['aprovacaoOrientador']==2)
 										{
 											echo "<p style='color: red'><strong>Projeto foi Negado, aguardando o aluno e Orientador refazer as devidas correções em seu resumo e reenviar para autorização!</strong></p>
 											</div>";

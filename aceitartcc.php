@@ -1,12 +1,12 @@
 <?php
 	require_once 'php/tcc.php';
+	require_once 'php/integrante.php';
 	session_start();
 
 	if (($_SESSION['logado']==0))
 	{
 		header('location: login.php');
 	}
-
 
 	#se for aluno que está logado, consultar se o termo está aceito ou não
 	if ($_SESSION['tipoPerfil']!=5)
@@ -17,8 +17,15 @@
 	else
 	{
 		$tcc = new CadastroTcc("","","","","");
-
 		$consulta = $tcc->buscar($_SESSION['idAluno']);
+
+		$integrante = new Integrante("", "", "", "", "", "", "");
+
+		#se tiver coorientador, consultar
+		if($consulta[0]['coorientador_id']!="")
+		{
+			$consultaCoorientador=$integrante->buscar($consultatcc[0]['coorientador_id']);
+		}
 	}
 
 	if(isset($_POST['cadastrar']))
@@ -33,7 +40,7 @@
 		}
 	}
 
-	
+	date_default_timezone_set('America/Sao_Paulo');
 ?>
 
 <!DOCTYPE HTML>
@@ -121,12 +128,34 @@
 										
 								echo "<input style='width: 50%' type='text' class='form-control1' name='gPesquisa' id='a3' value='".$consulta[0]['grupoPesquisa']."' required='' disabled=''>";
 
-								echo "</div>
-								</div>
-								<div class='form-group'>
+								echo "</div>";
+								
+								echo "</div>";
+
+								if(isset($consultaCoorientador))
+									{
+										echo "<div class='form-group'> <label for='focusedinput' class='col-sm-2 control-label'>Coorientador</label>
+										<div class='col-sm-8'>";
+
+										echo "<input style='width: 50%' type='text' name='nCoorientador' class='form-control1' value='".$consultaCoorientador[0]['nome']."' id='a5'>";
+
+										echo "</div>
+											</div>";
+
+
+										echo "<div class='form-group'> <label for='focusedinput' class='col-sm-2 control-label'>Instituição Coorientador</label>
+										<div class='col-sm-8'>";
+
+										echo "<input type='text' name='nCoorientador' class='form-control1' value='".$consultaCoorientador[0]['instituicao']."' id='a6'>";
+
+										echo "</div>
+											</div>";
+									}
+
+
+								echo "<div class='form-group'>
 								<h2 style='text-align: center;''>Resumo</h2>
 								</div>";
-								
 								
 								if($consulta[0]['aceite']!=1)
 								{
@@ -139,7 +168,21 @@
 
 									<div class='check-aceitar'>";
 
-									echo "<p>Inserir os termos do aceite que o aluno tem que estar ciente ao iniciar o TCC!</p>";
+									echo "<div>
+									<textarea style='width: 50%' id='text-control' id='r5' name='resumo' rows='13' cols='143' disabled=''>
+Termo de Responsabilidade de Autoria
+Eu, ".$_SESSION['nomeUser'].", matrícula ".$_SESSION['ra'].",
+estudante do curso ".$_SESSION['curso'].", estou ciente de
+que é considerada utilização indevida, ilegal e/ou plágio, os seguintes casos:
+• Texto de autoria de terceiros;
+• Texto adaptado em parte ou totalmente;
+• Texto produzido por terceiros, sob encomenda, mediante pagamento (ou não) de
+honorários profissionais.
+Logo, declaro ser de minha inteira responsabilidade a autoria do texto referente ao Trabalho
+de Conclusão de Curso sob o título ".$consulta[0]['titulo'].".
+
+".date('d/M/Y').". </textarea>		
+								</div>";
 
 									echo "<input type='radio'  name='aceitar' value='1' id='a5'><strong>Li e concordo</strong> com os termos!";
 									echo "</div>";
@@ -148,9 +191,15 @@
 									<div style='text-align: center;' class='form-group'>
 									<input type='submit' name='enviar' id='a7' value='Enviar'>";
 
+									#projeto Reprovado pelo Orientador
 									if($consulta[0]['aceite']==2)
 									{
 										echo "<p style='color: red'><strong>O Resumo foi reprovado pelo Orientador, Faça as correções e envie novamente!</strong></p>";
+									}
+
+									if($consulta[0]['aceite']==3)
+									{
+										echo "<p style='color: red'><strong>O Projeto foi reprovado pelo Supervisor de TCC, faça as correções e envie novamente para seu Orientador!</strong></p>";
 									}
 
 									echo "</div>";
@@ -161,8 +210,12 @@
 									echo "<div>";
 									echo "<textarea style='width: 98%' id='text-control' id='a4' name='resumo' rows='13' cols='143' disabled='' >".$consulta[0]['resumo']."</textarea>";
 									echo "</div>
+									<br>
+									<div class='check-aceitar'>";
 
-									<br>";
+									echo "</div>";
+
+
 								}
 
 							}

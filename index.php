@@ -1,10 +1,9 @@
 <?php
-
 	require_once 'php/tcc.php';
 
 	session_start();
 
-	if (($_SESSION['logado']==0))
+	if ($_SESSION['logado']==0)
 	{
 		header('location: login.php');
 	}
@@ -106,7 +105,7 @@
 										{
 											if($value['alunos_id'] == $_SESSION['idAluno'])
 											{
-												echo "<tr onclick=\"javascript:window.location.href='aceitartcc.php'; return false;\" style='cursor: hand;'>";
+												echo "<tr onclick=\"javascript:window.location.href='lancarAtividades.php'; return false;\" style='cursor: hand;'>";
 												echo "<td>".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
