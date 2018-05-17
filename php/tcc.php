@@ -16,11 +16,13 @@
 		}
 
 		#professor vai cadastrar um novo projeto, o resumo e o aceite são preenchidos pelo aluno.
-		function cadastrar(CadastroTcc $novo)
+		function cadastrar(CadastroTcc $novo, $coorientador="")
 		{
 			$conexao = Database::conexao();
 
-			$sql = "INSERT INTO `cadastrostcc` (`acessos_id`, `alunos_id`, `integrantes_id`, `titulo`, `grupoPesquisa`, `resumo`) VALUES ('1', '$this->idAluno', '$this->idIntegrante', '$this->titulo', '$this->grupoPesquisa', '$this->resumo');";
+			$acesso = $_SESSION['idAcesso'];
+
+			$sql = "INSERT INTO `cadastrostcc` (`acessos_id`, `alunos_id`, `integrantes_id`, `coorientador_id`, `titulo`, `grupoPesquisa`, `resumo`) VALUES ('$acesso', '$this->idAluno', '$this->idIntegrante', '$coorientador', '$this->titulo', '$this->grupoPesquisa', '$this->resumo');";
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
 
@@ -98,7 +100,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "UPDATE `cadastrostcc` SET `aprovacaoOrientador`='$autorizacao' WHERE id = $id;";
+			$sql = "UPDATE `cadastrostcc` SET `aprovacaoSuper`='$autorizacao' WHERE id = $id;";
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
 

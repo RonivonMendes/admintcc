@@ -2,8 +2,6 @@
 	require_once 'php/tcc.php';
 	session_start();
 
-	echo "SESSÃO DO ALUNO ID". $_SESSION['idAluno'];
-
 	if (($_SESSION['logado']==0))
 	{
 		header('location: login.php');
@@ -126,12 +124,13 @@
 									</div>
 								</div>
 
+								<?php if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==1&&$consultatcc[0]['aprovacaoSuper']==1)
+								{?>
+
 								<div>
 									<label for="focusedinput" class="col-sm-2 control-label">Atividade</label>
 									<textarea style="width: 50%; height: 60%; margin-left: 0.5%; margin-bottom: 1%" id="text-control" id="l5" name="atividade" placeholder="Insira a sua atividade aqui..." required=""></textarea>
-
 								</div>
-
 								<br>
 
 								<br>
@@ -140,6 +139,20 @@
 									<input type="submit" name="lancar" id="l6" value="Lançar">
 								</div>
 								<br>
+								<?php }
+								else{?>
+
+								<div>
+									<div style="text-align: center;" class="form-group">
+										<p style='color: red'><strong>Para lançar atividade, o projeto deve estar:</strong>><br>
+										 -> Aprovado pelo Orientador<br>
+										 -> Autorizado pelo Supervisor</p>
+									</div>
+								</div>
+
+								<?php } ?>
+
+								
 							</form>
 						</div>		
 					</div>

@@ -62,19 +62,22 @@
 
 		function buscar($id=false)
 		{
+			
+			$conexao = Database::conexao();
+
 			if ($id!=false)
 			{
-				$conexao = Database::conexao();
-
 				$sql = "SELECT integrantes.*, usuarios.nome FROM integrantes JOIN usuarios ON integrantes.usuarios_id=usuarios.id where integrantes.id= $id;";
+			}
+			else
+				$sql = "SELECT integrantes.*, usuarios.nome FROM integrantes JOIN usuarios ON integrantes.usuarios_id=usuarios.id;";
 
 				$temp = $conexao->prepare($sql);
 				$temp->execute();
 				$res = $temp->fetchAll();
 
 				return $res;
-
-			}
+			
 		}
 
 		function buscarIntegrante($cpf)

@@ -8,9 +8,10 @@
 
 	session_start();
 
-	if (($_SESSION['logado']==0))
+	if ($_SESSION['logado']==0&&$_SESSION['logado']!=1||$_SESSION['tipoPerfil']!=1 && $_SESSION['tipoPerfil']!=2 && $_SESSION['tipoPerfil']!=3)
 	{
-		header('location: login.php');
+		echo "<script>location.href='login.php';</script>";
+		#header('location: login.php');
 	}
 	
 	if(isset($_POST['tipocadastro'])) 
@@ -488,6 +489,7 @@
 
 								<div class="form-group">
 									<input type="hidden" name="tipocadastro" value="integrante">
+									<input type="hidden" name="tipoPerfil" value="4">
 									<label for="focusedinput" class="col-sm-2 control-label">Nome Completo</label>
 									<div class="col-sm-8">
 										<input style="width: 50%" type="text" class="form-control1" name="nome" value="" required="">
