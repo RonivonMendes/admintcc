@@ -25,7 +25,7 @@ import test.Search;
 
 public interface TSA {
 
-	static void loadToPerformClick(By name, WebDriver driver) {
+	static void loadToPerformClick(By name, WebDriver driver) throws InterruptedException {
 		/*Método para clicar em um elemento.
 		 * Possui doi comandos de espera explicita, um para verificar se ele é visivel e 
 		 * outrro para verificar se ele é clicavel*/
@@ -33,11 +33,12 @@ public interface TSA {
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(name))!=null) {
 			if(wait.until(ExpectedConditions.elementToBeClickable(name)) != null){
 				driver.findElement(name).click();	
+				Thread.sleep(1000);
 				evidence();
 			}
 		}	
 	}
-	static void loadToPerformSendKeys(By element,String text ,WebDriver driver) {
+	static void loadToPerformSendKeys(By element,String text ,WebDriver driver) throws InterruptedException {
 		/*Método para escrever dados em um elemento.
 		 * Vem com doi comandos de espera explicita para verificar se o elemento é visivel e
 		 * se ele está presente 
@@ -46,15 +47,17 @@ public interface TSA {
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(element))!=null) {
 			if(wait.until(ExpectedConditions.presenceOfElementLocated(element))!=null) {
 				driver.findElement(element).sendKeys(text);
+				Thread.sleep(1000);
 				evidence();
 			}
 		}
 	}
-	static String loadToPerformText(By element, WebDriver driver) {
+	static String loadToPerformText(By element, WebDriver driver) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		
+	
 		if(wait.until(ExpectedConditions.visibilityOfElementLocated(element))!=null) {
 			if(wait.until(ExpectedConditions.presenceOfElementLocated(element))!=null) {
+				Thread.sleep(1000);
 				return driver.findElement(element).getText().toString();
 			}
 		}

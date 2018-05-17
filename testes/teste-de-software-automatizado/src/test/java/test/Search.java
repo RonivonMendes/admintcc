@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,14 +23,15 @@ import methods.TSA;
 public class Search extends Config implements TSA{
 	
 	public static String local = TSA.pasteCreate();
-	
-	public static  void testeLogin(String email1, String senha1) throws InterruptedException, IOException {
-		//Teste automatizado da parte de login do software
-		
+	public static void open() throws IOException {
 		driver = new ChromeDriver();
 		driver.manage().window().fullscreen();
 		String link = Excel.pullData("Login", "link");
 		driver.navigate().to(link);
+	}
+	public static  void testeLogin(String email1, String senha1) throws InterruptedException, IOException {
+		//Teste automatizado da parte de login do software
+		
 		
 		TSA.loadToPerformSendKeys(email,email1, driver);
 		TSA.loadToPerformSendKeys(senha, senha1, driver);
@@ -39,6 +41,7 @@ public class Search extends Config implements TSA{
 	
 	public static void CadastroAluno() throws InterruptedException, IOException{
 		/*Teste automatizado da parte de cadastro de aluno do software*/
+		open();
 		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
 		TSA.loadToPerformClick(btnCadastro, driver);
 		TSA.loadToPerformClick(btnAluno, driver);
@@ -60,6 +63,7 @@ public class Search extends Config implements TSA{
 
 
 	public static void CadastroOrientador() throws InterruptedException, IOException {
+		open();
 		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
 		TSA.loadToPerformClick(btnCadastro, driver);
 		TSA.loadToPerformClick(btnOrientador, driver);
@@ -81,6 +85,7 @@ public class Search extends Config implements TSA{
 
 
 	public static void CadastroCoorientador() throws InterruptedException, IOException {
+		open();
 		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
 		
 		TSA.loadToPerformClick(btnCadastro, driver);
@@ -104,6 +109,7 @@ public class Search extends Config implements TSA{
 
 
 	public static void CadastroSupervisor() throws InterruptedException, IOException {
+		open();
 		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
 		TSA.loadToPerformClick(btnCadastro, driver);
 		TSA.loadToPerformClick(btnSupervisor, driver);
@@ -123,22 +129,33 @@ public class Search extends Config implements TSA{
 		resultado = TSA.loadToPerformText(mensagem, driver);
 		
 	}
-	public static void CT01() throws InterruptedException, IOException {
-		testeLogin(Excel.pullData("CT01", "emailOrientador"),Excel.pullData("CT01", "emailOrientador"));
+	public static void criaProjeto() throws IOException, InterruptedException {
+		open();
+		testeLogin(Excel.pullData("CT01", "emailOrientador"),Excel.pullData("CT01", "senhaOrientador"));
 		TSA.loadToPerformClick(cadastrarTCC, driver);
 		TSA.loadToPerformSendKeys(cadastroAluno, Excel.pullData("CT01", "nomeAluno"), driver);
 		TSA.loadToPerformSendKeys(tituloProjeto, Excel.pullData("CT01", "titulo"), driver);
 		TSA.loadToPerformSendKeys(grupoPesquisa, Excel.pullData("CT01", "grupo"), driver);
+		TSA.loadToPerformSendKeys(coorientadorTxt,Excel.pullData("CT01", "coorientador"), driver);
 		TSA.loadToPerformClick(btnEnviarTCC, driver);
-		TSA.loadToPerformClick(sair, driver);
 		System.out.println(TSA.loadToPerformText(mensagem, driver));
-		//Assert.assertEquals(TSA.loadToPerformText(mensagem, driver), Excel.pullData("CT01", "mensagem"));
+		TSA.loadToPerformClick(sair, driver);
+		
+		
+	}
+	public static void aceitaProjeto() throws IOException, InterruptedException {
 		testeLogin(Excel.pullData("CT01", "emailAluno"),Excel.pullData("CT01", "senhaAluno"));
 		TSA.loadToPerformClick(projetoTCC, driver);
 		TSA.loadToPerformSendKeys(textResumo, Excel.pullData("CT01", "resumo"), driver);
-		TSA.loadToPerformClick(selectAceito, driver);
+		driver.findElement(By.name("aceitar")).click();
 		TSA.loadToPerformClick(aceitaTCC, driver);
-		TSA.loadToPerformClick(sair, driver);
+		driver.findElement(By.xpath("//*[@id=\'menu\']/li[3]/a"));		
+	}
+	
+	public static void CT01() throws InterruptedException, IOException {
+		criaProjeto();
+		aceitaProjeto();
+		
 		
 	}
 

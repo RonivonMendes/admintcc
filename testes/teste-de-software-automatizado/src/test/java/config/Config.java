@@ -16,11 +16,12 @@ public class Config {
 	protected static By grupoPesquisa = By.id("c3");
 	protected static By coorientadorTxt = By.id("c4");
 	protected static By btnEnviarTCC = By.id("c5");
+	protected static By coorientadorTCC = By.id("c5");
 	
 	//ACEITAR TCC
 	protected static By projetoTCC = By.xpath("//*[@id=\'menu\']/li[2]/a/i");
 	protected static By textResumo = By.id("text-control");
-	protected static By selectAceito = By.id("a5");
+	protected static By selectAceito = By.xpath("//*[@id=\'a5\']/input");
 	protected static By aceitaTCC = By.id("a7");
 	
 	//
