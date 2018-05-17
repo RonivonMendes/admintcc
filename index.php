@@ -8,6 +8,8 @@
 		header('location: login.php');
 	}
 
+	//echo "ID INTEGRANTE: ". $_SESSION['idIntegrante'];
+
 	if(isset($_POST['cadastro']))
 	{
 		if ($_POST['cadastro']=='cadastroTcc')
@@ -114,22 +116,27 @@
 											}
 										}
 									}
-									#se for Orientador, visualiza todos, porém o link é para aprovar
+
+									#se for Orientador, visualiza todo que ele orienta, porém o link é para aprovar
 									else if($_SESSION['tipoPerfil']==3 && $consultatcc!="0")
 									{
 										foreach ($consultatcc as $key => $value)
 										{
-											echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-											echo "<td>".$value['id']."</td>"; 
-											echo "<td>".$value['nome']."</td>";
-											echo "<td>".$value['curso']."</td>";
-											echo "<td>".$value['titulo']."</td>";
-											echo "</tr></div></a>";
+											if($value['integrantes_id']==$_SESSION['idIntegrante'])
+											{
+												echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
+												echo "<td>".$value['id']."</td>"; 
+												echo "<td>".$value['nome']."</td>";
+												echo "<td>".$value['curso']."</td>";
+												echo "<td>".$value['titulo']."</td>";
+												echo "</tr></div></a>";
+											}
+
 										}
 									} 
 
 									#se for Supervisor, visualiza todos, porém o link é para autorizar
-									else if($_SESSION['tipoPerfil']==1 && $consultatcc!="0")
+									else if($_SESSION['tipoPerfil']==1 || $_SESSION['tipoPerfil']==2 && $consultatcc!="0")
 									{
 										foreach ($consultatcc as $key => $value)
 										{
@@ -149,7 +156,6 @@
 					</div>
 		</div>		
 </div>
-
 		<!--footer-->
 		<div class="footer">
 		   <p>&copy; 2018 Todos os direitos reservados a ARCH Software.</a></p>		
