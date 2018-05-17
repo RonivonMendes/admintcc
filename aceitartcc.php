@@ -3,31 +3,36 @@
 	require_once 'php/integrante.php';
 	session_start();
 
-	if (($_SESSION['logado']==0))
+	#se não estiver logado, redireciona para tela de login
+	if ($_SESSION['logado']!=1)
 	{
 		header('location: login.php');
 	}
 
-	#se for aluno que está logado, consultar se o termo está aceito ou não
+	#se estiver logado mais não for aluno, redireciona para index
 	if ($_SESSION['tipoPerfil']!=5)
 	{
 		header('location: index.php');
 	}
 
+	#Se for aluno:
 	else
 	{
+		#consultar projeto de tcc que está associado a esse aluno
 		$tcc = new CadastroTcc("","","","","");
 		$consulta = $tcc->buscar($_SESSION['idAluno']);
 
-		$integrante = new Integrante("", "", "", "", "", "", "");
-
-		#se tiver coorientador, consultar
+		#se tiver coorientador, consultar os dados
 		if($consulta[0]['coorientador_id']!="")
 		{
+			$integrante = new Integrante("", "", "", "", "", "", "");
 			$consultaCoorientador=$integrante->buscar($consultatcc[0]['coorientador_id']);
 		}
 	}
 
+	##################################################################################
+
+	#se o formulario for submetido, entra nessa condição
 	if(isset($_POST['cadastrar']))
 	{
 		if($_POST['cadastrar']=="aceite")
@@ -172,7 +177,7 @@
 									<textarea style='width: 50%' id='text-control' id='r5' name='resumo' rows='13' cols='143' disabled=''>
 Termo de Responsabilidade de Autoria
 Eu, ".$_SESSION['nomeUser'].", matrícula ".$_SESSION['ra'].",
-estudante do curso ".$_SESSION['curso'].", estou ciente de
+estudante do curso ".$consulta[0]['curso'].", estou ciente de
 que é considerada utilização indevida, ilegal e/ou plágio, os seguintes casos:
 • Texto de autoria de terceiros;
 • Texto adaptado em parte ou totalmente;

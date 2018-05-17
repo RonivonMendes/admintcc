@@ -4,7 +4,7 @@
 
 	session_start();
 
-	if (($_SESSION['logado']==0))
+	if ($_SESSION['logado']!=1)
 	{
 		header('location: login.php');
 	}
@@ -15,9 +15,10 @@
 		$consultatcc = $tcc->buscar($_GET['id']);
 
 		#se não encontrar projeto com esse ID, redireciona pata index
-		if($consultatcc==0)
+		if($consultatcc=="0")
 		{
 			header('location: index.php');
+
 		}
 
 		$integrante = new Integrante("", "", "", "", "", "", "");
@@ -29,6 +30,7 @@
 			$consultaCoorientador=$integrante->buscar($consultatcc[0]['coorientador_id']);
 		}
 	}
+
 	else
 		header('location: index.php');
 

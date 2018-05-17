@@ -48,8 +48,13 @@
 			{
 				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id;";
 			}
-			else
+			#Se for aluno que está navegando fazer a seguinte consulta
+			else if($_SESSION['tipoPerfil']==5)
 				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE cadastrostcc.alunos_id=".$cons.";";
+
+			#se for professor ou supervisor navegando, fazer essa consulta
+			else if($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3)
+				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE cadastrostcc.id=".$cons.";";
 			
 			$temp = $conexao->prepare($sql);
 			$temp->execute();
