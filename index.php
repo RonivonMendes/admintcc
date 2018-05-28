@@ -108,7 +108,7 @@
 											if($value['alunos_id'] == $_SESSION['idAluno'])
 											{
 												echo "<tr onclick=\"javascript:window.location.href='lancarAtividades.php'; return false;\" style='cursor: hand;'>";
-												echo "<td>".$value['id']."</td>"; 
+												echo "<td class='".$value['id']."' >".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
@@ -125,7 +125,7 @@
 											if($value['integrantes_id']==$_SESSION['idIntegrante'])
 											{
 												echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-												echo "<td>".$value['id']."</td>"; 
+												echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
@@ -141,7 +141,7 @@
 										foreach ($consultatcc as $key => $value)
 										{
 											echo "<tr onclick=\"javascript:window.location.href='autorizartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-											echo "<td>".$value['id']."</td>"; 
+											echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
