@@ -8,6 +8,8 @@
 		header('location: login.php');
 	}
 
+	//echo "ID INTEGRANTE: ". $_SESSION['idIntegrante'];
+
 	if(isset($_POST['cadastro']))
 	{
 		if ($_POST['cadastro']=='cadastroTcc')
@@ -22,13 +24,12 @@
 	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
 	$tcc = new CadastroTcc("","","","","");
 	$consultatcc = $tcc->buscar();
-
 ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Inicio</title>
+<title>Listar TCC's</title>
 <meta http-equiv="Page-Enter" content="RevealTrans(Duration=6)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -73,7 +74,7 @@
 
 		<div class="main-page login-page" style="width: 90%"> 
 			
-				<h2 class="title1" style="text-align: center; font-weight: bold;">Início</h2>
+				<h2 class="title1" style="text-align: center; font-weight: bold;">Listar  TCC's</h2>
 					<div class="widget-shadow">
 		
 						<table class="table table-bordered"> 
@@ -87,9 +88,9 @@
 							<thead> 
 								<tr> 
 									<th>Id</th> 
-									<th>Aluno</th> 
+									<th>Orientador</th> 
 									<th>Curso</th> 
-									<th>Título do Projeto</th>
+									<th>Data e Hora</th>
 								</tr> 
 							</thead> 
 							<tbody>
@@ -106,7 +107,7 @@
 											if($value['alunos_id'] == $_SESSION['idAluno'])
 											{
 												echo "<tr onclick=\"javascript:window.location.href='lancarAtividades.php'; return false;\" style='cursor: hand;'>";
-												echo "<td class='".$value['id']."' >".$value['id']."</td>"; 
+												echo "<td>".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
@@ -114,40 +115,32 @@
 											}
 										}
 									}
-									#se for Orientador, visualiza todos, porém o link é para aprovar
+
+									#se for Orientador, visualiza todo que ele orienta, porém o link é para aprovar
 									else if($_SESSION['tipoPerfil']==3 && $consultatcc!="0")
 									{
 										foreach ($consultatcc as $key => $value)
 										{
-<<<<<<< HEAD
-											echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-											echo "<td>".$value['id']."</td>"; 
-											echo "<td>".$value['nome']."</td>";
-											echo "<td>".$value['curso']."</td>";
-											echo "<td>".$value['titulo']."</td>";
-											echo "</tr></div></a>";
-=======
 											if($value['integrantes_id']==$_SESSION['idIntegrante'])
 											{
 												echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-												echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
+												echo "<td>".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
 												echo "</tr></div></a>";
 											}
 
->>>>>>> 236c920f2acd5b414d7d955ebd646e51400cdff5
 										}
 									} 
 
 									#se for Supervisor, visualiza todos, porém o link é para autorizar
-									else if($_SESSION['tipoPerfil']==1 && $consultatcc!="0")
+									else if($_SESSION['tipoPerfil']==1 || $_SESSION['tipoPerfil']==2 && $consultatcc!="0")
 									{
 										foreach ($consultatcc as $key => $value)
 										{
 											echo "<tr onclick=\"javascript:window.location.href='autorizartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-											echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
+											echo "<td>".$value['id']."</td>"; 
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
@@ -162,7 +155,6 @@
 					</div>
 		</div>		
 </div>
-
 		<!--footer-->
 		<div class="footer">
 		   <p>&copy; 2018 Todos os direitos reservados a ARCH Software.</a></p>		
