@@ -62,5 +62,5 @@ $resp = "<i class='fas fa-moon'></i> Boa noite";}
   <li><a href="aceitartcc.php"><i class="fas fa-file"></i>&nbsp;&nbsp;Projeto TCC</a></li>
   <?php } ?>
   <li style="float:right"><a class="active" href='php/deslogar.php'><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Sair</a></li>
-    <li style="color: white; float: right; padding: 0px 20px; line-height: 60px;"><?php echo $resp.", ".strstr($_SESSION['nomeUser'], ' ', true); ?>!</li>
+    <li style="color: white; float: right; padding: 0px 20px; line-height: 60px;"><?php echo $resp.", ".$_SESSION['nomeUser']; ?>!</li>
 </ul>
