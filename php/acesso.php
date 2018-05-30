@@ -101,7 +101,6 @@
 				if($res[0]['idPerfis']==5)
 				{
 					$sql = "SELECT *FROM `alunos` WHERE `idUsuario`='".$dados[0]['id']."'";
-					#$sql = "SELECT alunos.*, cursos.nome FROM `alunos` JOIN `cursos` ON alunos.idCurso=cursos.id WHERE alunos.id='1';";
 					$temp3 = $conexao->prepare($sql);
 					$temp3->execute();
 					$resalunos = $temp3->fetchAll();
@@ -113,25 +112,12 @@
 						#$_SESSION['cursoAluno'] = $resalunos[0]['nome'];
 					}
 
-
-					$sqla = "SELECT *FROM `cursos` WHERE id = '".$resalunos[0]['idCurso']."';";
-					$ret = $conexao->prepare($sqla);
-					$ret->execute();
-					$curso = $ret->fetchAll();
-
-					if($ret->rowCount()==1)
-					{
-						$_SESSION['curso']=$cursos[0]['nome'];
-					}
-
-
-
-
 				}
 
+				#se não, busca os dados do integrante
 				else
 				{
-					$sql = "SELECT `id`, `instituicao`, `titulacao` FROM `integrantes` WHERE `usuarios_id`='".$dados[0]['id']."'";
+					$sql = "SELECT *FROM `integrantes` WHERE `usuarios_id`='".$dados[0]['id']."'";
 					$temp3 = $conexao->prepare($sql);
 					$temp3->execute();
 					$resintegrantes = $temp3->fetchAll();

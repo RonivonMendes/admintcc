@@ -1,15 +1,15 @@
 <?php
-	require_once 'php/tcc.php';
-	
-	session_start();
+  require_once 'php/tcc.php';
+  
+  session_start();
 
-	if ($_SESSION['tipoPerfil']==5)
-	{
-		$tcc = new CadastroTcc("","","","","");
+  if ($_SESSION['tipoPerfil']==5)
+  {
+    $tcc = new CadastroTcc("","","","","");
 
-		$consulta = $tcc->buscar($_SESSION['idAluno']);
-	}
-date_default_timezone_set('America/Sao_Paulo');	
+    $consulta = $tcc->buscar($_SESSION['idAluno']);
+  }
+date_default_timezone_set('America/Sao_Paulo'); 
 $hr = date("H");
 if($hr >= 12 && $hr<18) {
 $resp = "<i class='fas fa-sun'></i> Boa tarde";}
@@ -62,5 +62,5 @@ $resp = "<i class='fas fa-moon'></i> Boa noite";}
   <li><a href="aceitartcc.php"><i class="fas fa-file"></i>&nbsp;&nbsp;Projeto TCC</a></li>
   <?php } ?>
   <li style="float:right"><a class="active" href='php/deslogar.php'><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Sair</a></li>
-    <li style="color: white; float: right; padding: 0px 20px; line-height: 60px;"><?php echo $resp.", ".$_SESSION['nomeUser']; ?>!</li>
+    <li style="color: white; float: right; padding: 0px 20px; line-height: 60px;"><?php echo $resp.", ".strstr($_SESSION['nomeUser'], ' ', true); ?>!</li>
 </ul>

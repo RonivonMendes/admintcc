@@ -1,4 +1,4 @@
- <?php
+<?php
 	require_once 'php/aluno.php';
 	require_once 'php/endereco.php';
 	require_once 'php/acesso.php';
