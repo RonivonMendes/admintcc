@@ -24,7 +24,8 @@ public class Config {
 	protected static By selectAceito = By.xpath("//*[@id=\'a5\']/input");
 	protected static By aceitaTCC = By.id("a7");
 	
-	//
+	//CT01
+	protected static By teste = By.id("35");
 	
 	//LOGIN
 	protected static By email = By.name("email");
