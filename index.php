@@ -92,6 +92,8 @@
 									<th>Aluno</th> 
 									<th>Curso</th> 
 									<th>Título do Projeto</th>
+									<th>#</th>
+
 								</tr> 
 							</thead> 
 							<tbody>
@@ -107,11 +109,14 @@
 										{
 											if($value['alunos_id'] == $_SESSION['idAluno'])
 											{
-												echo "<tr onclick=\"javascript:window.location.href='lancarAtividades.php'; return false;\" style='cursor: hand;'>";
+												#echo "<tr onclick=\"javascript:window.location.href='lancarAtividades.php'; return false;\" style='cursor: hand;'>";
+												echo "<tr>";
 												echo "<td class='".$value['id']."' >".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
+												echo "<td><a id='".$value['id']."' class='btn btn-default' href='lancarAtividades.php'>btn</link></td>";
+	
 												echo "</tr></div></a>";
 											}
 										}
@@ -124,12 +129,14 @@
 										{
 											if($value['integrantes_id']==$_SESSION['idIntegrante'])
 											{
-												echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
+												#echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
+												echo "<tr>";
 												echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
-												echo "</tr></div></a>";
+												echo "<td><a id='".$value['id']."' class='btn btn-default' href='aprovartcc.php?id=".$value['id']."'>btn</link></td>";
+												echo "</tr>";
 											}
 
 										}
@@ -140,11 +147,13 @@
 									{
 										foreach ($consultatcc as $key => $value)
 										{
-											echo "<tr onclick=\"javascript:window.location.href='autorizartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
+											#echo "<tr onclick=\"javascript:window.location.href='autorizartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
+											echo "<tr>";
 											echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
+											echo "<td><a id='".$value['id']."' class='btn btn-default' href='autorizartcc.php?id=".$value['id']."'>btn</link></td>";
 											echo "</tr></div></a>";
 										}
 									}
