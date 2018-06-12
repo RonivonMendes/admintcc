@@ -155,8 +155,9 @@ public class Search extends Config implements TSA{
 	public static void CT01() throws InterruptedException, IOException {
 		criaProjeto();
 		aceitaProjeto();
-		
-		
+		testeLogin(Excel.pullData("CT01", "emailOrientador"),Excel.pullData("CT01", "senhaOrientador"));
+		TSA.loadToPerformClick(teste, driver);
+	
 	}
 
 	public static String getResultCadastroAluno() {
