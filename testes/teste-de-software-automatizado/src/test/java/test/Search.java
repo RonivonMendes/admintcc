@@ -145,11 +145,13 @@ public class Search extends Config implements TSA{
 	}
 	public static void aceitaProjeto() throws IOException, InterruptedException {
 		testeLogin(Excel.pullData("CT01", "emailAluno"),Excel.pullData("CT01", "senhaAluno"));
-		TSA.loadToPerformClick(projetoTCC, driver);
+		 TSA.loadToPerformClick(projetoTCC, driver);
 		TSA.loadToPerformSendKeys(textResumo, Excel.pullData("CT01", "resumo"), driver);
 		driver.findElement(By.name("aceitar")).click();
 		TSA.loadToPerformClick(aceitaTCC, driver);
-		driver.findElement(By.xpath("//*[@id=\'menu\']/li[3]/a"));		
+		
+		driver.findElement(By.linkText("  Sair")).click();		
+
 	}
 	
 	public static void CT01() throws InterruptedException, IOException {
@@ -157,7 +159,16 @@ public class Search extends Config implements TSA{
 		aceitaProjeto();
 		testeLogin(Excel.pullData("CT01", "emailOrientador"),Excel.pullData("CT01", "senhaOrientador"));
 		TSA.loadToPerformClick(teste, driver);
-	
+		TSA.loadToPerformClick(aprovar, driver);
+		TSA.loadToPerformClick(enviar, driver);
+		driver.findElement(By.xpath("//*[@id=\'menu\']/li[4]/a")).click();
+		
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
+		TSA.loadToPerformClick(teste, driver);
+		TSA.loadToPerformClick(aprovar, driver);
+		TSA.loadToPerformClick(enviar, driver);
+		resultado = driver.findElement(By.xpath("//*[@id=\'page-wrapper\']/div/div/form/div[9]/p/strong")).getText().toString();
+		
 	}
 
 	public static String getResultCadastroAluno() {

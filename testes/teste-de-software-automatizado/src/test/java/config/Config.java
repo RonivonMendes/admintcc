@@ -25,7 +25,11 @@ public class Config {
 	protected static By aceitaTCC = By.id("a7");
 	
 	//CT01
-	protected static By teste = By.id("35");
+	protected static By teste = By.id("41");
+	protected static By aprovar = By.xpath("//*[@id=\'a8\']");
+	protected static By enviar = By.id("a10");
+	protected static By autorizar =  By.xpath("//*[@id=\'a8\']");
+	
 	
 	//LOGIN
 	protected static By email = By.name("email");

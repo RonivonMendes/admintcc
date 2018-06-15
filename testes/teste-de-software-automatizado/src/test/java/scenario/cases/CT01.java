@@ -27,17 +27,19 @@ public class CT01 extends Search {
 	}
 	@Test
     public void toResemble(){
-    	String output = null;
-        try
-        {	
-            Search.CT01();
-            output = Search.getResultCT01();
-            Excel.toCompare(output, "CT01");
-        } 
-        catch(Exception ex)
-        {
-            output = ex.getMessage();
-        }
-      
+   
+	    	String output = null;
+	        try
+	        {	
+	            Search.CadastroSupervisor();
+	            output = Search.getResultCT01();
+	            Excel.toCompare(output, CT01.class.getName().toString());
+	        } 
+	        catch(Exception ex)
+	        {
+	            output = ex.getMessage();
+	        }
+	      
+	    
     }
 }
