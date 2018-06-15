@@ -33,7 +33,6 @@
 
 	else
 		header('location: index.php');
-
 ?>
 
 <!DOCTYPE HTML>
@@ -186,29 +185,29 @@
 									<?php
 										if ($consultatcc[0]['aceite']==1)
 										{
-											echo "<td>Aceito</td>";
+											echo "<td style='color:blue'><strong>Aceito</strong></td>"; //azul 
 										}
 										else
-											echo "<td>Pendente</td>";
+											echo "<td style='color:orange'><strong>Pendente</strong></td>"; //laranja
 
 										if ($consultatcc[0]['aprovacaoOrientador']==1)
 										{
-											echo "<td>Aprovado</td>";
+											echo "<td style='color:blue'><strong>Aprovado</strong></td>"; //azul
 										}
 										else if($consultatcc[0]['aprovacaoOrientador']==0)
-											echo "<td>Pendente</td>";
+											echo "<td style='color:orange'><strong>Pendente</strong></td>"; //laranja
 
 										if ($consultatcc[0]['aprovacaoSuper']==1)
 										{
-											echo "<td>Autorizado</td>";
+											echo "<td style='color:blue'><strong>Autorizado</strong></td>"; //azul
 										}
 										else if($consultatcc[0]['aprovacaoSuper']==0)
-											echo "<td>Pendente</td>";
+											echo "<td style='color:orange'><strong>Pendente</strong></td>"; //laranja
 									?>
 									<td></td>
 								</tr>
 							</thead> 
-						
+
 						</table>
 
 							</form>
