@@ -3,25 +3,12 @@
 
 	session_start();
 
-	if ($_SESSION['logado']==0)
+	if ($_SESSION['logado']==0||$_SESSION['tipoPerfil']==4||$_SESSION['tipoPerfil']==5)
 	{
 		header('location: login.php');
 	}
 
-	//echo "ID INTEGRANTE: ". $_SESSION['idIntegrante'];
-
-	if(isset($_POST['cadastro']))
-	{
-		if ($_POST['cadastro']=='cadastroTcc')
-		{
-			$tcc = new CadastroTcc($_POST['aluno'], $_SESSION['idAcesso'], $_POST['projeto'], $_POST['gPesquisa'], "");
-			$alerta = $tcc->cadastrar($tcc);
-
-			$_POST['cadastro']="false";
-		}
-	}
-
-	#consultar projetos para verificar se o aluno já não tem projeto cadastrado
+	#consultar todos os projetos
 	$tcc = new CadastroTcc("","","","","");
 	$consultatcc = $tcc->buscar();
 ?>
@@ -63,6 +50,24 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	function ordenarAluno(argument)
+	{
+		
+	}
+
+	function ordenarCurso(argument)
+	{
+		
+	}
+
+	function ordenarTitulo(argument)
+	{
+		
+	}
+</script>
+
 	</head> 
 <body>
 
@@ -85,68 +90,57 @@
 								<br>
 							</div>
 
+					
+
 							<thead> 
 								<tr> 
 									<th>Id</th> 
-									<th>Orientador</th> 
-									<th>Curso</th> 
-									<th>Data e Hora</th>
-								</tr> 
+									<th>
+										Aluno 
+										<select name="ordenarAluno" onchange="javascript:ordenarAluno(value);">
+											<option>ordenar</option>
+											<option value="a-z">A-Z</option>
+											<option value="z-a">Z-A</option>
+										</select>
+									</th> 
+									<th>
+										Curso
+										<select name="ordenarCurso" onchange="javascript:ordenarCurso();">
+											<option>ordenar</option>
+											<option value="a-z">A-Z</option>
+											<option value="z-a">Z-A</option>
+										</select>
+									</th> 
+									<th>
+										Título do Projeto
+										<select name="ordenarTitulo" onchange="javascript:ordenarTitulo();">
+											<option>ordenar</option>
+											<option value="a-z">A-Z</option>
+											<option value="z-a">Z-A</option>
+										</select>
+									</th>
+									<th>#</th>
+								</tr>
 							</thead> 
 							<tbody>
-							
 								
 								<tr>
 								<?php
 
-									#Se for aluno, ele so pode ver o projeto dele!
-									if($_SESSION['tipoPerfil']==5 && $consultatcc!="0")
+									#Somente Supervisor, Orientador ou Admin do sistema tem acesso a visualização
+									if($_SESSION['tipoPerfil']==3 || $_SESSION['tipoPerfil']==2 || $_SESSION['tipoPerfil']==1)
 									{
 										foreach ($consultatcc as $key => $value)
 										{
-											if($value['alunos_id'] == $_SESSION['idAluno'])
-											{
-												echo "<tr onclick=\"javascript:window.location.href='lancarAtividades.php'; return false;\" style='cursor: hand;'>";
-												echo "<td>".$value['id']."</td>"; 
-												echo "<td>".$value['nome']."</td>";
-												echo "<td>".$value['curso']."</td>";
-												echo "<td>".$value['titulo']."</td>";
-												echo "</tr></div></a>";
-											}
-										}
-									}
-
-									#se for Orientador, visualiza todo que ele orienta, porém o link é para aprovar
-									else if($_SESSION['tipoPerfil']==3 && $consultatcc!="0")
-									{
-										foreach ($consultatcc as $key => $value)
-										{
-											if($value['integrantes_id']==$_SESSION['idIntegrante'])
-											{
-												echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-												echo "<td>".$value['id']."</td>"; 
-												echo "<td>".$value['nome']."</td>";
-												echo "<td>".$value['curso']."</td>";
-												echo "<td>".$value['titulo']."</td>";
-												echo "</tr></div></a>";
-											}
-
-										}
-									} 
-
-									#se for Supervisor, visualiza todos, porém o link é para autorizar
-									else if($_SESSION['tipoPerfil']==1 || $_SESSION['tipoPerfil']==2 && $consultatcc!="0")
-									{
-										foreach ($consultatcc as $key => $value)
-										{
-											echo "<tr onclick=\"javascript:window.location.href='autorizartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-											echo "<td>".$value['id']."</td>"; 
+											echo "<tr>";
+											echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
+											echo "<td><a id='".$value['id']."' class='btn btn-default' href='#'>btn</link></td>";
 											echo "</tr></div></a>";
 										}
-									}
+									} 
 								?>  
 							</tr>
 							</tbody> 
