@@ -3,7 +3,7 @@
 
 	session_start();
 
-	if ($_SESSION['logado']==0||$_SESSION['tipoPerfil']==4||$_SESSION['tipoPerfil']==5)
+	if ($_SESSION['logado']!=1||$_SESSION['tipoPerfil']==4||$_SESSION['tipoPerfil']==5)
 	{
 		header('location: login.php');
 	}
@@ -137,7 +137,7 @@
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
-											echo "<td><a id='".$value['id']."' class='btn btn-default' href='#'>btn</link></td>";
+											echo "<td><a id='".$value['id']."' class='btn btn-default' href='detalhes.php?id=".$value['id']."'>btn</link></td>";
 											echo "</tr></div></a>";
 										}
 									} 
