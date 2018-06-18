@@ -119,7 +119,7 @@
 											<option value="z-a">Z-A</option>
 										</select>
 									</th>
-									<th>#</th>
+									<th>Detalhes</th>
 								</tr>
 							</thead> 
 							<tbody>
@@ -137,7 +137,7 @@
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
-											echo "<td><a id='".$value['id']."' class='btn btn-default' href='detalhes.php?id=".$value['id']."'>btn</link></td>";
+											echo "<td><a id='".$value['id']."' class='btn btn-default' href='detalhes.php?id=".$value['id']."'><i class='fas fa-info-circle'></i></link></td>";
 											echo "</tr></div></a>";
 										}
 									} 
