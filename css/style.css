@@ -36,7 +36,63 @@ ul,label{
 body a:hover{
 	text-decoration:none;
 }
-
+    /*Css documentos tcc*/
+    <style>
+        {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: 'Arial';
+        }
+        .nav_tabs{
+            width: 600px;
+            height: 400px;
+            margin: auto;
+            background-color: #fff;
+            position: relative;
+        }
+        .nav_tabs ul{
+            list-style: none;
+        }
+        .nav_tabs ul li{
+            float: left;
+        }
+        .nav_tabs label{
+            width: 300px;
+            padding: 25px;
+            background-color: #4b7884;
+            display: block;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
+        }
+        .rd_tabs:checked ~ label{
+            background-color: #e54e43;
+        }
+        .rd_tabs{
+            display: none;
+        }
+        .content{
+            background-color: #fff;
+            display: none;
+            position: absolute;
+            height: 320px;
+            width: 600px;
+            left: 0;
+        }
+        .rd_tabs:checked ~ .content{
+            display: block;
+        }
+        #tabela1, #tabela2{
+            width: 100%;
+            border: 2px solid #629aa9;      
+        }
+        td{
+            border: 1px solid #629aa9; 
+            padding: 10px;
+        }
+    </style>
 .txt-aceitar{
     padding-left: 10px; 
     padding-right: 10px;

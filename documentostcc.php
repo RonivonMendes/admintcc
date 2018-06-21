@@ -4,7 +4,7 @@
 <title>Documentos TCC</title>
 <meta charset="utf-8">
 
-
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 
@@ -32,64 +32,6 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        body{
-            font-family: 'Arial';
-        }
-        .nav_tabs{
-            width: 600px;
-            height: 400px;
-            margin: auto;
-            background-color: #fff;
-            position: relative;
-        }
-        .nav_tabs ul{
-            list-style: none;
-        }
-        .nav_tabs ul li{
-            float: left;
-        }
-        .nav_tabs label{
-            width: 300px;
-            padding: 25px;
-            background-color: #4b7884;
-            display: block;
-            color: #fff;
-            cursor: pointer;
-            text-align: center;
-        }
-        .rd_tabs:checked ~ label{
-            background-color: #e54e43;
-        }
-        .rd_tabs{
-            display: none;
-        }
-        .content{
-            background-color: #fff;
-            display: none;
-            position: absolute;
-            height: 320px;
-            width: 600px;
-            left: 0;
-        }
-        .rd_tabs:checked ~ .content{
-            display: block;
-        }
-        #tabela1, #tabela2{
-            width: 100%;
-            border: 2px solid #629aa9;      
-        }
-        td{
-            border: 1px solid #629aa9; 
-            padding: 10px;
-        }
-    </style>
-    
     </head> 
 <body>
 
@@ -111,16 +53,16 @@
 									<div class="content">
 										<table id="tabela1">
 											<tr>
-												<td id="td1">Certificado 1<a id="link1" href="https://drive.google.com/open?id=0B0lb_UPr0dB_S1pkNmNiSTJLZU0" target="blank">
-                                            <img src="icon.png" alt="=Download Button"></a></td>
+												<td id="td1">Certificado 1<a id="link1" href="link-download" target="blank">
+                                            <img src="icone-download.png" alt="=Download Button"></a></td>
 											</tr>
 											<tr>
-												<td id="td2">Certificado 2<a id="link2" href="https://drive.google.com/open?id=0B0lb_UPr0dB_S1pkNmNiSTJLZU0" target="blank">
-                                            <img src="icon.png" alt="=Download Button"></a></td>
+												<td id="td2">Certificado 2<a id="link2" href="link-download" target="blank">
+                                            <img src="icone-download.png" alt="=Download Button"></a></td>
 											</tr>
 											<tr>
-												<td id="td3">Certificado 3<a id="link3" href="https://drive.google.com/open?id=0B0lb_UPr0dB_S1pkNmNiSTJLZU0" target="blank">
-                                            <img src="icon.png" alt="=Download Button"></a></td>
+												<td id="td3">Certificado 3<a id="link3" href="link-download" target="blank">
+                                            <img src="icone-download.png" alt="=Download Button"></a></td>
 											</tr>																						
 										</table>
 									</div>
@@ -131,17 +73,17 @@
 									<div class="content">
                                         <table id="tabela2">
                                             <tr>
-                                                <td id="td4">Documento 1<a id="link4" href="https://drive.google.com/open?id=0B0lb_UPr0dB_S1pkNmNiSTJLZU0" target="blank">
-                                            <img src="icon.png" alt="=Download Button"></a>
+                                                <td id="td4">Documento 1<a id="link4" href="link-download" target="blank">
+                                            <img src="icone-download.png" alt="=Download Button"></a>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td id="td5">Documento 2<a id="link4" href="https://drive.google.com/open?id=0B0lb_UPr0dB_S1pkNmNiSTJLZU0" target="blank">
-                                            <img src="icon.png" alt="=Download Button"></a></td>
+                                                <td id="td5">Documento 2<a id="link4" href="link-download" target="blank">
+                                            <img src="icone-download.png" alt="=Download Button"></a></td>
                                             </tr>
                                             <tr>
-                                                <td id="td6">Documento 3<a id="link5" href="https://drive.google.com/open?id=0B0lb_UPr0dB_S1pkNmNiSTJLZU0" target="blank">
-                                            <img src="icon.png" alt="=Download Button"></a></td>
+                                                <td id="td6">Documento 3<a id="link5" href="link-download" target="blank">
+                                            <img src="icone-download.png" alt="=Download Button"></a></td>
                                             </tr>                                                                                       
                                         </table>                           
                                     </div>
