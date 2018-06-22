@@ -1,4 +1,5 @@
 package test;
+import java.awt.RenderingHints.Key;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -159,6 +160,18 @@ public class Search extends Config implements TSA{
 		TSA.loadToPerformClick(teste, driver);
 	
 	}
+	public static void CT02() throws IOException, InterruptedException {
+		open();
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
+		System.out.println(Excel.pullData("Login", "senha"));
+		TSA.loadToPerformClick(lista, driver);
+		TSA.loadToPerformSendKeys(pesquisa, Excel.pullData("CT02","buscaraluno"), driver);
+		TSA.loadToPerformClick(btnPesquisa, driver);
+		By d =  By.xpath("//*[@id='page-wrapper']/div/div/table/tbody/tr[2]/td[5]/a");
+		TSA.loadToPerformClick(d, driver);
+		resultado = driver.findElement(By.linkText("Aprovação Orientador")).getText().toString();
+	
+	}
 
 	public static String getResultCadastroAluno() {
 		// TODO Auto-generated method stub
@@ -188,6 +201,11 @@ public class Search extends Config implements TSA{
 		// TODO Auto-generated method stub
 		return resultado;
 	}
+	public static String getResultCT02() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+	
 
 
 	

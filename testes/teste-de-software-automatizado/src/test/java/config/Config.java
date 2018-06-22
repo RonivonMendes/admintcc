@@ -27,6 +27,10 @@ public class Config {
 	//CT01
 	protected static By teste = By.id("35");
 	
+	//CT02
+	protected static By lista = By.xpath("//*[@id=\'menu\']/li[4]/a");
+	protected static By pesquisa = By.name("busca");
+	protected static By btnPesquisa = By.xpath("//*[@id=\'page-wrapper\']/div/div/div/button/i");
 	//LOGIN
 	protected static By email = By.name("email");
 	protected static By senha = By.name("senha");
