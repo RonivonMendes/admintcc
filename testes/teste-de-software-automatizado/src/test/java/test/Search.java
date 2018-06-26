@@ -171,6 +171,17 @@ public class Search extends Config implements TSA{
 		
 	}
 
+	public static void CT03() throws IOException, InterruptedException {
+		open();
+		testeLogin(Excel.pullData("CT03", "email"),Excel.pullData("CT03", "senha"));
+		TSA.loadToPerformClick(bntTCC, driver);
+		By txtHora = By.id("l3");
+		TSA.loadToPerformSendKeys(txtHora, "0204", driver);
+		By txtDias = By.id("l4");
+		TSA.loadToPerformSendKeys(txtDias, "02022222", driver);
+		Thread.sleep(50000);
+		
+	}
 	public static String getResultCadastroAluno() {
 		// TODO Auto-generated method stub
 		return resultado;
@@ -196,6 +207,10 @@ public class Search extends Config implements TSA{
 
 
 	public static String getResultCT01() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+	public static String getResultCT03() {
 		// TODO Auto-generated method stub
 		return resultado;
 	}
