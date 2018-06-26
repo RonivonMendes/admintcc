@@ -64,6 +64,7 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+
 	</head> 
 <body>
 
@@ -115,7 +116,20 @@
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
-												echo "<td><a id='".$value['id']."' class='btn btn-default' href='lancarAtividades.php'>btn</link></td>";
+
+												if($value['aceite']!=1)
+												{
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='lancarAtividades.php'><i class='fas fa-exclamation' title='Aceite do aluno pendente!'></i></link></td>";
+												}
+
+												else if($value['aceite']==1 && $value['aprovacaoOrientador']!=1)
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='lancarAtividades.php'><i class='far fa-check-circle' title='Aguardando aprovação do Orientador'></i></link></td>";
+
+												else if($value['aceite']==1 && $value['aprovacaoOrientador']==1 && $value['aprovacaoSuper']!=1)
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='lancarAtividades.php'><i class='far fa-check-circle' title='Aguardando autorização do Supervisor de TCC'></i></link></td>";
+
+												else if($value['aceite']==1 && $value['aprovacaoOrientador']==1 && $value['aprovacaoSuper']==1)
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='lancarAtividades.php'><i class='fas fa-check-circle' title='Aceito, Aprovado e Autorizado!'></i></link></td>";
 	
 												echo "</tr></div></a>";
 											}
@@ -135,7 +149,20 @@
 												echo "<td>".$value['nome']."</td>";
 												echo "<td>".$value['curso']."</td>";
 												echo "<td>".$value['titulo']."</td>";
-												echo "<td><a id='".$value['id']."' class='btn btn-default' href='aprovartcc.php?id=".$value['id']."'>btn</link></td>";
+												if($value['aceite']!=1)
+												{
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='aprovartcc.php?id=".$value['id']."'><i class='fas fa-exclamation' title='Aceite do aluno pendente!'></i></link></td>";
+												}
+
+												else if($value['aceite']==1 && $value['aprovacaoOrientador']!=1)
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='aprovartcc.php?id=".$value['id']."'><i class='fas fa-exclamation' title='Aguardando sua aprovação!'></i></link></td>";
+
+												else if($value['aceite']==1 && $value['aprovacaoOrientador']==1 && $value['aprovacaoSuper']!=1)
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='aprovartcc.php?id=".$value['id']."'><i class='far fa-check-circle' title='Aguardando autorização do Supervisor de TCC'></i></link></td>";
+
+												else if($value['aceite']==1 && $value['aprovacaoOrientador']==1 && $value['aprovacaoSuper']==1)
+													echo "<td><a id='".$value['id']."' class='btn btn-default' href='aprovartcc.php?id=".$value['id']."'><i class='fas fa-check-circle' title='Autorizado pelo Supervisor de TCC!'></i></link></td>";
+												
 												echo "</tr>";
 											}
 
@@ -153,13 +180,24 @@
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
-											echo "<td><a id='".$value['id']."' class='btn btn-default' href='autorizartcc.php?id=".$value['id']."'>btn</link></td>";
+
+											if($value['aceite']!=1)
+											{
+												echo "<td><a id='".$value['id']."' class='btn btn-default' href='autorizartcc.php?id=".$value['id']."'><i class='far fa-times-circle' title='Aceite do aluno pendente!'></i></link></td>";
+											}
+											else if($value['aceite']==1 && $value['aprovacaoOrientador']!=1)
+												echo "<td><a id='".$value['id']."' class='btn btn-default' href='autorizartcc.php?id=".$value['id']."'><i class='fas fa-exclamation' title='Aguardando aprovação Orientador!'></i></link></td>";
+											else if($value['aceite']==1 && $value['aprovacaoOrientador']==1 && $value['aprovacaoSuper']!=1)
+												echo "<td><a id='".$value['id']."' class='btn btn-default' href='autorizartcc.php?id=".$value['id']."'><i class='fas fa-exclamation' title='Aguardando sua aprovação!'></i></link></td>";
+											else if($value['aceite']==1 && $value['aprovacaoOrientador']==1 && $value['aprovacaoSuper']==1)
+												echo "<td><a id='".$value['id']."' class='btn btn-default' href='autorizartcc.php?id=".$value['id']."'><i class='fas fa-check-circle' title='Aceito, Aprovado e Autorizado!'></i></link></td>";
+
 											echo "</tr></div></a>";
 										}
 									}
 								?>  
 							</tr>
-							</tbody> 
+							</tbody>
 						</table>
 						<br>
 					</div>

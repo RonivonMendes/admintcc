@@ -58,6 +58,7 @@ $resp = "<i class='fas fa-moon'></i> Boa noite";}
   <li><a href="cadastrarUsuario.php"><i class="fas fa-user-plus"></i>&nbsp;&nbsp;Cadastrar Usuário</a></li>
   <?php } if ($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3) {?>
   <li><a href="cadastroTcc.php"><i class="fas fa-file-medical"></i>&nbsp;&nbsp;Cadastrar TCC</a></li>
+  <li><a href="listartccs.php"><i class="fas fa-folder-open"></i>&nbsp;&nbsp;Listar TCC'S</a></li>
   <?php } if ($_SESSION['tipoPerfil']==5) { ?>
   <li><a href="aceitartcc.php"><i class="fas fa-file"></i>&nbsp;&nbsp;Projeto TCC</a></li>
   <?php } ?>

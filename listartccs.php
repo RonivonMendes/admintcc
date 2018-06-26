@@ -3,7 +3,7 @@
 
 	session_start();
 
-	if ($_SESSION['logado']==0||$_SESSION['tipoPerfil']==4||$_SESSION['tipoPerfil']==5)
+	if ($_SESSION['logado']!=1||$_SESSION['tipoPerfil']==4||$_SESSION['tipoPerfil']==5)
 	{
 		header('location: login.php');
 	}
@@ -11,6 +11,18 @@
 	#consultar todos os projetos
 	$tcc = new CadastroTcc("","","","","");
 	$consultatcc = $tcc->buscar();
+
+	#pequisa por Orientador ou aluno
+	if (isset($_POST['pesquisar']))
+	{
+		if ($_POST['pesquisar']=="pesquisar")
+		{
+			$pesquisaTcc = new CadastroTcc("","","","","");
+			$pesq = $pesquisaTcc->pesquisar($_POST['busca']);
+
+		}
+	}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -50,27 +62,8 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-	function ordenarAluno(argument)
-	{
-		
-	}
-
-	function ordenarCurso(argument)
-	{
-		
-	}
-
-	function ordenarTitulo(argument)
-	{
-		
-	}
-</script>
-
 	</head> 
 <body>
-
 
 <?php include 'menu.php'; ?>
 
@@ -84,10 +77,15 @@
 		
 						<table class="table table-bordered"> 
 							
-							<div>
+							<div style="text-align: right;">
 								<br>
 								<h2 style="text-align: center">Projetos em Andamento</h2>
-								<br>
+								<form action="#" method="post">
+									<input type="hidden" name="pesquisar" value="pesquisar">
+									<input type="text" name="busca" placeholder="buscar aluno ou projeto">
+									<button type="submit"><i class="fas fa-search"></i></button>
+								</form>
+								<br><br>
 							</div>
 
 					
@@ -95,31 +93,10 @@
 							<thead> 
 								<tr> 
 									<th>Id</th> 
-									<th>
-										Aluno 
-										<select name="ordenarAluno" onchange="javascript:ordenarAluno(value);">
-											<option>ordenar</option>
-											<option value="a-z">A-Z</option>
-											<option value="z-a">Z-A</option>
-										</select>
-									</th> 
-									<th>
-										Curso
-										<select name="ordenarCurso" onchange="javascript:ordenarCurso();">
-											<option>ordenar</option>
-											<option value="a-z">A-Z</option>
-											<option value="z-a">Z-A</option>
-										</select>
-									</th> 
-									<th>
-										Título do Projeto
-										<select name="ordenarTitulo" onchange="javascript:ordenarTitulo();">
-											<option>ordenar</option>
-											<option value="a-z">A-Z</option>
-											<option value="z-a">Z-A</option>
-										</select>
-									</th>
-									<th>#</th>
+									<th>Aluno</th> 
+									<th>Curso</th> 
+									<th>Título do Projeto</th>
+									<th>Detalhes</th>
 								</tr>
 							</thead> 
 							<tbody>
@@ -127,6 +104,9 @@
 								<tr>
 								<?php
 
+								#se não realizou nenhuma pesquisa, lista todos, se não, lista apenas os retornos da pesquisa, se nenhum item for encontrado, exibe uma mensagem!
+								if(!isset($_POST['pesquisar']))
+								{
 									#Somente Supervisor, Orientador ou Admin do sistema tem acesso a visualização
 									if($_SESSION['tipoPerfil']==3 || $_SESSION['tipoPerfil']==2 || $_SESSION['tipoPerfil']==1)
 									{
@@ -137,10 +117,32 @@
 											echo "<td>".$value['nome']."</td>";
 											echo "<td>".$value['curso']."</td>";
 											echo "<td>".$value['titulo']."</td>";
-											echo "<td><a id='".$value['id']."' class='btn btn-default' href='#'>btn</link></td>";
+											echo "<td><a id='".$value['id']."' class='btn btn-default' href='detalhes.php?id=".$value['id']."'><i class='fas fa-info-circle'></i></link></td>";
 											echo "</tr></div></a>";
 										}
 									} 
+								}
+								else if($_SESSION['tipoPerfil']==3 || $_SESSION['tipoPerfil']==2 || $_SESSION['tipoPerfil']==1&&$pesq!="0")
+								{
+									foreach ($pesq as $key => $value)
+									{
+										echo "<tr>";
+										echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
+										echo "<td>".$value['nome']."</td>";
+										echo "<td>".$value['curso']."</td>";
+										echo "<td>".$value['titulo']."</td>";
+										echo "<td><a id='".$value['id']."' class='btn btn-default' href='detalhes.php?id=".$value['id']."'><i class='fas fa-info-circle'></i></link></td>";
+										echo "</tr></div></a>";
+									}
+								}
+								elseif ($pesq=="0")
+								{
+									echo "<tr>";
+										echo "<td colspan='5' align='center'>Nenhum item encontrado!</td>";
+										echo "</tr>";
+								}
+
+									
 								?>  
 							</tr>
 							</tbody> 

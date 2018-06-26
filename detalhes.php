@@ -1,10 +1,10 @@
 <?php
-	/*require_once 'php/tcc.php';
+	require_once 'php/tcc.php';
 	require_once 'php/integrante.php';
 
 	session_start();
 
-	if ($_SESSION['logado']!=1)
+	if ($_SESSION['logado']!=1||$_SESSION['tipoPerfil']==4||$_SESSION['tipoPerfil']==5)
 	{
 		header('location: login.php');
 	}
@@ -33,27 +33,6 @@
 
 	else
 		header('location: index.php');
-
-
-	if (isset($_POST['aprovacao']))
-	{
-		if ($_POST['aprovacao']=="aprovacao")
-		{
-			$tcc = new CadastroTcc("","","","","");
-			#se estiver aprovado, aprovar no sistema e enviar para o supervisor aprovar
-			if($_POST['aprovar']==1)
-				$alerta = $tcc->aprovar($consultatcc[0]['id'], $_POST['aprovar']);
-			
-			#se não reabre o aceite do aluno para que ele faça alterações no resumo!
-			else
-			{
-				$tcc->aceitar($consultatcc[0]['id'], $_POST['aprovar'], $consultatcc[0]['resumo']);
-				$alerta = "Resumo e aceite reaberto para que o aluno faça correções!";
-			}
-
-		}
-		
-	}*/
 ?>
 
 <!DOCTYPE HTML>
@@ -188,44 +167,7 @@
 									<br>
 									<div class='check-aceitar'>
 
-									<?php
-										/*if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==0||$consultatcc[0]['aprovacaoOrientador']==2)
-										{
-											echo "<input type='radio'  name='aprovar' value='1' id='a8'>Aprovar
-													<input type='radio'  name='aprovar' value='2' id='a9'>Reprovar
-											</div>
-											<br>
-											<div style='text-align: center;' class='form-group'>
-												<input type='submit' name='enviar' id='a10' value='Enviar'>";
-
-											if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==2)
-												echo "<p style='color: red'><strong>O projeto foi reprovado pelo Supervisor de TCC, o aluno já efetuar suas correções, envie novamente para autorização!</strong></p>
-												</div>
-												</div>";
-											
-
 									
-										}
-
-										else if($consultatcc[0]['aceite']==0)
-										{
-											echo "<p style='color: red'><strong>Aguardando o aluno concluir seu resumo e/ou aceitar os termos!</strong></p>
-											</div>";
-
-										}
-										else if($consultatcc[0]['aceite']==2)
-										{
-											echo "<p style='color: red'><strong>Projeto foi reprovado, aguardando o aluno fazer as devidas correções em seu resumo e/ou aceitar os termos!</strong></p>
-											</div>";
-										}
-										else if($consultatcc[0]['aceite']==3&&$consultatcc[0]['aprovacaoOrientador']==2)
-											echo "<p style='color: red'><strong>O projeto foi reprovado pelo Supervisor de TCC, aguardando o aluno efetuar correções e  enviar novamente para sua aprovação!</strong></p>
-											</div>";
-										else if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==1&&$consultatcc[0]['aprovacaoSuper'==0])
-											echo "<p style='color: red'><strong>O projeto já foi aprovado, aguardando autorização do Supervisor</strong></p>
-											</div>";
-										*/	
-									?>
 
 								<br>
 
@@ -233,69 +175,39 @@
 
 							<thead> 
 								<tr> 
-									<th>Status Aluno</th> 
-									<th>Status Orientador</th> 
-									<th>Status Supervisor</th> 
+									<th>Aceite Aluno</th> 
+									<th>Aprovação Orientador</th> 
+									<th>Autorização Supervisor</th> 
 									
-								</tr> 
-							</thead> 
-							<tbody>
-							
-								
+								</tr>
+
 								<tr>
-								<?php
-								
-									#Se for aluno, ele so pode ver o projeto dele!
-									if($_SESSION['tipoPerfil']==5 && $consultatcc!="0")
-									{
-										foreach ($consultatcc as $key => $value)
+									<?php
+										if ($consultatcc[0]['aceite']==1)
 										{
-											if($value['alunos_id'] == $_SESSION['idAluno'])
-											{
-												echo "<tr onclick=\"javascript:window.location.href='lancarAtividades.php'; return false;\" style='cursor: hand;'>";
-												echo "<td>".$value['id']."</td>"; 
-												echo "<td>".$value['nome']."</td>";
-												echo "<td>".$value['curso']."</td>";
-												echo "<td>".$value['titulo']."</td>";
-												echo "</tr></div></a>";
-											}
+											echo "<td style='color:blue'><strong>Aceito</strong></td>"; //azul 
 										}
-									}
-									/*
-									#se for Orientador, visualiza todo que ele orienta, porém o link é para aprovar
-									else if($_SESSION['tipoPerfil']==3 && $consultatcc!="0")
-									{
-										foreach ($consultatcc as $key => $value)
-										{
-											if($value['integrantes_id']==$_SESSION['idIntegrante'])
-											{
-												echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-												echo "<td>".$value['id']."</td>"; 
-												echo "<td>".$value['nome']."</td>";
-												echo "<td>".$value['curso']."</td>";
-												echo "<td>".$value['titulo']."</td>";
-												echo "</tr></div></a>";
-											}
+										else
+											echo "<td style='color:orange'><strong>Pendente</strong></td>"; //laranja
 
-										}
-									} 
-
-									#se for Supervisor, visualiza todos, porém o link é para autorizar
-									else if($_SESSION['tipoPerfil']==1 || $_SESSION['tipoPerfil']==2 && $consultatcc!="0")
-									{
-										foreach ($consultatcc as $key => $value)
+										if ($consultatcc[0]['aprovacaoOrientador']==1)
 										{
-											echo "<tr onclick=\"javascript:window.location.href='autorizartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
-											echo "<td>".$value['id']."</td>"; 
-											echo "<td>".$value['nome']."</td>";
-											echo "<td>".$value['curso']."</td>";
-											echo "<td>".$value['titulo']."</td>";
-											echo "</tr></div></a>";
+											echo "<td style='color:blue'><strong>Aprovado</strong></td>"; //azul
 										}
-									}*/
-								?>  
-							</tr> 
-							</tbody> 
+										else if($consultatcc[0]['aprovacaoOrientador']==0)
+											echo "<td style='color:orange'><strong>Pendente</strong></td>"; //laranja
+
+										if ($consultatcc[0]['aprovacaoSuper']==1)
+										{
+											echo "<td style='color:blue'><strong>Autorizado</strong></td>"; //azul
+										}
+										else if($consultatcc[0]['aprovacaoSuper']==0)
+											echo "<td style='color:orange'><strong>Pendente</strong></td>"; //laranja
+									?>
+									<td></td>
+								</tr>
+							</thead> 
+
 						</table>
 
 							</form>

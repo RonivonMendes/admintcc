@@ -64,6 +64,25 @@
 				return $res;
 		}
 
+		#pesquisar Aluno ou Titulo do Projeto
+		function pesquisar($cons)
+		{
+			$conexao = Database::conexao();
+
+			$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE usuarios.nome LIKE '%".$cons."%' OR titulo LIKE '%".$cons."%'; ";
+
+			$temp = $conexao->prepare($sql);
+			$temp->execute();
+			$res = $temp->fetchAll();
+
+			if($temp->rowCount()<1)
+				return "0";
+
+			else
+				return $res;
+		}
+
+
 
 		#aluno completa o resumo e aceita o projeto
 		function aceitar($id, $aceite, $resumo)
