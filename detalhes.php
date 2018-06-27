@@ -171,13 +171,13 @@
 
 								<br>
 
-						<table class="table table-bordered"> 
+						<table class="table table-bordered" style="text-align: center"> 
 
 							<thead> 
 								<tr> 
-									<th>Aceite Aluno</th> 
-									<th>Aprovação Orientador</th> 
-									<th>Autorização Supervisor</th> 
+									<th style="text-align: center">Aceite Aluno</th> 
+									<th style="text-align: center">Aprovação Orientador</th> 
+									<th style="text-align: center">Autorização Supervisor</th> 
 									
 								</tr>
 
@@ -204,7 +204,6 @@
 										else if($consultatcc[0]['aprovacaoSuper']==0)
 											echo "<td style='color:orange'><strong>Pendente</strong></td>"; //laranja
 									?>
-									<td></td>
 								</tr>
 							</thead> 
 

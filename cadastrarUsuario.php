@@ -211,9 +211,14 @@
 					<div style="text-align: center;">
 						<br>
 						<button id="f1">Aluno</button>
-						<button id="f2">Orientador</button>
 						<button id="f3">Coorientador</button>
+
+						<?php if($_SESSION['tipoPerfil']==1|| $_SESSION['tipoPerfil']==2) { ?>
+						<button id="f2">Orientador</button>
 						<button id="f4">Supervisor</button>
+
+						<?php } ?>
+
 					</div>
 					
 					<br>

@@ -180,7 +180,7 @@
 								</div>
 								<div>
 									<?php
-										echo "<textarea style='width: 98%' id='text-control' id='a7' name='resumo' rows='13' cols='143' required='' disabled=''>".$consultatcc[0]['titulo']."</textarea>";
+										echo "<textarea style='width: 98%' id='text-control' id='a7' name='resumo' rows='13' cols='143' required='' disabled=''>".$consultatcc[0]['resumo']."</textarea>";
 									?>
 								
 								</div>
