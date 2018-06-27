@@ -146,11 +146,13 @@ public class Search extends Config implements TSA{
 	}
 	public static void aceitaProjeto() throws IOException, InterruptedException {
 		testeLogin(Excel.pullData("CT01", "emailAluno"),Excel.pullData("CT01", "senhaAluno"));
-		TSA.loadToPerformClick(projetoTCC, driver);
+		 TSA.loadToPerformClick(projetoTCC, driver);
 		TSA.loadToPerformSendKeys(textResumo, Excel.pullData("CT01", "resumo"), driver);
 		driver.findElement(By.name("aceitar")).click();
 		TSA.loadToPerformClick(aceitaTCC, driver);
-		driver.findElement(By.xpath("//*[@id=\'menu\']/li[3]/a"));		
+		
+		driver.findElement(By.linkText("  Sair")).click();		
+
 	}
 	
 	public static void CT01() throws InterruptedException, IOException {
@@ -158,7 +160,16 @@ public class Search extends Config implements TSA{
 		aceitaProjeto();
 		testeLogin(Excel.pullData("CT01", "emailOrientador"),Excel.pullData("CT01", "senhaOrientador"));
 		TSA.loadToPerformClick(teste, driver);
-	
+		TSA.loadToPerformClick(aprovar, driver);
+		TSA.loadToPerformClick(enviar, driver);
+		driver.findElement(By.xpath("//*[@id=\'menu\']/li[4]/a")).click();
+		
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
+		TSA.loadToPerformClick(teste, driver);
+		TSA.loadToPerformClick(aprovar, driver);
+		TSA.loadToPerformClick(enviar, driver);
+		resultado = driver.findElement(By.xpath("//*[@id=\'page-wrapper\']/div/div/form/div[9]/p/strong")).getText().toString();
+		
 	}
 	public static void CT02() throws IOException, InterruptedException {
 		open();
@@ -173,6 +184,17 @@ public class Search extends Config implements TSA{
 	
 	}
 
+	public static void CT03() throws IOException, InterruptedException {
+		open();
+		testeLogin(Excel.pullData("CT03", "email"),Excel.pullData("CT03", "senha"));
+		TSA.loadToPerformClick(bntTCC, driver);
+		By txtHora = By.id("l3");
+		TSA.loadToPerformSendKeys(txtHora, "0204", driver);
+		By txtDias = By.id("l4");
+		TSA.loadToPerformSendKeys(txtDias, "02022222", driver);
+		Thread.sleep(50000);
+		
+	}
 	public static String getResultCadastroAluno() {
 		// TODO Auto-generated method stub
 		return resultado;
@@ -201,11 +223,18 @@ public class Search extends Config implements TSA{
 		// TODO Auto-generated method stub
 		return resultado;
 	}
+<<<<<<< HEAD
 	public static String getResultCT02() {
 		// TODO Auto-generated method stub
 		return resultado;
 	}
 	
+=======
+	public static String getResultCT03() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}
+>>>>>>> 9a92eb1ec676e9e22208eda734036ad2b798d1ee
 
 
 	

@@ -24,8 +24,16 @@ public class Config {
 	protected static By selectAceito = By.xpath("//*[@id=\'a5\']/input");
 	protected static By aceitaTCC = By.id("a7");
 	
+	
+	//CT03
+	protected static By bntTCC = By.id("42");
+	
 	//CT01
-	protected static By teste = By.id("35");
+	protected static By teste = By.id("41");
+	protected static By aprovar = By.xpath("//*[@id=\'a8\']");
+	protected static By enviar = By.id("a10");
+	protected static By autorizar =  By.xpath("//*[@id=\'a8\']");
+	
 	
 	//CT02
 	protected static By lista = By.xpath("//*[@id=\'menu\']/li[4]/a");

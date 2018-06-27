@@ -11,7 +11,7 @@ import methods.Excel;
 import test.Search;
 
 
-public class CT01 extends Search {
+public class CT03 extends Search {
 	
 
 
@@ -31,9 +31,9 @@ public class CT01 extends Search {
 	    	String output = null;
 	        try
 	        {	
-	            Search.CadastroSupervisor();
-	            output = Search.getResultCT01();
-	            Excel.toCompare(output, CT01.class.getName().toString());
+	            Search.CT03();
+	            output = Search.getResultCT03();
+	            Excel.toCompare(output, CT03.class.getName().toString());
 	        } 
 	        catch(Exception ex)
 	        {
