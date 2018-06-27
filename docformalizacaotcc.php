@@ -32,6 +32,15 @@
 ?>
 <html>
 <head>
+
+<script>
+    function myFunction() 
+    {
+        window.print();
+    }
+
+</script>
+
 <style>
     body {
         width: 100%;
@@ -50,7 +59,6 @@
         min-height: 297mm;
         padding: 20mm;
         margin: 10mm auto;
-        border-radius: 5px;
         background: white;
     }
     .subpage {
@@ -84,6 +92,20 @@
         border: 1px solid #ccc;
     }
     header {height: 110px;}
+
+    button{
+        background-color: #598c93;
+        border: none;
+        color: white;
+        height: 50px;
+    }
+
+    button:hover{
+        background-color: #73adb7;
+        color: white;
+        cursor: pointer;
+        transition-duration: 500ms;
+    }
 </style>
 </head>
 <body>
@@ -133,6 +155,7 @@
                 
         </div>    
     </div>
+
     <div class="page">
         <div class="subpage">
             <p style="text-align: center;"><strong>RESUMO DO PROJETO DE PESQUISA</strong></p><BR>
@@ -158,5 +181,7 @@
         </div>    
     </div>            
 </div>
+<button  style="margin-left: 46.5%" onclick="myFunction()">Imprimir Documento</button>
+<br><br>
 </body>
 </html>
