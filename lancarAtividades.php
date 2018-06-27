@@ -86,7 +86,7 @@
 		
 					
 						
-						<form action="" method="post" class="form-horizontal">	
+						<form action="lancarAtividades.php" method="post" class="form-horizontal">	
 							
 								<br>
 								<br>
@@ -151,7 +151,6 @@
 								</div>
 
 								<?php } ?>
-
 								
 							</form>
 						</div>		

@@ -4,7 +4,7 @@
 
 	session_start();
 
-	if ($_SESSION['logado']!=1||$_SESSION['tipoPerfil']==4||$_SESSION['tipoPerfil']==5)
+	if ($_SESSION['logado']!=1||$_SESSION['tipoPerfil']==5)
 	{
 		header('location: login.php');
 	}
@@ -53,7 +53,7 @@
 
 
 <!-- font-awesome  icons CSS-->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <!-- //font-awesome icons CSS-->
 
  <!-- js-->
@@ -159,7 +159,7 @@
 								</div>
 								<div>
 									<?php
-										echo "<textarea style='width: 98%' id='text-control' id='a7' name='resumo' rows='13' cols='143' required='' disabled=''>".$consultatcc[0]['titulo']."</textarea>";
+										echo "<textarea style='width: 98%' id='text-control' id='a7' name='resumo' rows='13' cols='143' required='' disabled=''>".$consultatcc[0]['resumo']."</textarea>";
 									?>
 								
 								</div>
@@ -211,12 +211,24 @@
 						</table>
 
 							</form>
-						</div>	
-
+						</div>
+						<br><br>
+<h2 style="text-align: center;">Documentação</h2>
+<center>
+    <br>
+<table>
+    
+    <tr>
+    	<td style="border: 10px solid #fff; background: #629aa9; padding: 15px; border-radius: 5px; color: white; font-weight: bold;"><a target="_blank" style="color: white" href="docformalizacaotcc.php?id=<?php echo $_GET['id']; ?>"><i class="fas fa-file-download"></i> FORMALIZAÇÃO DE TCC</a></td>
+    	<td style="border: 10px solid #fff; background: #629aa9; padding: 15px; border-radius: 5px; color: white; font-weight: bold;"><a target="_blank" style="color: white" href="docresponsabilidade.php?id=<?php echo $_GET['id']; ?>"><i class="fas fa-file-download"></i> TERMO DE RESPONSABILIDADE</a></td>
+	</tr>
+</table>
+</center>
+<br><br>
 					</div>
 				<br>
 			<br>
-		<br><br><br><br><br><br><br>
+		<br><br><br>
 		
 	</div>
 

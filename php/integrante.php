@@ -67,7 +67,7 @@
 
 			if ($id!=false)
 			{
-				$sql = "SELECT integrantes.*, usuarios.nome FROM integrantes JOIN usuarios ON integrantes.usuarios_id=usuarios.id where integrantes.id= $id;";
+				$sql = "SELECT integrantes.*, usuarios.nome, usuarios.telefone, acessos.email FROM integrantes JOIN usuarios JOIN acessos ON integrantes.usuarios_id=usuarios.id AND usuarios.idAcesso=acessos.id where integrantes.id= $id;";
 			}
 			else
 				$sql = "SELECT integrantes.*, usuarios.nome FROM integrantes JOIN usuarios ON integrantes.usuarios_id=usuarios.id;";

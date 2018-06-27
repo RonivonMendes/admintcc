@@ -50,8 +50,8 @@
 			}
 			else if($_SESSION['tipoPerfil']==5)
 				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE cadastrostcc.alunos_id=".$cons.";";
-			else if($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3)
-				$sql = "SELECT cadastrostcc.*, usuarios.nome, cursos.nome AS curso FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id WHERE cadastrostcc.id=".$cons.";";
+			else if($_SESSION['tipoPerfil']==1||$_SESSION['tipoPerfil']==2||$_SESSION['tipoPerfil']==3||$_SESSION['tipoPerfil']==4)
+				$sql = "SELECT cadastrostcc.*, usuarios.nome, usuarios.telefone, cursos.nome AS curso, alunos.ra AS ra, acessos.email FROM cadastrostcc JOIN alunos JOIN usuarios JOIN cursos JOIN acessos ON cadastrostcc.alunos_id = alunos.id AND alunos.idUsuario = usuarios.id AND alunos.idCurso = cursos.id AND acessos.id=usuarios.idAcesso WHERE cadastrostcc.id=".$cons.";";
 			
 			$temp = $conexao->prepare($sql);
 			$temp->execute();
@@ -168,7 +168,7 @@
 		{
 			$conexao = Database::conexao();
 
-			$sql = "INSERT INTO `AtividadesTcc` (`acessos_id`, `cadastrostcc_id`, `atividade`, `cargaHoraria`, `dataExecucao`, `aceite`) VALUES ('$acesso', '$idTcc', '$atividade', '$cargaHoraria', '$dataExecucao', '$aceite');";
+			$sql = "INSERT INTO `atividadesTcc` (`acessos_id`, `cadastrostcc_id`, `atividade`, `cargaHoraria`, `dataExecucao`, `aceite`) VALUES ('$acesso', '$idTcc', '$atividade', '$cargaHoraria', '$dataExecucao', '$aceite');";
 			$temp = $conexao->prepare($sql);
 			$result = $temp->execute();
 

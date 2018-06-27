@@ -169,6 +169,26 @@
 										}
 									} 
 
+									#se for Co-orientadolr, visualiza todo que ele Corienta, link detalhes
+									else if($_SESSION['tipoPerfil']==4 && $consultatcc!="0")
+									{
+										foreach ($consultatcc as $key => $value)
+										{
+											if($value['coorientador_id']==$_SESSION['idIntegrante'])
+											{
+												#echo "<tr onclick=\"javascript:window.location.href='aprovartcc.php?id=".$value['id']."'; return false;\" style='cursor: hand;'>";
+												echo "<tr>";
+												echo "<td class='".$value['id']."'>".$value['id']."</td>"; 
+												echo "<td>".$value['nome']."</td>";
+												echo "<td>".$value['curso']."</td>";
+												echo "<td>".$value['titulo']."</td>";
+												echo "<td><a id='".$value['id']."' class='btn btn-default' href='detalhes.php?id=".$value['id']."'><i class='fas fa-info-circle'></i></link></td>";
+												echo "</tr>";
+											}
+
+										}
+									}
+
 									#se for Supervisor, visualiza todos, porém o link é para autorizar
 									else if($_SESSION['tipoPerfil']==1 || $_SESSION['tipoPerfil']==2 && $consultatcc!="0")
 									{
