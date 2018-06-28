@@ -42,7 +42,7 @@
 			if($_POST['resposta']==1)
 			{
 				$alerta = $tcc->autorizar($consultatcc[0]['id'], $_POST['resposta']);
-				if ($alerta)
+				if ($alerta=="Projeto Autorizado com sucesso!")
 				{
 					header("Refresh: 0;");
 				}
@@ -52,8 +52,11 @@
 			else if($_POST['resposta']==3)
 			{
 				$tcc->aceitar($consultatcc[0]['id'], $_POST['resposta'], $consultatcc[0]['resumo']);
-				$tcc->aprovar($consultatcc[0]['id'], "2");
-				$alerta = "Resumo e aceite reaberto para que o aluno faça correções!";
+				$alerta = $tcc->aprovar($consultatcc[0]['id'], "2");
+				if ($alerta=="Projeto Aprovado com sucesso!")
+				{
+					header("Refresh: 0;");
+				}
 			}
 		}
 	}

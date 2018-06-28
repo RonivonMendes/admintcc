@@ -55,8 +55,11 @@
 			#se não reabre o aceite do aluno para que ele faça alterações no resumo!
 			else
 			{
-				$tcc->aceitar($consultatcc[0]['id'], $_POST['aprovar'], $consultatcc[0]['resumo']);
-				$alerta = "Resumo e aceite reaberto para que o aluno faça correções!";
+				$alerta = $tcc->aceitar($consultatcc[0]['id'], $_POST['aprovar'], $consultatcc[0]['resumo']);
+				if($alerta=="Termo Aceite Preenchido com sucesso!")
+				{
+					header("Refresh: 0;");
+				}
 			}
 
 		}
@@ -213,7 +216,7 @@
 												<input type='submit' name='enviar' id='a10' value='Enviar'>";
 
 											if($consultatcc[0]['aceite']==1&&$consultatcc[0]['aprovacaoOrientador']==2)
-												echo "<p style='color: red'><strong>O projeto foi reprovado pelo Supervisor de TCC, o aluno já efetuar suas correções, envie novamente para autorização!</strong></p>
+												echo "<p style='color: red'><strong>O projeto foi reprovado pelo Supervisor de TCC, o aluno já efetuou suas correções, envie novamente para autorização!</strong></p>
 												</div>
 												</div>";
 											
