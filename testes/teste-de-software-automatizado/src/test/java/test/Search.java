@@ -195,6 +195,22 @@ public class Search extends Config implements TSA{
 		Thread.sleep(50000);
 		
 	}
+	
+
+	public static void CT04() throws IOException, InterruptedException {
+		open();
+		testeLogin(Excel.pullData("Login", "email"),Excel.pullData("Login", "senha"));
+		By listarTCC = By.xpath("//*[@id=\'menu\']/li[4]/a");
+		TSA.loadToPerformClick(listarTCC, driver);
+		By tccA= By.id("43");
+		TSA.loadToPerformClick(tccA, driver);
+		By download = By.xpath("//*[@id=\'page-wrapper\']/div[1]/div/center/table/tbody/tr/td[1]");
+		TSA.loadToPerformClick(download, driver);
+		By download2 = By.xpath("//*[@id=\'page-wrapper\']/div[1]/div/center/table/tbody/tr/td[2]/a");
+		TSA.loadToPerformClick(download2, driver);
+		Thread.sleep(122222);
+	}
+	
 	public static String getResultCadastroAluno() {
 		// TODO Auto-generated method stub
 		return resultado;
@@ -223,21 +239,19 @@ public class Search extends Config implements TSA{
 		// TODO Auto-generated method stub
 		return resultado;
 	}
-<<<<<<< HEAD
+
 	public static String getResultCT02() {
 		// TODO Auto-generated method stub
 		return resultado;
 	}
 	
-=======
+
 	public static String getResultCT03() {
 		// TODO Auto-generated method stub
 		return resultado;
 	}
->>>>>>> 9a92eb1ec676e9e22208eda734036ad2b798d1ee
-
-
-	
-	
-	
+	public static String getResultCT04() {
+		// TODO Auto-generated method stub
+		return resultado;
+	}	
 }
