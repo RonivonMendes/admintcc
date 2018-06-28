@@ -38,6 +38,10 @@
 		if($_POST['cadastrar']=="aceite")
 		{
 			$alerta =  $tcc->aceitar($consulta[0]['id'], $_POST['aceitar'], $_POST['resumo']);
+			if ($alerta=="Termo Aceite Preenchido com sucesso!")
+			{
+				header("Refresh: 0;");
+			}
 
 			$_POST['cadastrar']="";
 

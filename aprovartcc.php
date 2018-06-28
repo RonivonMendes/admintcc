@@ -42,7 +42,15 @@
 			$tcc = new CadastroTcc("","","","","");
 			#se estiver aprovado, aprovar no sistema e enviar para o supervisor aprovar
 			if($_POST['aprovar']==1)
+			{
 				$alerta = $tcc->aprovar($consultatcc[0]['id'], $_POST['aprovar']);
+				if($alerta=="Projeto Aprovado com sucesso!")
+				{
+					header("Refresh: 0;");
+				}
+			}
+
+
 			
 			#se não reabre o aceite do aluno para que ele faça alterações no resumo!
 			else
@@ -93,6 +101,12 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+
+<script>
+	function atualizar() {
+    location.reload();
+}
+</script>
 	</head> 
 <body>
 

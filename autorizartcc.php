@@ -40,7 +40,13 @@
 			$tcc = new CadastroTcc("","","","","");
 			#se estiver autorizado, autoriza no sistema e libera as atividades para que o aluno inicie!
 			if($_POST['resposta']==1)
+			{
 				$alerta = $tcc->autorizar($consultatcc[0]['id'], $_POST['resposta']);
+				if ($alerta)
+				{
+					header("Refresh: 0;");
+				}
+			}
 			
 			#se não reabre para o Aluno
 			else if($_POST['resposta']==3)
