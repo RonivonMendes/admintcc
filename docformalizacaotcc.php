@@ -85,6 +85,7 @@
             background: initial;
             page-break-after: always;
         }
+        button {display:none; height: 0px; margin:0px; padding:0px;}
     }
     table {
         width:100%;
@@ -181,7 +182,6 @@
         </div>    
     </div>            
 </div>
-<button  style="margin-left: 46.5%" onclick="myFunction()">Imprimir Documento</button>
-<br><br>
+<button  style="margin-left: 46.5%; margin-bottom: 30px;" onclick="myFunction()">Imprimir Documento</button>
 </body>
 </html>
