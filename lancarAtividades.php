@@ -30,7 +30,7 @@
 			$lancamento = new AtividadeTcc($consultatcc[0]['id'], $_POST['atividade'], $_POST['cargaHoraria'], $_POST['dataExecucao'], "0");
 
 			
-			$alerta = $lancamento->lancar($_SESSION['idAluno'], $consultatcc[0]['id'], $_POST['atividade'], $_POST['cargaHoraria'], $_POST['dataExecucao'], "0");
+			$alerta = $lancamento->lancar($_SESSION['idAcesso'], $consultatcc[0]['id'], $_POST['atividade'], $_POST['cargaHoraria'], $_POST['dataExecucao'], "0");
 		}
 
 	}
